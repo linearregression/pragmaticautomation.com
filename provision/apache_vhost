@@ -18,10 +18,6 @@
     Order allow,deny
     Allow from all
   </Directory>
-  
-  <Directory "/home/deploy/apps/pragmaticautomation.com/current/cgi-bin">
-    Options FollowSymLinks ExecCGI
-  </Directory>
 
   ScriptAlias /cgi-bin/ /home/deploy/apps/pragmaticautomation.com/current/cgi-bin/
 

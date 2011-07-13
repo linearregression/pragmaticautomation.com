@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/local/bin/ruby
 # This file contains the site-specific configuration for RubLog.
 #
 # To install RubLog copy this file to a location which permits
