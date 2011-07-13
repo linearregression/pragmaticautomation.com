@@ -1,0 +1,62 @@
+= Cobertura Announced
+
+abstract::
+SAS has forked jcoverage to create Cobertura: a free code coverage tool for Java projects.
+
+Jared Richardson wrote in with the good news that folks at SAS have
+picked up the flickering torch of jcoverage to light the flames of
+{Cobertura}[http://cobertura.sourceforge.net/]:
+
+
+[] When you have a large code base (we have five million lines
+   of Java!) or you are new to a project, you often don't know exactly
+   what code is exercised by your tests.  Randomly adding tests is
+   rather pointless.  We don't have the resources to just close our
+   eyes and throw darts until the target is covered.  We need to
+   identify exactly where tests are needed.  A good coverage tool will
+   give you that information quickly.
+
+   We used jcoverage to get this information, and we fixed bugs in
+   jcoverage along the way.  We finally realized that the jcoverage
+   guys were busy elsewhere and that bug fixes were sitting in their
+   mailing list and Bugzilla. Some fixes were more than a year old.
+   Keeping an internal version up to date with a public version is a
+   lot of work. So the decision was made to fork the project and try
+   to establish a new (and active) Java coverage tool:
+   {Cobertura}[http://cobertura.sourceforge.net/].  Cobertura (Spanish 
+   for "coverage") generates reports like
+   {these}[http://cobertura.sourceforge.net/sample/] to help you to
+   identify the Java code that isn't covered by tests so you can focus
+   your efforts.
+   
+   The initial public response to Cobertura has been encouraging, but
+   we don't want Cobertura to be a SAS version of jcoverage.  We are
+   hoping to get more developers involved to point out or fix the
+   problems they have encountered with jcoverage.  We feel that our
+   work is giving back to the community but we also hope to benefit
+   from your enhancements, too!  Come {visit
+   us}[http://cobertura.sourceforge.net/] and help make Cobertura a
+   tool we all can use.
+
+Kudos to Mark Doliner at SAS for rekindling the flame. I'm excited to
+hear this news because I've been using jcoverage with Ant to
+automatically generate coverage reports as artifacts of scheduled
+builds.  Just mentioning this may cause you to flinch because you've
+been a victim of coverage metrics used as painful yardsticks.  It
+doesn't have to be that way.
+
+I use coverage reports to help me improve my testing skills.  The
+numbers in the reports are largely irrelevant.  What is relevant is
+that I get feedback about how well my tests cover the code, and I use
+that feedback to strengthen the weaknesses of my testing habits.  For
+example, if I consistently fail to test what happens when an exception
+is raised, then I start to see a pattern in the coverage report: code
+in <tt>catch</tt> blocks is displayed in red.  Or when I'm about to
+go into an area of legacy code---to fix a bug or add a feature---the
+report tells me if any tests are on hand to give me confidence to
+change the code.  And if you can get that kind of feedback cheaply
+from a few Ant tasks, why wouldn't you want it?
+
+{Cobertura}[[http://cobertura.sourceforge.net/] is my new coverage
+tool of choice, and I hope to give something back.  I hope you'll get
+involved, too.

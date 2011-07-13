@@ -1,0 +1,119 @@
+= RDoc Markup
+
+RDoc is the markup format first developed for writing documentation in
+source file comments. It is intended to look fairly natural: you
+should be able to read RDoc source files and not realize that they
+contain any special markup.
+
+1. Paragraphs are lines that share the left margin. Text indented past
+   this margin are formatted verbatim.
+
+2. Headings are entered using equals signs
+
+      = Level One Heading
+      == Level Two Heading
+   and so on
+
+3. Rules (horizontal lines) are entered using three or
+   more hyphens (the more hyphens, the thicker the line).
+
+4. Non-verbatim text can include markup:
+
+   _italic_::     \_word_ or \<em>text</em>
+   *bold*::       \*word* or \<b>text</b>
+   +typewriter+:: \+word+ or \<tt>text</tt>
+
+   The first form only works around 'words', where a word is a
+   sequence of upper and lower case letters and underscores. Putting a
+   backslash before inline markup stops it being interpreted, which is
+   how I created the table above:
+
+     _italic_::     \_word_ or \<em>text</em>
+     *bold*::       \*word* or \<b>text</b>
+     +typewriter+:: \+word+ or \<tt>text</tt>
+
+5. You can reference another article in the blog in a couple of ways:
+
+   1. If the file's name part is a WikiWord (that is it starts with a
+      capital letter, has one or more lower case letters, another
+      capital and some more letters), just enter its name part. For
+      example, if this directory contained an article in a file called
+      GettingThere.rdoc, you could hyperlink to it by entering the
+      text +GettingThere+. If the referenced article exists in the
+      same directory as the referencing page, it will be the one
+      returned. Otherwise, RubLog looks for matches across the entire
+      blog. In this case the resulting link might reference multiple
+      articles (in different categories).
+   2. You can reference another article by giving its explicit path
+      relative to the base of the RubLog article tree. For example,
+      you can reference this file as InputFormats/RDoc. Note that in
+      this case the file name does not have to be a WikiWord.
+
+6. Hyperlinks to the web starting http:, mailto:, ftp:, or www. are
+   recognized. An HTTP url that references an external image file is
+   converted into an inline <IMG..>. 
+
+   Hyperlinks can also be of the form <tt>label</tt>[url], in which
+   case the label is used in the displayed text, and <tt>url</tt> is
+   used as the target.
+       
+7. Lists are typed as indented paragraphs with:
+   * a '*' or '-' (for bullet lists)
+   * a digit followed by a period (for automatically numbered lists)
+
+   For example, the input that produced the above paragraph looked like
+       1. Lists are typed as indented 
+          paragraphs with:
+          * a '*' or '-' (for bullet lists)
+	  * a digit followed by a period (for automatically 
+            numbered lists)
+
+8. Labeled lists (sometimes called description
+   lists) are typed using square brackets for the label.
+      [cat]   small domestic animal
+      [+cat+] command to copy standard input
+
+9. Labeled lists may also be produced by putting a double colon
+   after the label. This sets the result in tabular form, so the
+   descriptions all line up. This was used to create the 'author'
+   block at the bottom of this description.
+      cat::   small domestic animal
+      +cat+:: command to copy standard input
+
+   For both kinds of labeled lists, if the body text starts on the same
+   line as the label, then the start of that text determines the block
+   indent for the rest of the body. The text may also start on the line
+   following the label, indented from the start of the label. This is
+   often preferable if the label is long. Both the following are
+   valid labeled list entries:
+
+      <tt>--output</tt> <i>name [, name]</i>::
+          specify the name of one or more output files.
+          If multiple files are present, the first is
+          used as the index.
+
+      <tt>--quiet:</tt>:: do not output the names, 
+                          sizes, byte counts, index
+                          areas, or bit ratios of units
+                          as they are processed.
+
+10. You can mark a section of your document as a synopsis. The flag
+
+        summary::
+           paragraph
+           paragraph...
+
+    Takes the text in _paragraph_ as the synopsis, and leaves the
+    paragraph in the document. Alternatively, you
+    can include a multi-line synopsis using:
+
+        start summary::
+          stuff
+        end summary::
+
+    If you use _abstract_ rather than _summary_, the text will be
+    used as the synopsis, but will not be included in the full text
+    of the document.
+
+If you're an Emacs user, you'll find the filladapt package invaluable
+for laying out lists.

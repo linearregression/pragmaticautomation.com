@@ -1,0 +1,30 @@
+= Tell Me Where It Hurts
+
+abstract:: Learn how to write and distribute diagnostic tests that let your application do it's own first-level support.
+
+
+[] <i>Minutes ago, you released the latest version of your
+   buzzword-compliant hosted application to your most important
+   customer. It's no small accomplishment for the team and is a
+   potentially huge deal for your company. Your face lights up with a
+   big, toothy grin as a wave of high-fives goes around the team. When
+   the excitement turns into a collective sigh of relief, the team
+   huddles up to depart for a well-deserved celebration dinner. Just
+   then, the sound of a ringing telephone cuts through the air,
+   freezing everyone in their tracks. It's the support phone, and that
+   could only mean one thing: deployment trouble.</i>
+
+[] ({Full article: PDF}[http://www.pragmaticprogrammer.com/starter_kit/auto/DiagnosticTests.pdf])
+
+Ah yes, if you haven't been there then count yourself lucky.  Getting
+an application properly seated in its production environment, time
+after time, requires careful planning and inspection.  The slightest
+misconfiguration can tie up endless hours troubleshooting and quickly
+rack up cell phone minutes.
+
+
+Read how to write and distribute diagnostic tests that let your
+application do it's own first-level support in my recent 
+{article (pdf)}[http://www.pragmaticprogrammer.com/starter_kit/auto/DiagnosticTests.pdf]
+for {Better Software
+magazine}[http://www.stickyminds.com/BetterSoftware].

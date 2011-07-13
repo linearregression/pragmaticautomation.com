@@ -1,0 +1,34 @@
+= A Sneak Peek at Automator
+
+abstract::
+The goal of ubiquitous automation is one of the reasons I'm excited about Automator: a feature in the soon-to-be-released Mac OS X Tiger.  {Working with Automator}[http://developer.apple.com/macosx/tiger/automator.html], the latest article in the Tiger Developer Overview Series, gives you a quick overview of Automator, and then shows you how you can build your own Actions and share them with other users.  
+
+I enjoy writing programs that glue recurring tasks together into an
+automation workflow.  And as a programmer, I have lots of automation
+tools within reach.  But those tools often only get me half way to my
+goal.  Once I've written a program that automates a task, I'd like to
+share the task with non-programmers and allow them to use it to build
+their own automation workflows.  Indeed, automation is for all of us.
+
+The goal of ubiquitous automation is one of the reasons I'm excited
+about {Automator}[http://www.apple.com/macosx/tiger/automator.html]: a feature in the soon-to-be-released Mac OS X Tiger.
+To my mind, it enables automation for the masses.  Simply by dragging
+preloaded <i>Actions</i> onto a <i>Workflow</i>, anyone on your project
+can automate the tasks of checking out code from version control,
+building the project, and creating an installation package.  That's a
+few project chores you can check off the list, but imagine what other
+chores you might be able to automate when you start creating and
+sharing your own custom Actions.
+
+{Working with
+Automator}[http://developer.apple.com/macosx/tiger/automator.html],
+the latest article in {James'}[http://blog.x180.net/] Tiger Developer Overview Series, gives you a
+quick overview of Automator, and then shows you how you can build your
+own Actions and share them with other users.
+
+Automator not only puts another automation tool within your reach, but
+it also conveniently puts the automation tools you build within the
+reach of others.  When you start playing with Automator, please do
+{write in}[http://localhost/cgi-bin/pragauto.cgi/SuggestContent.rdoc]
+with your stories.  I plan to share any Actions I craft right here, so stay
+tuned.

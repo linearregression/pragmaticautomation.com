@@ -1,0 +1,8 @@
+Plain Text Format
+
+A plain text file is rendered "as is", except 
+
+1. the first line of the file is used as the title.
+
+2. blank lines are converted to HTML paragraphs
+

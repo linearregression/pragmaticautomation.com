@@ -1,0 +1,24 @@
+= Another Build Frequency Inkblot
+
+abstract::
+Here's another build frequency chart with an interesting story to tell.
+
+I'm glad to hear that someone else peeked under the CruiseControl
+metrics tab for a glimpse at their project's build frequency.  Here's
+an interesting (colorful!) one from a reader who shall remain anonymous:
+
+http://blogs.pragprog.com/images/pragauto/cccommitchart2.png
+
+Notice how different it is from the {first team's
+chart}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/WhatsYourBuildFrequency.rdoc].
+For starters, the broken build frequency seems high, but at least
+they're periodically getting back to a healthy state.  I'd suggest
+they could do a bit more local testing before checking in code, or
+perhaps just get a bit more sleep.  The person who submitted the chart
+included the following commentary:
+
+[] <em>We're not so hip on the 40 hour work week; this activity is all
+   from four people in the same office. Please don't mistake that as
+   bragging.</em>
+
+What else do you see when you look at this chart?

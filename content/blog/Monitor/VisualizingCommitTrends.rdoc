@@ -1,0 +1,20 @@
+= Visualizing Commit Trends
+
+abstract::
+What do these charts of source code repository activity imply?  I have no idea, but I find them fascinating.  
+
+{Take a peek}[http://lemonodor.com/archives/001216.html] at these
+example charts of source code repository activity.  What do they
+imply?  I have no idea, but I find them fascinating.
+
+I wonder what the charts would look like on a project where the team
+builds things in small chunks (where <em>small</em> means "measured in
+minutes") and checks in code directly after each thing is built and
+tested.  Or would that kind of predictable development rhythm just
+make the data less interesting?  At any rate, it would be interesting
+to use a bit o' automation to keep a running chart from start to end
+of a project.
+
+Oh, and please be careful not to read too much into these charts.  I
+shudder at the thought of some pointy-haired manager using them as
+input to an employee bonus formula.

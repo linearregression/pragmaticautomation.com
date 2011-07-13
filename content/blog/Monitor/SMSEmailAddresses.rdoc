@@ -1,0 +1,28 @@
+= What's Your SMS Email Address?
+
+start abstract::
+Want to sneak out of the office for an afternoon at the beach, but you
+need to know if a scheduled build fails or an application crashes?
+No problem.  Here's how to find your cell phone or pager's SMS email
+address to plug in to the examples in the book.
+end abstract::
+
+Want to sneak out of the office for an afternoon at the beach, but you
+need to know if a scheduled build fails or an application crashes?  In
+the {book}[http://www.pragmaticprogrammer.com/sk/auto], we use SMS 
+messaging to have your cell phone or pager tell you when it might be
+time to fold up your beach towel and head back to the office.
+
+An SMS email address is your phone's email address.  If you send an
+email to your phone's address, the email will be relayed as a text
+message to your phone or pager.  But in the book's examples I use a
+fake SMS email address for my current wireless carrier.  (Yes, I'm
+sure you'd love to ring my cell phone when <i>your</i> build fails.)
+
+So you've got a cell phone or a pager in your pocket that you never
+thought could be used as a software-monitoring device, if only you
+knew its SMS email address.  No worries.  NotePage, Inc. maintains a
+{list of SMS email addresses}[http://www.notepage.net/smtp.htm] for
+virtually all cell phones and pagers known to humankind.
+
+See you at the beach!

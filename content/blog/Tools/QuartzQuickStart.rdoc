@@ -1,0 +1,209 @@
+= Quartz Quick Start
+
+start abstract::
+A quick-start tutorial for scheduling jobs with Quartz, an open
+source job scheduling system written in Java.
+end abstract::
+
+When I need to turn commanded automation into scheduled automation, I
+generally reach for <tt>cron</tt>.  I've gotten used to its syntax and
+other peculiarities over the years, so <tt>cron</tt> is a tool I'm
+comfortable wielding.  But recently I've been writing an automated
+monitoring program for a client requiring a scheduler that
+can live inside of their Java application and run on heterogeneous
+platforms.  Java ports of <tt>cron</tt> are available, but I needed
+something with a bit more horsepower and flexibility.
+
+{Quartz}[http://www.opensymphony.com/quartz/] is an open source job
+scheduling system written in Java that can be embedded within a
+Java/J2EE application or run as a stand-alone application.  And yet
+those qualifications alone didn't convince me to add the Quartz JAR
+file to my project.  (I'm fairly picky about what libraries I'll
+introduce into a project.)  What did convince me to use Quartz is it
+makes the simple things easy and the complex things possible.
+
+For now, I just need to do simple things: schedule recurring jobs.
+And before I can do the complex things, I learn by doing the simple
+things first.  So I thought I'd share how I got started using Quartz
+as a way of introducing it to you.  As a result, you'll have another
+automation tool within reach.
+
+=== Download and Install
+
+Start by {downloading
+Quartz}[http://www.opensymphony.com/quartz/download.html].
+
+Installation is a simple matter of adding <tt>quartz.jar</tt> and
+<tt>commons-logging.jar</tt> to your classpath (ok, so it's
+<em>two</em> JAR files).  You'll find various other JAR files in the
+Quartz distribution, but thankfully those two JAR files are all you
+need to get started.
+
+=== Create A Job
+
+Next, you need to write some Java code to create a job and put it on a
+schedule.
+ 
+Say, for example, you're developing a build scheduler that runs Ant
+build files at regular intervals.  (The world certainly doesn't need
+another Java build scheduler with great continuous integration tools
+such as {CruiseControl}[http://cruisecontrol.sourceforge.net/] already
+there for the taking, but it's an example that's hopefully near and
+dear to your heart.)
+
+Somewhere in guts of your build scheduler you create a job:
+
+  JobDetail jobDetail = 
+      new JobDetail("buildJob", "buildGroup", BuildJob.class);
+
+The <tt>JobDetail</tt> instance represents a schedulable job.  The
+first two parameters uniquely identify the job by its name and group.
+The third parameter refers to a Java class that implements the
+<tt>Job</tt> interface.  We'll actually write the <tt>BuildJob</tt>
+class a bit later.  But first, notice that the <tt>JobDetail</tt>
+refers to a class, which means you can't call any instance methods to
+set the state of a <tt>Job</tt> instance.  And because the scheduler
+will create a new instance of <tt>BuildJob</tt> each time the job is
+executed, the job's instance variables are cleared between executions.
+
+That appears to be a problem because you want your build scheduler to
+run a specified Ant build file and target.  Therefore, when an
+instance of your <tt>BuildJob</tt> class is created it will need to be
+supplied two variables: the build file and target.  Quartz has a
+mechanism for shuttling data to jobs when they're run.  All you need
+to do is put the data in the <tt>JobDataMap</tt> associated with the
+<tt>JobDetail</tt> instance:
+
+  jobDetail.getJobDataMap().put("buildfile", "build.xml");
+  jobDetail.getJobDataMap().put("target", "test");
+
+The <tt>JobDataMap</tt> behaves like a Java <tt>Map</tt> with a
+key-value pair.  We'll see the data in the <tt>JobDataMap</tt> appear
+on the other side when we write the <tt>BuildJob</tt> class.
+
+=== Tune A Trigger
+
+Next, define when the job should run.  Let's say you want the Ant
+build file to run every 60 seconds indefinitely.  To do that, create a
+trigger with the schedule properties:
+
+  Date startTime = new Date();    // immediately
+  Date endTime = null;            // forever
+  long repeatInterval = 60000L;   // 60 seconds
+  int repeatCount = SimpleTrigger.REPEAT_INDEFINITELY;
+
+  SimpleTrigger trigger = 
+    new SimpleTrigger("buildTrigger", Scheduler.DEFAULT_GROUP,
+                      startTime, endTime,
+		      repeatCount, repeatInterval);
+
+The <tt>SimpleTrigger</tt> is good for simple interval-based
+schedules.  It runs the job at a specific moment in time and
+optionally repeats running it on an interval.  Alternatively, you can
+use the <tt>CronTrigger</tt> to run a job on a calendar-like
+schedule. (Now you know another reason I like Quartz.) For example, to
+run the Ant build at 2:30 am, Monday through Friday, use:
+
+  CronTrigger trigger = 
+    new CronTrigger("buildTrigger", Scheduler.DEFAULT_GROUP, 
+                    "0 30 2 ? * MON-FRI");
+        
+If you're not familiar with <tt>cron</tt> syntax, that funny string
+supplied as the last parameter is a cron expression with the following
+form:
+
+  Seconds Minutes Hours DayOfMonth Month DayOfWeek
+
+Cron expressions give you a lot of scheduling flexibility.  For a full
+range of examples, refer to the {CronTrigger
+JavaDoc}[http://quartz.sourceforge.net/javadoc/org/quartz/CronTrigger.html].
+ 
+=== Schedule The Job
+
+Until now we have not associated the job with its trigger.  Indeed,
+jobs and triggers are decoupled.  One benefit of this design is a job
+can be assigned to many triggers.  Now we're ready to schedule the
+job.
+
+First, create a scheduler:
+
+  SchedulerFactory factory = new StdSchedulerFactory();
+  Scheduler scheduler = factory.getScheduler();
+
+Then schedule the job by associating the job and its trigger:
+
+  scheduler.scheduleJob(jobDetail, trigger);
+
+The schedule is set, but jobs won't actually fire until the scheduler
+has been started:
+
+  scheduler.start();
+
+(Jobs can also be scheduled while the scheduler is running.)
+
+At some later time, make sure to gracefully shut down the scheduler:
+
+  boolean waitForJobsToComplete = true;
+  scheduler.shutdown(waitForJobsToComplete);
+
+
+=== Write A Job Class
+
+Before running the scheduler, we need to write a class that implements
+the <tt>Job</tt> interface.  This brings us back to the
+<tt>BuildJob</tt> class.
+
+You put the Java code that gets executed when the job runs in the
+method called <tt>execute()</tt>.  Here's an example implementation of
+the <tt>BuildJob</tt> class:
+
+  public class BuildJob implements org.quartz.Job {
+
+    public BuildJob() { }
+       
+    public void execute(JobExecutionContext context) 
+        throws JobExecutionException {
+       
+        JobDataMap map = context.getJobDetail().getJobDataMap();
+        String buildFile = map.getString("buildfile");
+        String target = map.getString("target");
+        
+        try {
+
+            AntRunner runner = new AntRunner();
+            runner.run(buildFile, target);
+
+        } catch(Exception e) {
+            throw new JobExecutionException(e);
+        }
+    }
+  }
+
+Notice that a <tt>JobExecutionContext</tt> instance is passed to the
+<tt>execute()</tt> method when the job is run.  From the
+<tt>JobExecutionContext</tt> instance you're able to get the
+<tt>JobDataMap</tt> instance containing the data defined when the
+job was scheduled--the Ant build file and the target.
+
+The <tt>BuildJob</tt> simply delegates to the <tt>AntRunner</tt>
+class--a custom class I wrote that runs the Ant build file and target.
+By making <tt>Job</tt> classes as thin as possible--simply delegating
+the real work to a class not dependent on Quartz--the job execution
+code is easier to test and potentially reuse elsewhere in the system.
+
+Notice also that the only checked exception the <tt>execute()</tt>
+method is allowed to throw is a <tt>JobExecutionException</tt>.  Thus,
+any unhandled exceptions (checked or unchecked) raised during job
+execution should be caught and rethrown as a
+<tt>JobExceptionException</tt>.
+
+=== Advanced Scheduling
+
+We've barely tapped into the potential of Quartz.  Thankfully,
+although it lets you do complex things, you can get started quickly
+and then wade into advanced features if you need them.  If you want to
+dig deeper, the
+{tutorial}[http://www.opensymphony.com/quartz/tutorial.html] goes into
+more detail without overwhelming you with options.
+
+Have fun!

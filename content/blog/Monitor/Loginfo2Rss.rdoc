@@ -1,0 +1,79 @@
+= CVS Loginfo to RSS
+
+abstract::
+A simple Ruby script converts CVS commit information into a
+convenient RSS feed.
+
+Dave writes:
+
+<em>Mike's {recent article}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/LettingCVSPullTheTrigger.rdoc] on triggering stuff based on CVS commits
+shamed me into finishing something I'd been meaning to do for a
+while.</em>
+
+<em>I keep an eye on a number of CVS repositories, including the one 
+used by our authors when they're writing books. I want to keep
+up-to-date with what's changing, but I also don't want to add to my
+e-mail log by sending myself a message on every commit.</em>
+
+<em>Increasingly, I'm using RSS to aggregate all my information
+feeds. I love having NetNewsWire[http://ranchero.com/netnewswire/] go
+out and check the world for me, summarizing what it finds. So my
+goal was to have the information on commits to these CVS repositories
+appear in my RSS reader alongside all the other information.</em>
+
+[] http://pragmaticprogrammer.com/images/automation/commit2rss.jpg
+
+<em>To give myself a break from all the LaTeX I've been doing, I decided
+to code up the solution myself, rather than search for existing
+solutions. I came up with a trivial little Ruby script that it
+triggered using the +loginfo+ hook in CVS. This hook is invoked at
+the end of a commit, and is passed a summary of the log information
+entered by the user. My Ruby script captures this and maintains a
+flat file in RSS format containing the last 10 commits, organized by
+project. Link to this file from a web server, and you have an
+up-to-the-minute RSS feed showing who's doing what to your
+repository.</em>
+
+<em>The Ruby program uses the RSS library (now distributed as standard
+with Ruby) both to parse the existing file and to format up new
+entries to add to it. The full source is available
+here[http://pragmaticprogrammer.com/downloads/commit2rss/commit2rss.rb.txt].</em>
+
+<em>Linking it into CVS is fairly painless. Check out your
+repository's +CVSROOT+ project, and edit the file +loginfo+. Add a
+line that looks something like the following:</em>
+
+[] <em>pattern</em>  <tt>/usr/local/bin/commit2rss.rb  %{}</tt>
+
+<em>The </em>pattern<em> part is used to specify which parts of the
+repository you want to monitor--it's a pattern that is used to match
+against the stuff being checked in. If I want to look at just the
+stuff our authors are working on, I use "/titles/", and the script
+will only get invoked if the check in includes that directory.</em>
+
+<em>The rest of the command is the path to the Ruby script and the magic
+<tt>%{}</tt> parameter. This simply tells CVS to pass the project the
+name of the checked-in project.</em>
+
+<em>Installing the Ruby script is fairly straightforward.  Decide
+where you want it to keep your RSS files, and edit the path in the
+<tt>DROP_DIR</tt> constant. While you're in there, edit the shebang
+line at the top to point to your own Ruby interpreter. Then copy the
+script into the right place (I used <tt>/usr/local/bin</tt>
+above).</em>
+
+<em>Finally, you have to worry about permissions. CVS runs these
+scripts under the ID of the user doing the commit. The RSS file has
+to be writable by any potential committer. There are two easy ways of
+handling this. If all your committers belong to the same Unix group,
+then you set the group owner of the directory containing the RSS files
+appropriately, and set the sticky bit on that group. You then need to
+make sure that your default umask keeps the group-write bit set.</em>
+
+<em>An alternative is to make the script setuid, ideally to a
+low-privilege user such as www, and set the permissions on the RSS
+drop directory accordingly.</em>
+
+<em>That's now one more chunk of great information I can check in the
+mornings without doing any extra typing. Chalk up another win for
+automation.</em>

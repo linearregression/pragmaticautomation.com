@@ -1,0 +1,42 @@
+= OSCON 2005
+
+abstract:: 
+Mike Clark is scheduled to give an automation with Ruby talk at the O'Reilly Open Source Convention (OSCON) in August.
+
+I'm tickled pink, er, red to report that I just received confirmation
+that my automation with Ruby talk proposal has been accepted for the
+{O'Reilly Open Source Convention
+(OSCON)}[http://conferences.oreillynet.com/os2005/] in August.  
+
+I (heart) Ruby, and the number of real-life applications being built
+with Ruby is on the rise, thanks in large part to the
+{Rails}[http://www.rubyonrails.org/] juggernaut.  Thankfully, the Ruby
+community has crafted good tools for automating many of the chores
+that go along with building and supporting these applications.  And
+the Ruby language lends itself well to quickly automating repetitive
+tasks on any project.
+
+My <em>Getting Off the Treadmill</em> talk will cover at least the
+following:
+
+* Using {Rake}[http://rake.rubyforge.org/] and
+  {Test::Unit}[http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html]
+  to create a one-step build and test process.
+* Continuously building and testing your code with
+  {DamageControl}[http://damagecontrol.codehaus.org/]. (Hey, it's
+  written in Ruby.)
+* Packaging, deploying, and installing applications with ease using
+  {RubyGems}[http://rubygems.rubyforge.org].
+* Using Ruby to generate project metrics and synoptic displays.
+* Turning step-by-step manual chores into push-button Ruby scripts.
+* Monitoring builds and running programs with email, RSS, your cell
+  phone, and other feedback devices.
+* And I'm sure I won't be able to resist showing off a
+  {Rails}[http://www.rubyonrails.org/] application (or ten).
+
+Yes, I'll bring my lava lamps, X10 controllers, orbs, and any other
+yummy automation gear I can scrounge before the conference.  (Airport
+security can pry them from my cold, dead fingers.  Well, maybe not.)
+
+Hope to see you there!
+

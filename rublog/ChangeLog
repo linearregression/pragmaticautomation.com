@@ -1,0 +1,295 @@
+2005-01-22  Dave Thomas  <dave@pragprog.com>
+
+	* Request.rb (WebRequest::determine_date_range): The issue with
+	  detecting dates in URLs is getting trickier. The fix
+	  made on 11-10 was incorrect, as it broke the
+	  calendar. Try something different.
+
+2004-11-10  Dave Thomas  <dave@pragprog.com>
+
+	* Request.rb (WebRequest::determine_date_range): If a pathname
+	  contained somehing that looked like a reasonable date,
+	  rublog extracted it as the constraining date for the
+	  request.
+
+2004-09-13  Dave Thomas  <dave@pragprog.com>
+
+	* FileEntries.rb (FileEntries::traverse): Symbolic links to
+	  missing files no longer cause a crash.
+
+	* search/Vector.rb (Vector::score_against): Allow searches that
+	  are entirely negative.
+
+2004-09-06  Dave Thomas  <dave@fast.local.thomases.com>
+
+	* View.rb (END): Add 'always_synopsis_rss' option
+
+2004-09-05  Dave Thomas  <dave@pragprog.com>
+
+	* View.rb (View::setup_initial_values): Merge Ben Schumacher's multiple
+	  entries patch (rubyforge#653).
+
+	* ThisRubLogRequest.rb: Totally change the way RubLog objects are created,
+	  configured, and how requests are processed. This is a step towards
+	  better FastCGI and WEBrick versions, as you now create one RubLog object
+	  that can handle multiple requests.
+
+	  NOTE: This change breaks existing rublog.cgi scripts (but the change is
+	  minimal). See README for details.
+
+2004-08-24  Dave Thomas  <dave@fast.local.thomases.com>
+
+	* Add 'comment_email_address' option
+
+2004-06-23  Dave Thomas  <dave@fast.local.thomases.com>
+
+	* doc/FullInstallation.rdoc: Sort linkholder sidebars, and
+	  add the \d\d: prefix to override default alpha order.
+
+2004-04-17  Dave Thomas  <dave@pragprog.com>
+
+	* convertors/Markdown.rb: Added convertor for Markdown format (thanks
+	  to Mark Reid)
+
+2004-04-12  Dave Thomas  <dave@pragprog.com>
+
+	* styles/movable.rb: Chad Fowler submitted this neat template that
+	  is compatible with the stylesheets at movablestyle.com.
+
+2004-03-09  Dave Thomas  <dave@pragprog.com>
+
+	* extras/TaggedPublisher/TaggedPublisher.rb (TaggedPublisher): added
+
+2004-03-08  Dave Thomas  <dave@pragprog.com>
+
+	* FileEntries.rb (FileEntries::initialize): Add Glenns patch to
+		  move file time getting lower, as this might be more
+		  efficient if the getting of the time is expensive.
+
+	* FileEntry.rb (FileEntry::open_file): Put quotes around file
+		  name (in case it contains spaces)--GLV.
+
+2004-03-07  Dave Thomas  <dave@pragprog.com>
+
+	* View.rb (View::setup_initial_values): info_url may not be absolute
+
+2004-03-06  Dave Thomas  <dave@pragprog.com>
+
+	* rublog.cgi: Added purple style, which is basically Glenn's
+		  glv.rb with some colors changes and synopses added
+		  back. Make the search button optional.
+	 
+
+2004-01-07  Dave Thomas  <dave@pragprog.com>
+
+	* BaseConvertor.rb: Now support matching files with no extensions,
+		  and matching based on regular expressions. This allows
+		  us (for example) to match all files at or below a
+		  certain point in the filesystem
+
+	* convertors/Contact.rb: Added new convertor for Pragprog contact
+		  database.
+
+2003-11-24  Dave Thomas  <dave@wireless_2.local.thomases.com>
+
+	* View.rb (View::setup_initial_values): rss_ref wasn't being set
+		  to the RSS feed.
+
+2003-10-30  Dave Thomas  <dave@wireless_2.local.thomases.com>
+
+	* styles/print.rb et al: Chad Fowler's fixes to make it XHTML
+		  compliant.
+
+2003-10-29  Dave Thomas  <dave@wireless_2.local.thomases.com>
+
+	* HyperLink.rb (HyperLinkHtml::handle_special_TIDYLINK): Add
+		  support for extended hyperlinks such as 
+	          see {this site}[http://slashdot.org]. Based on a patch
+		          from Richard Lowe
+
+2003-08-21  Dave Thomas  <dave@wireless_2.local.thomases.com>
+
+	* View.rb (View::View): Add new option 'print_style_name' which
+		  allows overriding of the name of the style for 'print'
+		  links
+
+2003-08-19  Ben Schumacher
+
+	* Request.rb (WebRequest::determine_date_range): When specifying
+		  'asof', include all of last day (up to midnight)
+
+2003-06-24  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* RubLog.rb (RubLog::find_appropriate_entries): Add
+		  dont_summarize_count option.
+
+2003-06-23  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* View.rb (HtmlView::url): Never summarize the first article.
+
+2003-06-21  Dave Thomas  <dave@Dave-Thomass-Computer.local.>
+
+	* convertors/Html.rb (HtmlConvertor): Support '.htm' extension
+
+2003-06-09  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* FileEntries.rb (FileEntries::initialize): Add mtime_getter support.
+
+2003-05-28  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* ModRubyResponse.rb: Added mod_ruby support from Bruce Williams.
+
+	* FileEntries.rb (FileEntries::traverse): Fix bug with ignore_pattern and CVS.
+
+2003-05-27  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* FileEntries.rb: Add special handling for Index files.
+
+2003-05-11  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* RubLog.rb: Add extra_filter, rss_description, rss_image_title,
+		  rss_image_link, rss_image_url, and rss_content_encoding
+		  options.
+
+2003-05-11  Michael Newmann <mneumann@ntecs.de>:
+
+	* convertors/*: Handle empty files for all convert types
+
+	* Hyperlink.rb: Start supporting local image path.
+
+2003-04-22  Martin Fowler <fowler@acm.org>
+
+	* RubLog.rb: New option use_dynamic_urls makes 'link's use the
+	  =name format, which means that if articles get moved they
+	  should still be found.
+
+	* test/Tester.rb: Shame that Thomas person into adding unit tests
+	  by writing some for the new name-based link functionality.
+
+2003-04-12  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* Day.rb etc: Added support for Calendar sidebar
+
+2003-04-10  Dave Thomas  <Dave@Thomases.com>
+
+	* RDocMarkup.rb: Support [[word word...]] for links too. Within th
+	[[...]] brackets, \s+(\w) is converted in to $1.upcase, and the
+	result is treated as a filename. Thus [[Source code control]] will
+	look for 'SourceCodeControl', and [[fred]] will look for 'fred'.
+
+2003-04-10  Martin Fowler: <fowler@acm.org>
+
+	* Various: Added name-based page access (=xxx or ?name=xxx). Allow
+	  WikiWord hyperlinks to fall back to name-based lookup
+	  if multiple articles match.
+
+2003-04-09  Dave Thomas  <dave@wireless_1.local.thomases.com>
+
+	* Hyperlink.rb: *experimental* Allow WikiWords to span directories 
+
+2003-03-28  Dave Thomas  <dave@55.195.123.65.in-addr.arpa>
+
+	* RubLog.rb: Remove error if article deleted after search 
+
+2003-03-25  Dave Thomas  <dave@wireless_2.local.thomases.com>
+
+	* rublog.cgi: Now support links to external CSS files. 
+
+	* Request.rb, Searcher.rb: Fixes for Ruby 1.8.
+
+2003-03-25  Dave Thomas  <pragdave@wireless_1.local.thomases.com>
+
+	* styles/standard.rb: Add ability to support copyright in page footer.
+
+2003-03-24  Dave Thomas  <pragdave@wireless_1.local.thomases.com>
+
+	* search/Vector.rb (Vector::score_against): Use a faster bit
+		  counting algorithm.
+
+	* convertors/RDoc.rb (RDocConvertor::convert_html): Fixed bug
+		  where it would crash with no document body.
+
+2003-03-19  Dave Thomas  <pragdave@wireless_1.local.thomases.com>
+
+	* sidebar/MiniBlog.rb: Add MiniBlog to sidebar
+
+	* RubLog.rb: Implement If-Modified-Since support.
+
+2003-03-18  Dave Thomas  <pragdave@wireless_1.local.thomases.com>
+
+	* rublog.cgi: Localize ENV references to the CGIRequest object,
+		and make that request object explicit again (thanks Chad). Remove
+		UrlStuff.
+
+2003-03-17  Dave Thomas  <pragdave@wireless_1.local.thomases.com>
+
+	* rublog.cgi: Change the structure to remove temporal
+		  coupling. See 'releases' for details.
+	* RubLog.rb: Add search sidebar. 
+
+2003-03-14  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* sidebar/Contents.rb: Don't repeat parent directory name in sub
+		  directories
+
+2003-03-09  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* convertors/Usemod.rb: Chad Fowler added usemod support
+
+2003-03-08  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* RDocMarkup.rb: Add name[url] style hyperlinks. 
+
+2003-03-07  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* View.rb (HtmlView::full_url): Add /style/xxxx parameter, and
+		  reorganize how page templates work. Existing users:
+	          1. Remove the 'require "rublog_page_template" from rublog.cgi
+		  2. If you have a customized rublog_page_template, it now lives
+		     in styles/standard.rb
+	          3. You can add multiple styles by creating xxx.rb in the
+	             styles/ directory and adding /style/xxx to
+	             the URL you use to invoke rublog.
+	
+	* RDocMarkup.rb: Report the obvious error if it can find the RDoc
+		  simple_markup component.
+
+	* rublog.cgi: Add 'ignore_directory_pattern' and
+		  'ignore_filename_pattern' parameters to allow particular
+		  directories or filenames to be skipped.
+
+2003-03-06  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* convertors/Html.rb (HtmlConvertor::convert_html): Make title
+		  extraction somewhat cleverer with HTML
+
+2003-03-02  Chad Fowler  <chad@chadfowler.com>
+
+	* rublog.cgi: Refactor to separate out views.
+
+2003-02-27  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* rublog.cgi: Add BlogRoll sidebar
+
+2003-02-20  Dave Thomas  <Dave@Thomases.com>
+
+	* convertors/Schedule.rb: Add new Schedule convertor.
+
+2003-02-17  Dave Thomas  <Dave@Thomases.com>
+
+	* rublog.cgi: Change how sidebars work (now saves instances
+	of sidebar class, not classes)
+
+2003-02-10  Dave Thomas  <pragdave@wireless_5.local.thomases.com>
+
+	* RubLog.rb: Add for_date and asof parameters, and allow blosxum-
+		style date in the path. Add start_from parameter, and support
+		+<path> in request as an alias. Add new Request
+		class to handle all the requests styles.
+		Add ability to scroll through articles.
+
+2003-02-07  Dave Thomas  <Dave@Thomases.com>
+
+	* RubLog.rb: Skip files in a CVS Attic unless we explicitly
+		ask for the attic.
+

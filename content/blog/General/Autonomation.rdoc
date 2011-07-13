@@ -1,0 +1,27 @@
+= Autonomation
+
+abstract::
+What sorts of autonomation does your project have to "stop the machine" before abnormalities compound?
+
+{Bil Kleb}[http://fun3d.larc.nasa.gov] wrote in to share an
+insightful term described in Taiichi Ohno's book <i>Toyoto Production
+System: Beyond Large-Scale Production</i>:
+
+[] The Toyota production system utilizes <i>autonomation</i>,
+   or automation with a human touch, rather than automation.
+   Autonomation means transferring human intelligence to a machine.
+   The concept originated with the auto-activated loom of Toyoda
+   Sakichi.  His invention was equipped with a device that
+   automatically and immediately stopped the machine if the vertical
+   or lateral threads broke or ran out.  In other words, a device
+   capable of making a judgment was built into the machine.
+
+   At Toyota, this concept is applied not only to the machinery but
+   also to the production line and the workers.  In other words, if an
+   abnormal situation arises, a worker is required to stop the line.
+   Autonomation prevents the production of defective products,
+   eliminates overproduction, and automatically stops abnormalities on
+   the production line allowing the situation to be investigated.
+
+What sorts of autonomation does your project have to "stop the
+machine" before abnormalities compound?

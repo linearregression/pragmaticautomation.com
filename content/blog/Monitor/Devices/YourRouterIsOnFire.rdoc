@@ -1,0 +1,21 @@
+= Your Router Is On Fire
+
+start abstract::
+Another example of how visual feedback devices transcend software development.
+end abstract::
+
+The {lava lamps
+article}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc]
+struck a cord with a lot of people interested in monitoring builds,
+but visual monitoring goes way beyond software development.  Indeed,
+visualization is one way to cast the abstract into concrete terms.
+James Turner sent in this story:
+
+[] <em>Nigh on 10 years ago, I had built an SNMP-based monitoring
+   system in Perl that graphically displayed the status of all the
+   routers and end-point devices in the network.  I already had it
+   sending me pages, but I felt something more forceful was needed for
+   in-building notification. One trip to You-Do-It electronics later,
+   I had a massive red rotating beacon light and associated X10
+   controller equipment.  No one ever ignored a dead router
+   again...</em>

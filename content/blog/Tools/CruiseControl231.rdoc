@@ -1,0 +1,10 @@
+= CruiseControl 2.3.1 Released
+
+abstract:: 
+CruiseControl 2.3.1 was released today with an enviable display of nips and tucks.
+
+{CruiseControl}[http://cruisecontrol.sourceforge.net] 2.3.1 was released today
+with an enviable display of {nips and
+tucks}[http://sourceforge.net/mailarchive/message.php?msg_id=13309089].
+
+Get it {here}[http://cruisecontrol.sourceforge.net/download.html].

@@ -1,0 +1,22 @@
+= Gleaning Project Feedback
+
+You know you want to extract useful information from your project in an automated way, but which tools should you use and how much configuration will they take?  
+
+{John Brugge}[http://jbrugge.com/blog] has taken a number of popular open-source tools and knitted them together for you.  He's calling it {Glean}[http://jbrugge.com/glean], and his goal is to help your project get quick and easy feedback by simply dropping Glean into your build system.  It's analogous to Maven plugins, but aimed at projects using Ant, and less ambitious.
+
+Currently Glean includes scripts to drive the following tools:
+
+* CPD (copy/paste detector)
+* Emma (code coverage)
+* JavaNCSS (source code metrics)
+* PMD (static analysis)
+* StatSVN (Subversion repository activity analysis)
+* UMLGraph (generates UML class diagrams from code)
+* ... and about a dozen more
+
+The download includes basic documentation on how to set up Glean to run against a source tree, as well as sample configurations for a handful of open-source projects.
+
+John packaged up Glean to scratch an itch for his clients, and he's offering it back to the community as a token of appreciation for all the open-source tools.  {Glean}[http://jbrugge.com/glean] is 
+distributed under an MIT license.
+
+Enjoy!

@@ -1,0 +1,50 @@
+= Listening To Complex Systems
+
+start abstract::
+Pragmatic Programming relies on feedback, but it can be difficult to
+monitor in complex environments (e.g., fighter pilots, network
+administrators, software developers).  A <i>sonic ecology</i> can
+leverage peripheral hearing to provide information-rich monitoring
+without distracting you.
+end abstract::
+
+{Andy}[http://www.toolshed.com/blog] contributed the following story about
+monitoring complex systems using audio feedback:
+
+[] <em>Pragmatic Programming relies on feedback, but in many environments it
+   can be difficult to constantly monitor all of the information that
+   might be available. {This
+   paper}[http://peep.sourceforge.net/docs/lisa2000.pdf] presents a
+   system based on a <i>sonic ecology</i>: with very little effort on
+   the part of the listener, you can determine what sounds right and
+   discern singularly important differences with little or no
+   conscious thought.</em>
+
+   <em>{The Peep project}[http://www.auralizer.com:8080/peep]
+   represents individual events in a network monitoring environment as
+   natural sounds in a wetlands environment.  In other words, as the
+   network load increases, the crickets start chirping faster.  E-mail
+   traffic might sound like birds calling each other, and so on.  When
+   the crickets stop chirping or the lion comes crashing through the
+   firewall, you know you've got trouble.</em>
+
+   <em>Ant implements a very simple version of this idea with its
+   <tt>sound</tt> task:</em>
+
+     <sound>
+       <success source="excellent.wav" />
+       <fail source="humiliation.wav" />
+     </sound>
+
+   <em>That might be a good start, but I'll bet implementing a
+   full-scale wetlands or jungle soundscape to represent your build
+   status, test and defect density, amount of code written, time to
+   the deadline (do I hear a storm coming in??) and so on would be a
+   <i>lot</i> of fun.</em>
+
+Indeed, I think implementing soundscapes for project monitoring would
+be fun <i>and</i> valuable.  Imagine walking into a project
+environment and just taking a few seconds to hear how things are
+going---by listening to the system itself!
+
+

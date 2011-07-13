@@ -1,0 +1,20 @@
+= When Build Silence Is Golden
+
+abstract::
+Yet another build frequency chart, this time with good news.
+
+Andrew shared the following build frequency chart:
+
+http://blogs.pragprog.com/images/pragauto/cewolf.png
+
+We see a flurry of good builds, then a six-day dry spell where almost no builds
+take place.  Did somebody accidentally unplug the continuous build machine?
+Were all the developers at a conference?  
+
+Perhaps there's a better explanation
+when we remember that a build is only triggered when code is changed.  In this
+case, no changes added up to good news for Andrew's team:
+
+[] <em>We are particularly proud of the blank section as it signifies zero-defects on this in-production product ;-)</em>
+
+Congrats!

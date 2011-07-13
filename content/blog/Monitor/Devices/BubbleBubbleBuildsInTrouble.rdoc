@@ -1,0 +1,293 @@
+= Bubble, Bubble, Build's In Trouble
+
+start abstract:: 
+Are you bored with emails saying that your build is failing?  Worse
+yet, is your team ignoring the status of scheduled builds?  If so,
+it's time to rise out of the dark ages of build feedback by gearing up
+with some eye-popping visual feedback devices.  This article shows you
+how to configure CruiseControl to automatically light up red and green
+lava lamps to radiate the status of scheduled builds to
+everyone on your project.
+end abstract::
+
+Your software is being automatically built and tested on a schedule.
+It even sends you an email when the code doesn't compile or pass its
+tests.  You're certainly ahead of most projects, but email is just so
+90s.  Even if you could manage to find those build failure emails
+amidst all that spam, you're reading yesterday's news.  Indeed, you
+may already be ignoring the status of the scheduled build.  
+
+The Monitoring chapter of {the
+book}[http://www.pragmaticprogrammer.com/sk/auto] offers alternative,
+in-your-face, worth-getting-up-for-in-the-morning techniques for
+monitoring scheduled builds.  The most popular technique came by way
+of a story contributed by {Alberto
+Savoia}[http://www.developertesting.com/managed_developer_testing/000036.html].
+He describes how his project uses red and green lava lamps to radiate
+the status of their scheduled build.  Better yet, those lamps are
+controlled using X10 devices such as those used to turn on your
+household lamps so that you don't arrive home to a dark house.
+
+Well, as you might imagine, I could hardly wait to build my very own
+build-monitoring lava lamp kit.  And as bonus material for readers of
+the book, I've crafted a bit o' software that integrates with
+{CruiseControl}[http://cruisecontrol.sourceforge.net/].  So now you
+too can enjoy red and green bubbles on your project!
+
+=== Bill of Materials
+
+To get started, you need some automation gear.  Think of these gadgets
+as this year's essential project accessories:
+
+* {4-Piece Firecracker Automation
+  System}[http://www.x10.com/products/firecracker.htm]
+
+  This kit includes:
+  - 1 Firecracker Computer Interface
+  - 1 Transceiver Module
+  - 1 Lamp Module
+  - 1 Palm Pad Remote Control
+
+  Cost: $39.99
+
+  (Props go to the folks at {x10.com}[http://x10.com] for supporting
+  this project by supplying me with a complimentary kit.  It all fits
+  in a wee box, so I can carry it from project to project.)
+  
+  With that kit, you can control two lava lamps -- one plugged into
+  the transceiver module and the other plugged into the lamp module.
+  You can optionally purchase another appliance module if you want to
+  control two appliances.  For example, you might want your build
+  process to turn on a coffee pot when the build fails and then kick
+  start your margarita machine when the build is fixed.
+
+* 2 lamps, preferably the kind that boil red and green lava 
+
+  I used the {Hot Rock Lite F/X}[http://www.mmeworld.com/] (yellow
+  earth/blue liquid and red earth/purple liquid).  Note for legal
+  purposes that these lamps (shown in pictures below) are <em>not</em>
+  {LAVA(R) brand motion lamps}[http://lavaworld.com/], but those will
+  work just as well.
+
+  Cost: $9.99 each at Target or Walmart
+
+* {Pragmatic Automation X10 software}[http://www.pragmaticautomation.com/code/pragautox10-1_0.zip]
+
+  It's an open source Java library that includes the CruiseControl
+  plug-in, an API to make your wildest X10 dreams come true, detailed
+  instructions, and an ever-so-useful collection of tests.
+
+  Way down deep, the library uses the {Java Communications
+  API}[http://java.sun.com/products/javacomm/] to send bits out over the
+  serial port and into the Firecracker Computer Interface.  (Linux users
+  will need the {RXTX}[http://www.rxtx.org/] implementation).  Michel
+  Dalal's {Java X10 CM17A API
+  library}[http://www.micheldalal.com/sw/java/x10/], an implementation
+  of the {FireCracker (CM17A) Communications
+  Specification}[ftp://ftp.x10.com/pub/manuals/cm17a_protocol.txt], is
+  used to send out the correct 1s and 0s in response to human-friendly
+  commands.  Many thanks to him for doing all the low-level bit
+  twiddling and sharing the goodies with us!
+
+  Cost: Free to readers of {Pragmatic Project Automation}[http://www.pragmaticprogrammer.com/sk/auto]
+
+=== Assembling the Kit
+
+With that hardware in hand, you're ready to start the assembly
+process.  The Firecracker Automation System includes instructions
+written for your average home electronics consumer, so your average
+computer/network geek should have no trouble.  I'll spare you all the
+gory details and instead run through a quick visual tutorial of my
+setup.
+
+Start by plugging the Firecracker Computer Interface into a serial
+port of your scheduled build machine:
+
+http://www.pragmaticautomation.com/images/firecracker.jpg
+
+This little gem sends a wireless signal from the computer to the
+transceiver module. Notice that you don't lose the serial port.  You
+can plug another serial device into the back of Firecracker Computer
+Interface.
+
+Next, plug the transceiver module into any wall outlet within your
+electrical wiring system.  Then turn on the lamp you want the build
+process to light up when the build fails (the red lamp) and plug
+it into the transceiver module:
+
+http://www.pragmaticautomation.com/images/transceiver_module.jpg
+
+See that antennae on the transceiver?  The transceiver picks up the RF
+signal sent by the Firecracker Computer Interface connected to the
+computer, converts it into an X10 signal, and broadcasts the X10 signal
+across the electrical wiring system.  
+
+Every X10 module is uniquely identified by a house code (A-P) and a
+unit code (1-16).  By default, the transceiver is configured to listen
+on "A1".  So when the Firecracker Computer Interface sends a signal
+that tells module "A1" to turn on, the device that's connected to the
+transceiver--the red lamp--is turned on.
+
+Next, plug the lamp module into a wall outlet and set its house and
+unit code to "A2".  Then turn on the lamp you want the build process
+to light up when the build <i>passes</i> (the green lamp) and plug it
+into the lamp module, like so:
+
+http://www.pragmaticautomation.com/images/lamp_module.jpg
+
+When the Firecracker Computer Interface sends a signal instructing
+the "A2" module to turn on, the transceiver picks up the signal and
+broadcasts it out over the electrical wires.  The lamp module hears
+the signal and turns on the green lamp.
+
+That's it for assembly!
+
+At this point it's a good idea to make sure you can turn these lamps
+on and off at will using the free software {(separate
+download}[http://www.x10.com/products/firecracker.htm]) that emulates
+the Palm Pad Remote Control.  It sends signals through the Firecracker
+Computer Interface, so it's a good sanity check that you have
+everything hooked up correctly.
+
+
+=== Installing the Software
+
+OK, now you want to hook the lava lamps up to your scheduled build
+process running in
+{CruiseControl}[http://cruisecontrol.sourceforge.net/].  That's where
+the {Pragmatic Automation X10
+software}[http://www.pragmaticautomation.com/code/pragautox10-1_0.zip] comes in.
+
+The README file describes how to install and test the software in
+detail.  The final step is to register the CruiseControl plug-in that
+effectively wires up the lamps to indicate the status of each
+CruiseControl build cycle.  Just to demonstrate how easy that is,
+here's the XML you need to add to CruiseControl's <tt>config.xml</tt>
+file:
+
+  <plugin name="x10publisher" classname="com.pragauto.X10Publisher"/>
+
+  <publishers>
+    <x10publisher port="COM1" passDeviceCode="A2" failDeviceCode="A1" />
+  </publishers>
+
+Edit the attributes of the <tt><x10publisher></tt> element as
+necessary for your serial port and device codes.  A complete
+<tt>config.xml</tt> file is included in the project as a reference.
+
+
+=== Bubbles While You Work
+
+Once you've fired up CruiseControl and a build succeeds, you'll see
+something like this on the console:
+
+  BUILD SUCCESSFUL
+  Total time: 10 seconds
+  [cc]Jul-08 16:56:53 Project       - Project dms:  merging accumulated log files
+  [cc]Jul-08 16:56:53 Project       - Project dms:  publishing build results
+  [cc]Jul-08 16:56:53 X10Publisher  - Turning pass device (A2) on; fail device (A1) off ...
+  [cc]Jul-08 16:56:56 Project       - Project dms:  idle
+  [cc]Jul-08 16:56:56 Project       - Project dms:  next build in 1 minutes
+
+At that point, the green lava lamp should turn on.  Bask in that
+pleasant glow for a moment. When the lamp gets warmed up, you'll get
+entertained by happy, green bubbles:
+
+http://www.pragmaticautomation.com/images/green_bubbles.jpg
+
+And then at some point somebody might check in code that causes the
+build to fail.  (Hey, it happens to even the best programmers once in
+a while.)  Here's the early warning sign that the scheduled build is
+in trouble:
+
+http://www.pragmaticautomation.com/images/trouble.jpg
+
+Eek!  Notice that the ambient light in the red lamp goes on
+immediately.  It will take a while for the red lava to heat up and
+start to boil.  In the meantime, there's work to be done.  When you
+check the CruiseControl log, you'll see something like this:
+
+  BUILD FAILED
+  file:C:/work/dms/builds/checkout/dms/build.xml:77: Tests failed! Check test reports.
+
+  Total time: 5 seconds
+  [cc]Jul-08 16:58:20 Project       - Project dms:  merging accumulated log files
+  [cc]Jul-08 16:58:20 Project       - Project dms:  publishing build results
+  [cc]Jul-08 16:58:20 X10Publisher  - Turning pass device (A2) off; fail device (A1) on...
+  [cc]Jul-08 16:58:23 Project       - Project dms:  idle
+  [cc]Jul-08 16:58:23 Project       - Project dms:  next build in 1 minutes
+
+If it takes too long to fix the build, the red lamp will start to get
+angry:
+
+http://www.pragmaticautomation.com/images/red_bubbles.jpg
+
+The object of the game is to keep the green lamp glowing.  :-)
+
+=== Hearing the Build Break
+
+You may have noticed that when the transceiver module turns on and off
+it makes a fairly loud snapping sound.  That sound is caused by the
+mechanical relay inside.  (The lamp module doesn't make that sound, I
+suspect because it's a low-current device that doesn't use a
+mechanical relay.)
+
+This audible feedback turns out to be quite handy if your team is
+working in close quarters.  The "snap" could be yet another sound in
+your {project
+soundscape}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/ListeningToComplexSystems.rdoc].
+By plugging the red lamp into the transceiver module (A1), you'll hear
+that snapping sound just before the red lamp turns on.  So if you're
+heads down (without headphones), the sound will alert you to a build
+failure.  Indeed, you'll hear the build break!  
+
+=== Important Safety Notes
+
+These lamps get insanely hot.  If you don't let them cool down for at
+least five minutes before touching the glass, you'll find out just
+<em>how</em> hot.  (Yes, even the green one is hot.)
+
+The instructions for my lamps note that they perform best if operated
+for less than ten hours at a time.  Your local fire marshal would
+certainly agree.  But who will remember to turn off the lamps at the
+end of every programming day?  Well, that's a job for the ol'
+computer.  Just write a shutdown program that uses the {Pragmatic
+Automation X10
+software}[http://www.pragmaticautomation.com/code/pragautox10-1_0.zip]
+to turn off the lamps.  For example:
+
+  new X10Device("COM1", "A1").off();
+  new X10Device("COM1", "A2").off();
+
+Then schedule an <tt>at</tt> or <tt>cron</tt> job on the scheduled
+build machine that runs the shutdown program at some hour of every
+evening, and another program that turns the lamps on every morning.
+
+
+=== What About My Macintosh?
+
+The Firecracker Computer Interface plugs into a serial port.  Modern
+day Macintosh computers don't have a serial port.  Sadly, none of the
+USB-to-serial converters I tried worked with the Firecracker Computer
+Interface. (I'd love to hear otherwise.)
+
+You can purchase X10 kits that plug into USB, but I chose to use the
+Firecracker kit because it's relatively cheap and it's what is
+described in the book.  Thankfully, by writing and testing most of
+this software against a mock device, I was able to do the majority of
+the development on my PowerBook.  :-)
+
+=== Conclusion
+
+It's relatively easy and inexpensive to make build monitoring a
+spectator sport.  Put the lava lamps in a highly-visible area of your
+project and use them as visual (and audible) feedback devices, and to
+show off your programming prowess, of course.  And that's just the
+beginning.  You can use any appliance to monitor anything that's
+valuable to your team.
+
+Are you using feedback devices to spice up your project?  If so,
+{please share your
+story}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/SuggestContent.rdoc].
+
+Enjoy!

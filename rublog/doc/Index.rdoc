@@ -1,0 +1,46 @@
+= Welcome to RubLog
+
+RubLog is a simple file-based web log/wiki. It has a few distinguishing features:
+
+* It accepts input in a variety of markup formats. HTML, plain text,
+  and RDoc formats are supplied by default, along with a handler for
+  Usemod wikis. More can be added without much effort (this file is in
+  RDoc format)
+
+* It works from conventional files and from CVS/RCS
+  repositories. This is useful if multiple people are using the same
+  blog: have them check stuff into CVS, and point the blog software
+  at the repository.
+
+* It supports category-based and time-based access (and combinations
+  of the two).
+
+* Output styles are pluggable: a standard example and a style to
+  support printable documents are provided.
+
+* It supports WikiWord-style links between articles (in RDoc mode).
+
+== Where to go next
+
+
+* RublogBasics
+
+* SimpleInstallation
+
+* FullInstallation
+
+* Details of the input formats
+  * InputFormats/PlainFormat
+  * InputFormats/HtmlFormat
+  * InputFormats/RdocFormat
+
+
+== Warranty
+
+RubLog comes with no warranty and no support. Have fun using it, but
+please don't expect too much more from me. :)
+
+== License
+
+RubLog is Copyright (c) 2004 Dave Thomas. It is released under the
+same terms as Ruby. 

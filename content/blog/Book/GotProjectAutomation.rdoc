@@ -1,0 +1,9 @@
+= Got Project Automation?
+
+abstract::
+A new ONJava article by Mike Clark on project automation shows you
+how life on your project could be.
+
+Read all about how project automation can save you time and make your
+life easier in my ONJava.com article titled {Got Project
+Automation?}[http://www.onjava.com/pub/a/onjava/2004/11/10/automation.html].

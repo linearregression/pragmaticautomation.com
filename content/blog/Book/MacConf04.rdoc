@@ -1,0 +1,27 @@
+= Project Automation On the Mac
+
+abstract::
+Mike Clark posts the slides from his automation talk at the O'Reilly
+Mac OS X Conference.
+
+Last week I gave a talk at the {O'Reilly Mac OS X
+Conference}[http://conferences.oreillynet.com/macosx2004/] on how to
+use your Mac to automate your Xcode projects.  It's a slight twist on
+the automation tool set described in the
+{book}[http://www.pragmaticprogrammer.com/sk/auto], using all the same
+automation techniques.  The slides are available
+{here}[http://pragmaticprogrammer.com/downloads/ProjectAutomationMac.pdf].
+
+The conference was a lot of fun and the people were great.  What stuck
+with me was how important it is to visit communities of people that
+use different tools to build software.  The tools we use influence how
+we go about solving problems and making good software.  By temporarily
+moving to a different technology neighborhood, so to speak, you get to
+see and hear things from a different perspective.  And the next time
+you're faced with solving a problem, you have one more colorful piece
+in your mosaic of options.
+
+Many thanks to O'Reilly for inviting me out to speak and for putting
+on a fantastic show.  Thanks also to all the people who attended,
+shared their ideas, welcomed an outsider with open arms, and showed up
+to my talk.

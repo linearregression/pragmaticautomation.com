@@ -1,0 +1,19 @@
+<h1>HTML Format</h1>
+
+A file ending in .htm and .html is passed straight through. If it
+contains <em>&lt;title>stuff&lt;/title></em>
+or <em>&lt;h1>stuff&lt;/h1></em>, then that text is used at the title,
+otherwise the first line of the file is used.
+
+<p />
+
+It possible to include complete HTML files as RubLog
+articles. However, RubLog does no particular parsing of HTML files,
+so the resulting log, while displaying propertly in all browsers I've
+tried, won't validate as HTML.
+
+<p />
+
+Text in the file between &lt;summary&gt; and &lt;/summary&gt; is an
+article summary: it remains in the article, and will be used as the
+article's synopsis if synopsis mode is enabled..

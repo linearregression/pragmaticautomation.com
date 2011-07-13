@@ -1,0 +1,30 @@
+This is a simple script to extract RubLog usage stats from an Apache
+access_log. It generates a simple HTML file that can be included in
+the sidebar using the MiniBlog facility.
+
+To use, 
+
+1. if you don't already have a MiniBlog directory, create one
+   somewhere. It has to be writable by you and readable by your web
+   server.
+
+2. set up a cron job to invoke loganal periodically. 
+
+    10 * * * * /usr/local/bin/ruby \
+       /usr/rublog/extras/loganal/loganal.rb <access_log> <pattern> \
+        >/var/www/pragprog/data/pragdave_traffic.html
+
+
+   Replace <i>access_log</i> with the path to your Apache access_log
+   file. Replace <i>pattern</i> with a regular expression that can
+   be used to differentiate access to your blog from other lines 
+   in the log. For example, my blog is mounted at "/pragdave", so
+   all accesses have "GET /pragdave..." or "HEAD /pragdave..." in
+   them. I use "\s/pragdave/ as my pattern.
+
+3. set up MiniBlog to point to this directory (if it isn't already)
+
+    require "sidebar/MiniBlog"
+    MiniBlogs.create_for("/var/www/pragprog/data")
+
+4. Enjoy watching millions of folks sucking up your bandwidth.

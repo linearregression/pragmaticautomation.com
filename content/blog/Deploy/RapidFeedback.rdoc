@@ -1,0 +1,15 @@
+== Rapid Feedback
+
+abstract::
+How to use a Subversion post-commit script to deploy your application early and often.
+
+{James Duncan Davidson}[http://x180.net] and I are building a Rails
+application for a client.  We needed a way to synchronize the code in
+the Subversion repository with the code being run on the shared test
+server.  That way, everyone on the team could benefit from rapid
+feedback.
+
+Time for a little automation.  So James cooked up a Subversion
+post-commit script which I've posted on my
+{blog}[http://www.clarkware.com/cgi/blosxom/2005/05/22#RapidFeedback].
+

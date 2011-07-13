@@ -1,0 +1,63 @@
+= Blogging Your Build
+
+abstract:: 
+Simon Brown describes how to automatically publish the results of your
+build process to a project blog for everyone to see.
+
+<em>{Simon Brown}[http://www.simongbrown.com/blog/] contributed this
+brilliant idea (and code) for automatically publishing the results of
+your build process to a project blog:</em>
+
+Blogs are a great way of sharing thoughts and ideas to a wider
+audience in an easy and structured way. Currently, most blogs are
+published on the Internet but there's nothing stopping you from using
+them internally for projects too. A project blog could be used to
+share information about the project or keep notes of all those little
+technical tips and tricks that everybody in the team needs to know. In
+fact, why not use a project blog to make a note of the tasks that have
+been completed in any given day in the same way that you might use a
+diary? Taking this further, why not integrate your project blog into
+your continuous build process?
+
+Most blogging systems support a couple of XML-RPC APIs (the Blogger
+and MetaWeblog APIs) that allow you to post to a blog programmatically
+and this has been used to build many blogging clients that let you
+post to your blog using feature-rich desktop applications. However,
+why not post content to a blog from tools like Ant and CruiseControl?
+
+As part of the {Pebble}[http://pebble.sourceforge.net/] project, I put
+together some {Ant
+tasks}[http://www.simongbrown.com/blog/2004/04/25/1082915947000.html]
+so that I could update a blog whenever a build is performed. Extending
+this idea further, I put together some {more Ant
+tasks}[http://www.simongbrown.com/blog/2004/09/30/1096538534543.html]
+so that I can upload files to a project blog as a part of the build
+process and this is useful if you want to upload build artefacts
+(e.g., build/test reports, binaries, etc) for distribution to people
+that aren't necessarily part of the project team.
+
+With RSS feeds being a key component of most, if not all, blogging
+systems, the integration between blogs and the build process provides
+a nice additional benefit because anybody subscribed to it will be
+notified whenever the build fails.
+
+<em>I'm thinking a CruiseControl
+{publisher}[http://cruisecontrol.sourceforge.net/main/configxml.html#publishers]
+that used the Blogger API, for example, to publish the build status to
+your project blog would be convenient.  You wouldn't have to add a
+special target to every Ant build file and only your scheduled builds
+would get posted to the project blog.  A <tt>blogpublisher</tt> would
+be trivial to write...  </em>
+
+<b>Update:</b> Literally hours after this post, {Lasse
+Koskela}[http://radio.javaranch.com/channel/lasse/] had written a
+CruiseControl blog publisher that uses the {Blogger
+API}[http://radio.javaranch.com/channel/lasse/2004/10/30/1099095285000.html],
+then added support for the {MetaWeblog
+API}[http://radio.javaranch.com/channel/lasse/2004/10/30/1099154590000.html],
+and capped it off with support for the {LiveJournal
+API}[http://radio.javaranch.com/channel/lasse/2004/10/31/1099225461000.html].
+You can download the source and configuration files
+{here}[http://radio.javaranch.com/channel/lasse/2004/10/31/1099225461000.html].
+He graciously contributed everything to the CruiseControl project, so
+it should also be in the {CVS repository}[http://cruisecontrol.sourceforge.net/cvs.html] soon.  Nice work, Lasse!

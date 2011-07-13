@@ -1,0 +1,59 @@
+= How to Use RubLog
+
+RubLog is a simple web log, based around the idea of displaying a set of
+regular files in a log-format.
+
+== Preparing Content
+
+Content consists of a set of articles, each in a separate file. Each
+article is prepared in either plain text, RDoc, or HTML format. The
+content type of a particular file is identified by the file's
+extension (.txt, .rdoc, or .html respectively).
+
+The article files are arranged in a directory hierarchy below the
++data+ directory. The names of the directories in this hierarchy
+become the names of the categories and subcategories displayed in the
+RubLog index.
+
+RubLog can read the content either directly from flat files, or from
+files checked in via RCS/CVS. In particular, that means that any
+number of people sharing a CVS tree of the articles can create
+content, using either a central RubLog server working of the CVS tree
+or a local RubLog server working from their local filesystem.
+
+== RDoc Specials
+
+Within an RDoc format article, you can include images and links to
+external web pages using their URL. You can include hyperlinks to
+other RubLog pages by citing their relative page name. If the target
+article is in the same filesystem directory as the source, and if the
+file name is a WikiWord, then the form of the link can just be that
+WikiWord. For example, this article is called <tt>Using</tt><tt>RubLog.rdoc</tt> in the
+directory RubLog. So, if you have UsingRubLog in an article in the same directory, it will automatically hyperlink here.
+
+You can also hyperlink to an article in any directory by specifying its
+path (relative to the +data+ directory). Again, the file extension is
+omitted, so a link to this article would look like RubLog/UsingRubLog.
+
+
+== Displaying Content
+
+Accessing the RubLog script (for example using
+<tt>/cgi-bin/rublog.cgi</tt>) displays the five most recently editing
+articles on the left hand side of the browser, along with a summary of
+total articles by category in a sidebar to the right. Clicking on the
+name of a category in the sidebar displays the most recently edited
+entries in that category.
+
+Each article has a title bar. Clicking on the article name in that
+title bar displays that article in a page of its own.
+
+== Special URLs
+
+If <tt>cgi-bin/rublog.cgi</tt> is the main RubLog url, then
+
+[<tt>cgi-bin/rublog.cgi/CategoryName</tt>]
+  displays the category summary for the given category
+
+[<tt>cgi-bin/rublog.cgi/CategoryName/ArticleName.rdoc</tt>]
+  displays the given article

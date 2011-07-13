@@ -1,0 +1,63 @@
+= Oozing Confidence
+
+start abstract::
+Alberto Savoia tells us how an April Fool's Day joke turned into a
+valuable feedback tool for this team.
+end abstract::
+
+Alberto Savoia {writes}[http://www.artima.com/weblogs/viewpost.jsp?thread=67492]:
+
+<em>A few months ago, on April 1(!) 2004 to be precise, I posted an
+article on {eXtreme
+Feedback}[http://www.developertesting.com/managed_developer_testing/000036.html].
+The article was on a relatively serious subject: "How do you get your
+team to pay attention to the software/project status and metrics that
+you care about?", but one of my solutions for getting the team to pay
+attention was to "invent" and implement eXtreme Feedback Devices
+(XFDs) that would be very visible, fun, and hard to ignore.</em>
+
+<em>One of these XFDs consists of a pair of lava lamps (one green and one
+red) remotely connected to our build and test system in such a way
+that a successful build (all tests pass) turns on the green lava lamp,
+and a failed build (or failed tests) turns on the red one.</em>
+
+<em>The original Java lava lamps have been glowing red and green for
+the past several months in our offices, and have achieved something of
+a cult status (e.g. they are included in Mike Clark's excellent book
+{Pragmatic Project
+Automation}[http://www.pragmaticprogrammer.com/sk/auto], and have
+recently received a fair amount of buzz on
+{Slashdot}[http://developers.slashdot.org/developers/04/08/26/1550255.shtml]).</em>
+
+<em>The interesting thing, for me, is that something that I started as
+something of a joke (it was April 1st after all) actually turned out
+to be a very useful tool in more ways than one. Sure, I could go to
+our CruiseControl page to see if they build is broken, or set-up email
+alerts, but keeping track of the lamps (which are centrally located in
+our development area) is easier, faster, and gives me an ongoing view
+into the current status and ebb-and-flow of our build and test cycles.</em>
+
+I got an opportunity to visit Alberto's project a few weeks back and
+witness first-hand those infamous lava lamps.  You really can't miss
+them.  When I walked in, the red lamp was bubbling.  And yet the
+managers weren't beating the programmers about the head and shoulders,
+as some might fear.  Indeed, I didn't sense any sort of panic or condescension.  What I
+did sense was confidence.
+
+See, the team had learned to take the red lamp as feedback.  They run
+an extensive battery of tests on every build and the red lamp was
+telling them that their tests were actually <em>testing</em>
+something.  An assertion somewhere had failed the last time somebody
+checked in code.  This is a good thing.  Indeed, this is what
+continuous integration is all about.  It becomes a bad thing when the
+green lamp never turns on.  So they were diligently (and confidently)
+working to repair the build as a priority over other tasks for the day
+because they didn't want to work on unstable ground.
+
+It's important to note that Alberto's team is a bright group of folks
+building impressive {products}[http://www.agitar.com/products/].
+Feedback is serious business, but they've found a way to make it fun.
+They use the lava lamps to their advantage, not as gimmicks or another
+way for the pointy-haired manager to keep tabs on their work.  And
+when the lamp does go red, they're confident that it won't stay that
+way for long.

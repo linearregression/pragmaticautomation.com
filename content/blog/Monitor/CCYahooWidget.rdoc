@@ -1,0 +1,13 @@
+= CruiseControl Yahoo Widget
+
+abstract::
+The CruiseControl Yahoo Widget lets you monitor multiple projects with
+an animated lava lamp.
+
+Ganesan Janarthanam got inspired by the idea of providing continuous
+integration feedback using a lava lamp and created the 
+{CruiseControl Dashboard Yahoo
+Widget}[http://widgets.yahoo.com/gallery/view.php?widget=40036].  It
+lets you monitor multiple projects with an animated lava lamp.
+
+http://a191.g.akamai.net/7/191/1560/4/gallery.widgetgallery.com/shots/40036-shot.jpg

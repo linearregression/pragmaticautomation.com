@@ -1,0 +1,18 @@
+= Subversion: It's What's For Dinner
+
+abstract::
+Mike Mason's book Pragmatic Version Control with Subversion is now on sale.
+
+Project automation relies on version control for consistently and
+repeatability.  If you're not using version control, or your version
+control system is getting in your way, then the answer has never been
+clearer:
+{Subversion}[http://subversion.tigris.org/].
+It's free, it works great, and it stays out of your way.  
+
+Mike Mason, master chef of tasty Subversion dishes, has put together a
+collection of his best recipes to help you get up and running with
+Subversion quickly, and correctly.  His book, {Pragmatic Version
+Control Using
+Subversion}[http://www.pragmaticprogrammer.com/titles/svn/index.html],
+just went on sale.  Get it while it's hot!

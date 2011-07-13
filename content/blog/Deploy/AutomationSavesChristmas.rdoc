@@ -1,0 +1,59 @@
+= Automation Saves Christmas
+
+abstract:: 
+Last Christmas, Simon Chappell and his team leaned on software
+automation to keep up with the pace of warehouse automation. Seeing
+this well-oiled machine in action, I just kept repeating one word: Wow!
+
+<em>Last Christmas, Simon Chappell and his team leaned on software
+automation to keep up with the pace of warehouse automation.  Santa
+only wishes his elves were this resourceful.  Simon writes:</em>
+
+Last year, Lands' End selected its strategic J2EE application server
+and the word came down from upon high that projects should port to it
+as quickly as possible. Because life has a sense of humour and I'm
+often the punchline, it was decided that our project should be the
+first one to make the transition.
+
+Being a big and expensive application server (no names to protect the
+guilty), it lives on its own server and mere programmers are not
+allowed to touch it. This eliminated the easy deploy that we had
+previously enjoyed. But the spirit of pragmatism will not be deprived!
+Now our Ant script has a target for building the required EAR file and
+then we run a second script to use secure copy to move the file to a
+directory on a designated machine.
+
+For our web application, we had special capacity needs above and
+beyond the capabilities of the internal toolset. While our public
+facing website is very well tested, it is done using an external
+service. This was not an option for our internal web application. Yet,
+the load it was required to handle was above anything that we could
+generate with even our whole team rapidly hitting it from our
+workstations.  By using
+{JUnitPerf}[http://clarkware.com/software/JUnitPerf.html], I was able
+to construct a test that simulated anything from 1 to 100 simultaneous
+users, using {HttpUnit}[http://httpunit.sourceforge.net] to interact
+with our web application and with each simulated user using unique
+data.
+
+With the realistic traffic that we generated, we were able to identify
+and resolve several bottlenecks in our system's performance. The day
+was saved. Our system took us through our Christmas peak season with
+no support calls. And with the tests being scripted, we can re-run
+them at anytime that we please: after changes to the internal
+infrastructure, or as we recently did to test that our system would
+run unaffected by our newest companion system in the J2EE cluster.
+
+If you can't automate everything, you automate what you can.
+
+<em>
+I was teaching at Lands' End earlier this month and got to see
+Simon's web application being put to the task during this year's peak
+shopping season.  At stations on the warehouse floor, amidst a
+dizzying network of conveyor belts loaded with holiday gifts, an army
+of workers use the web application to help package and ship orders.
+It seemed only fitting that delivering the software to these work
+stations be as automated as delivering the packages to your house.
+Seeing this well-oiled machine in action, I just kept repeating one
+word: Wow!  
+</em>

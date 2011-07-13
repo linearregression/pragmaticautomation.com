@@ -1,0 +1,93 @@
+= Staking Out File Changes
+
+start abstract::
+Want your computer to automatically run a command whenever a file changes?  No problem.  Michael McCracken got tired of running his
+unit tests when his source files changed, so he wrote the
+<tt>stakeout</tt> program.  Inspired by that work, I wrote a quickie
+Ruby script that keeps an eye on files for you.
+end abstract::
+
+{Michael McCracken}[http://michael-mccracken.net/blog/] has the
+automation spirit.  He's tired of doing anything repetitive, and he's
+not gonna take it anymore!  For starters, he {went
+looking}[http://michael-mccracken.net/blog/blosxom.pl/computers/mac/programming/autoPyTesting.html]
+for a program or script that would run his unit tests whenever his Python
+source files changed.  That search didn't turn up anything, so he
+solved his problem the ol' fashioned way -- he wrote a program.  From
+his {blog}[http://michael-mccracken.net/blog/blosxom.pl/computers/mac/programming/meetWatch.html]:
+
+[] <em>Inspired by {Pragmatic Project Automation}[http://www.pragmaticprogrammer.com/sk/auto/], I {just posted}[http://michael-mccracken.net/blog/blosxom.pl/computers/mac/programming/autoPyTesting.html] about getting my unit tests to run automatically whenever I change a file.</em>
+
+   <em>Since nobody volunteered, I went ahead and wrote what I wanted:
+   <tt>stakeout</tt>.</em>
+
+   <em>If you want to run tests anytime a source file changes:</em>
+
+     stakeout testAll.py *.py
+
+   <em>If you want to run <tt>make</tt> anytime a source file changes:</em>
+ 
+     stakeout make *.[c,h] dir/*.[c,h]
+
+   <em>It uses kqueue to watch the files on the argument list. If a
+   file is modified, <tt>stakeout</tt> prints out the name of the modified file
+   and runs your script. You can leave this running as long as you
+   want, since it's just idle until a file changes.</em>
+
+   <em>I've been using this for a couple of hacking sessions, and it's
+   great. It's really convenient - the tests run instantly when you
+   save a watched file, and it doesn't run if you didn't change
+   anything.</em>
+
+{stakeout}[http://michael-mccracken.net/software/stakeout.tgz] is an
+Objective-C application that runs on Mac OS X.  It's available
+under a Creative Commons attribution-sharealike license.  Michael
+told me that he'd love to see patches, so if you make improvements
+please let him know.
+
+Inspired by Michael's work, I decided to adapt the
+<tt>filemonitor.rb</tt> Ruby script from the book (available in the
+{example code
+download}[http://pragmaticprogrammer.com/starter_kit/au/au00.zip]) to
+do something similar to <tt>stakeout</tt>:
+
+  if ARGV.size < 2
+    puts "Usage: stakeout.rb <command> [files to watch]+"
+    exit 1
+  end
+
+  command = ARGV.shift
+  files = {}
+
+  ARGV.each do |arg|
+    Dir[arg].each { |file|
+      files[file] = File.mtime(file)
+    }
+  end
+
+  loop do
+  
+    sleep 1
+  
+    changed_file, last_changed = files.find { |file, last_changed|
+      File.mtime(file) > last_changed
+    }
+  
+    if changed_file
+      files[changed_file] = File.mtime(changed_file)
+      puts "=> #{changed_file} changed, running #{command}"
+      system(command)
+      puts "=> done"
+    end
+
+  end
+
+Given that Ruby script, if you want to run the <tt>test</tt> target of
+your Ant build file for every file that has changed time, for example,
+type this:
+
+  $ stakeout.rb "ant test" *.java
+
+Many thanks to Michael for sharing this automation trick!
+
+

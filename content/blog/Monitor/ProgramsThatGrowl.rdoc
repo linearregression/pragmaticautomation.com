@@ -1,0 +1,76 @@
+= Programs That Growl
+
+abstract:: 
+Growl is a central notification system for Mac OS X that
+makes it easy to send notifications from your applications that get
+displayed on the screen.
+
+Michael McCracken's <tt>stakeout</tt> program now
+{growls}[http://michael-mccracken.net/blog/blosxom.pl/computers/mac/programming/stakeoutMeetGrowl.html].  Neat!
+
+{Growl}[http://growl.info/index.php] is a central notification system
+for Mac OS X.  Applications and scripts can uniformly send
+notifications to Growl, which then displays the notification message
+on your screen in a {stylish, modeless
+dialog}[http://growl.info/screenshots.php].  Growl works with a
+growing number of
+{applications}[http://growl.info/documentation/applications.php].
+More important, it's easy to make your program growl using Growl's
+command-line program, bindings for Python, Perl, and Tcl, or the Cocoa
+framework.
+
+Now I find too many pop-up dialogs to be distracting, so I want to
+limit the notifications I receive to events that require my immediate
+attention.  One example usage for Growl that comes to mind is
+monitoring a web site.  If an important site goes down or gets sick, I
+want to be interrupted.  Here's a simple shell script that scrapes a
+web page using <tt>curl</tt> and <tt>grep</tt>, then uses the
+bare-bones <tt>growlnotify</tt> command-line program to send a
+notification if the web page isn't available or if it's displaying an
+error message:
+ 
+  #!/bin/sh
+  #
+  # growl.sh - Makes a sick web site growl
+  #
+
+  url=$1
+  outputfile="/tmp/growl-$$.html"
+  message=""
+
+  trap "rm -f $outputfile" 0
+
+  if curl -so $outputfile $url
+  then
+    if grep -qiE "Error|Exception" $outputfile
+    then
+      message="Help! I'm sick!"
+    else
+      exit 0  # success
+    fi
+  else
+    message="Sadly, the site crashed."
+  fi
+
+  echo $message | growlnotify "Web Site Status"
+
+To test it on my DMS web application, I type:
+
+  $ growl.sh http://localhost:8080/dms
+
+When things have gone bad, here's the notification I get, which fades nicely after a couple of
+seconds:
+
+[] http://www.pragmaticprogrammer.com/starter_kit/au/linked_images/growl.jpg
+
+Scheduling the <tt>growl.sh</tt> script with <tt>cron</tt> is a cheap,
+but effective, way to periodically check the web site and rattle my cage if the site needs help.
+If you want more control, the Growl preferences pane in System
+Preferences lets you disable notifications that you don't want to
+see.
+
+One obvious limitation of Growl is that your have to watch your screen
+for the notification.  Ideally, you'd also use cell phone notification
+for monitoring on the go, as described in the
+{book}[http://www.pragmaticprogrammer.com/sk/auto/].
+

@@ -1,0 +1,13 @@
+= Quick 'n Dirty RSS
+
+abstract::
+Need to monitor a web site that doesn't have an RSS feed.  Here's how.
+
+Email is still the first thing I check in the morning, but my RSS
+aggregator isn't far behind.  It monitors everything I'm really
+interested in.  And if a site doesn't have an RSS feed, I'll forget to
+check it.  
+
+Trouble is, not all sites have an RSS feed (yet).  Beg if you must,
+then {do it
+yourself}[http://www.vandervossen.net/2003/07/quick_n_dirty_rss_with_xslt].

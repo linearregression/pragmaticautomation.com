@@ -1,0 +1,63 @@
+= Tiger: An Automation Platform
+
+abstract::
+Apple's latest operating system is an automator's playground.
+
+In the last 24 hours, I've upgraded my private and public worlds.
+Thankfully, both upgrades went off without a hitch.  This PowerBook is
+now happily running {Tiger}[http://www.apple.com/macosx/overview/] and
+my {company web site}[http://clarkware.com] is now being hosted by
+{TextDrive}[http://www.textdrive.com/].  The end result is that I now
+have more options for automation across the board.
+
+On the global front, TextDrive has all the
+{tools}[http://textdrive.com/specs/] I need to get things done on the
+web.  It's nothing short of a geek's paradise, and the support has
+been superb.
+
+Locally, Tiger has all the fixings for an automation feast:
+{Automator}[http://www.apple.com/macosx/features/automator/],
+{Dashboard}[http://www.apple.com/macosx/features/dashboard/], and even
+the latest version of Ruby.  Automator and Dashboard have been
+primarily focused at the consumer market, but both have a lot of
+potential for project automation.  Imagine a Dashboard widget that
+shows, at a glance, the health of your build or production
+application.  As well, Automator is at your service to help simplify
+repetitive or time-consuming project chores.  Imagine a consistent, 
+repeatable workflow that takes your source code and, through a series of 
+visually-assembled actions, transforms it into a packaged release.
+
+Here are just a few resources to whet your appetite:
+
+- {Working with
+  Automator}[http://developer.apple.com/macosx/automator.html]: An
+  overview of Automator and primer for writing Automator actions
+  (Apple Developer Connection)
+
+- {Delegating the grunt
+  work}[http://www.macworld.com/2005/04/features/tigerautomator/index.php]:
+  An introduction to Automator (MacWorld)
+
+- {Automator World}[http://www.automatorworld.com/]: A clearinghouse
+  for Automator workflows, actions, news, etc.
+
+- {Automator
+  Actions}[http://www.apple.com/downloads/macosx/automator/]: Apple's
+  site of Automator actions, ready for the taking
+
+- {Automator Programming Guide}[http://developer.apple.com/documentation/AppleApplications/Conceptual/AutomatorConcepts/index.html#//apple_ref/doc/uid/TP40001450]
+
+- {Developing Dashboard Widgets}[http://developer.apple.com/macosx/dashboard.html]: A
+  jump-start to writing your first Dashboard widget (Apple Developer
+  Connnection)
+
+- {Discovering the
+  Dashboard}[http://www.macworld.com/2005/04/features/tigerdashboard/index.php]
+  : An introduction to Dashboard (MacWorld)
+
+- {Dashboard Programming Guide}[http://developer.apple.com/documentation/AppleApplications/Conceptual/Dashboard_Tutorial/index.html]
+
+I'm looking forward to building a few Automator actions and Dashboard
+widgets myself.  Moreover, I'm excited to see the killer applications
+that emerge from what promises to be a groundswell of activity around
+these tools.  So please dig in, and share what you find!

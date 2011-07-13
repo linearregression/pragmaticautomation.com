@@ -1,0 +1,52 @@
+= SwitchTower as an Automated Deployment Archetype
+
+abstract::
+SwitchTower is an archetype of automated deployment.  Check it out before rolling your own solution.
+
+I've been remiss to have delayed mentioning
+{SwitchTower}[http://manuals.rubyonrails.com/read/book/17] until now.
+It's an open-source utility that makes one-step deployment to one or
+more machines both possible and painless.
+
+Say, for example, you need to roll out a new release of your killer
+app to two web servers, four application servers, and a database
+server.  You could manually log in to each of those machines and type
+a list of commands, or just let SwitchTower do it for you:
+
+  rake deploy
+
+That single incantation causes SwitchTower to execute the commands
+listed in your deployment recipe in parallel (and atomically) on
+multiple machines.  (It uses <tt>ssh</tt> to communicate with the
+remote machines.)  It's really that easy.
+
+But then you notice that the application you just deployed has a bug.
+After giving your manager fifty push-ups, you're thankful you can
+press the "undo" button:
+
+  rake rollback
+
+That command rolls back the application to the last deployed version
+<em>on all deployed machines</em>.  Yes, it's really that easy.
+
+I've been starting to use SwitchTower on all my {Rails projects}[http://clarkware.com/rails.html], and
+demo'ing it in our {Pragmatic Rails
+Studio}[http://pragmaticstudio.com].  As a result, SwitchTower has
+truly spoiled me.  It's an automator's dream, and I can't imagine
+going back to manual deployment gyrations.  
+
+That brings us to the point of this elevator pitch: Can you deploy and
+roll back software releases this easily and consistently on your
+project?  If not, I'd recommend you give the SwitchTower
+{manual}[http://manuals.rubyonrails.com/read/book/17] a read,
+especially if you <em>aren't</em> building Rails applications.  That's
+right, even if you've never heard of Ruby or Rails you owe it to
+yourself to check out SwitchTower because its concepts aren't specific
+to Ruby or Rails.  And in fact it seems possible to use SwitchTower as the deployment vehicle for apps of any size and color
+by customizing a core set of tasks.  I'd love to hear of efforts to
+adapt SwitchTower to J2EE projects, for example.
+
+Every software project can benefit from a deployment process that
+takes less time and money without sacrificing quality.  SwitchTower is
+an archetype of automated deployment.  Check it out before rolling
+your own solution.

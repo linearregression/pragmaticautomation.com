@@ -1,0 +1,140 @@
+In progress:
+    * Support for extended hyperlinks (see {this site}[slashdot.org]).
+
+    * New option (set_)mtime_getter, allows control over how RubLog
+      calculates the mtime of entries.
+
+    * Bruce Williams supplied some mod_ruby support
+
+    * Add special processing for Index files. If a Url specifies a
+      directory, and that directory contains a file called index or Index.xxx,
+      display the index file instead of the whole directory.
+
+    * RubLog.rb: Add extra_filter, rss_description, rss_image_title,
+      rss_image_link, rss_image_url, and rss_encoding options.
+
+    * Start supporting local image path.
+
+    * New option use_dynamic_urls makes 'link's use the =name format,
+      which means that if articles get moved they should still be
+      found.
+
+    * Added support for calendar sidebar
+
+    * RDocMarkup.rb: Support [[word word...]] for links too. Within th
+      [[...]] brackets, \s+(\w) is converted in to $1.upcase, and the
+      result is treated as a filename. Thus [[Source code control]] will
+      look for 'SourceCodeControl', and [[fred]] will look for 'fred'.
+
+    * Add name-based lookup (?name=xxx or =xxx)
+
+    * *experimental* WikiWords now cross directory boundaries
+
+    * Support link to external CSS files (set_external_stylesheet
+      parameter)
+
+    * New parameter to set blog copyright notice.
+
+Release 0.8: Mar 23, 2003
+
+    * Chad created a new Response handler, which lets us support
+      webrick.
+
+    * Add the MiniBlog sidebar, which adds entries in any RubLog
+      supported format to the sidebar. Point it to a directory and any
+      file in a recognized format in that directory will be converted
+      and displayed. I use MiniBlog to do things like display
+      blog traffic statistics: a cron job runs the extras/loganal/loganal.rb
+      script, depositing the result in a directory of mini blog entries.
+      I then point the blog at it using
+
+          require "sidebar/MiniBlog"
+          MiniBlogs.create_for("...name of directory...")
+
+    * RubLog now supports If-Modified-Since and 304 responses.
+
+    * Simplified format of rublog.cgi. Existing users:
+
+      1. Move the blog.xxx configuration stuff into a block attached
+         to the constructor. Add set_ to the start of each method
+         name. Eg:
+	    blog = RubLog.new("/var/www/html/data", CGIRequest.new) {
+	      set_top_title                 "Wombat"
+	      set_max_entries_per_page      5
+	      set_rss_description           "Dave's Weblog."
+	      set_info_url                  "RubLog/UsingRubLog.rdoc"
+	    #  set_ignore_directory_pattern  /Attic/
+	    #  set_ignore_filename_pattern   /Comp|Xxx/
+	    }
+
+      2. Get rid of the call to blog.process_request. Change the last
+         line to read View.display(blog)
+
+      Sorry for the inconvenience, but it means that a bunch of
+      temporal coupling is now a thing of the past. This enables me
+      to start performing some cache-based optimizations.
+
+    * Add the ability to search the blog using the Searcher
+      sidebar. Along the way, add a general facility to allow
+      sidebars to handle CGI requests.
+
+    * The contents sidebar no longer shows the full path in each entry.
+
+    * Chad Fowler added usemod support
+
+    * RDoc markup now supports name[url] style hyperlinks. 
+
+    * Add /style/xxxx parameter, and reorganize how page templates
+      work. Existing users:
+          1. Remove the 'require "rublog_page_template" from rublog.cgi
+	  2. If you have a customized rublog_page_template, it now
+	     lives in styles/standard.rb
+          3. You can add multiple styles by creating xxx.rb in the
+             styles/ directory and adding /style/xxx to the URL you
+             use to invoke rublog.
+	
+    * Add 'ignore_directory_pattern' and 'ignore_filename_pattern'
+      parameters to allow particular directories or filenames to be
+      skipped.
+
+    * Added BlogRoll sidebar 
+
+    * A new Schedule convertor is added, but I dount anyone apart
+      from Andy and I will ever use it :)
+
+    * Sidebars are now instantiated as objects, not classes. This
+      makes it possible to have multiple of the same type of sidebar
+      on a single page.
+
+Release 0.6: Feb 12, 2002
+
+    * This release adds the ability to specify dates in requests. The
+      software only returns articles in that date range. Specify a date
+      using /yyyy, /yyyy/mm, or /yyyy/mm/dd at the end of the path
+      (you can also use the for_date= parameter, but this is
+      deprecated
+
+    * The asof= parameter allows you to retrieve articles at or before
+      a given date (yyyy[/mm[/dd]])
+
+    * An additional link is shown for each article which takes you to
+      the main log article stream, centered on that particular
+      article. This lets you see an article in its timeline context.
+
+    * By specifying the string "+<path>" in a request, you tell the
+      sofwtare to start displaying entries at this particular file,
+      but to retrieve all files specified by the rest of the
+      request. This is used to support...
+
+    * Scrolling. The blog now allows you to scroll through entries.
+
+    * Info. A new rublog.cgi parameter allows you to specify the path
+      to an Info page in your blog. This appears in the header line.
+
+  Release-specific Installation
+
+    This release breaks out the template for the main page from
+    rublog.cgi. A sample template is included in the main directory as
+    rublog_page_template.rb. You'll need to merge the changes in this
+    template in to your own if you want to see the new 'all' links, or
+    the updated menu bar.

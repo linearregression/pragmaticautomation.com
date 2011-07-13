@@ -1,0 +1,12 @@
+= CruiseControl 2.3 Released
+
+abstract:: 
+CruiseControl 2.3 has a goodly amount of new features and plugins.
+
+The dedicated team of folks who write code to keep your code
+continuously integrated have obviously been busy this summer.
+{CruiseControl}[http://cruisecontrol.sourceforge.net] 2.3 was released
+yesterday with a goodly amount of new features and plugins ({release
+notes}[http://sourceforge.net/mailarchive/message.php?msg_id=12776276]).
+
+Get it {here}[http://cruisecontrol.sourceforge.net/download.html].

@@ -1,0 +1,56 @@
+= Visualizing Your Network Status
+
+abstract:: 
+Got better things to do than refresh your network status pages?  Write a simple screen scraper that visually alerts you to network outages.  Here's how.
+
+jgaynor {writes}[http://www.rci.rutgers.edu/~jgaynor/lights/]:
+
+[] <em>Inspired by an {old Slashdot article}[http://developers.slashdot.org/article.pl?sid=04/08/26/1550255]
+   and my obsessive need for shorter network outage response times, I
+   decided this year to create a 'Christmas lights' frontend to our
+   Network Management System. The results have been very
+   encouraging. ... </em>
+
+   <em>I recently moved from NOC operator to engineer and
+   can no longer spend all my time staring at and refreshing network
+   status webpages :(. As such I wanted something that could alert me
+   to outages with little or no effort on my part. ... </em>
+
+   <em>In a nutshell, the Thinkpad checks a remote cron-generated file
+   every five minutes for the existence of any alarms. Not wanting to
+   reinvent the wheel for this, I use data from our pre-existing and
+   very capable network monitoring system to populate that file. The
+   Thinkpad then turns on the corresponding circuit of Christmas
+   lights based on what it found in that file - white for all clear
+   and red for trouble.</em>
+
+Instructions, pictures, movies, and even a live web cam are
+{here}[http://www.rci.rutgers.edu/~jgaynor/lights/].
+
+His {Bash
+script}[http://www.rci.rutgers.edu/~jgaynor/lights/script.txt] is
+another good ol' fashioned screen scraper, powered by
+{wget}[http://www.gnu.org/software/wget/wget.html].  To toggle two X10
+devices, he uses {BottleRocket}[http://mlug.missouri.edu/~tymm/].
+Simple, elegant, and well worth every hand-typed character:  
+
+  #!/bin/sh
+
+  /usr/bin/wget \
+    http://censored-because-I-like-not-being-fired.edu/remotefile \
+    -O /home/localfile
+
+  CHECK=`grep 1 /home/localfile`
+
+  if [ -n "$CHECK" ]
+  then
+    br A2 on
+    br A1 off
+  else
+    br A1 on
+    br A2 off
+  fi
+
+Put the script on a schedule, plug in monitoring devices of your
+choosing, and then consider what you're going to do with all the time
+you'll save.

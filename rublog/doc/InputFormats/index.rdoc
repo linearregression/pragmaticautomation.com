@@ -1,0 +1,7 @@
+= RubLog Input Formats
+
+RubLog supports articles written in plain text, HTML, and RDoc. The format of a file is determined by its extension:
+
+.text, .txt:: PlainFormat
+.html, .htm:: HtmlFormat
+.rdoc::       RdocFormat

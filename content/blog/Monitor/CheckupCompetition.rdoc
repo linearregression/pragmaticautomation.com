@@ -1,0 +1,72 @@
+= Checking Up on the Competition
+
+abstract::
+This simple Ruby script pays for itself time and again by checking up
+on your web site, and possibly even your competition.
+ 
+A simple HTML screen scraper is one of an automator's best friends.
+You hook it up to a web page you want to monitor and walk away, knowing
+you'll get notified if the web site crashes or gets sick.
+
+The book includes a Unix shell script called <tt>checkurl.sh</tt> that
+scrapes a web page and sends out email if the page isn't found or
+shouts bad words such as "Error" or "Exception".  Steve Kellock
+contributed a Ruby screen scraper that I whittled into the shape of
+the original shell script for better portability:
+
+  require 'open-uri'
+  require 'net/smtp'
+
+  if ARGV.empty? then
+    puts "usage: check_url.rb <url>"
+    exit 1
+  end
+
+  url = ARGV[0]
+  smtp_host = "your.smtp.host"
+  to = "3035551212@mobile.att.net"
+  from = "monitor@acme.com"
+  subject="Uh oh!"
+  message = ""
+
+  begin
+    page = open(url).read
+    if page =~ /Error|Exception/
+      message = "Error or Exception"
+    end
+  rescue
+    message = "Unavailable - #{$!.message}" 
+  end
+
+  mail = <<MAIL  
+  Subject: #{subject}
+
+  Sadly, #{url} isn't feeling well right now.
+
+  Diagnosis: #{message}
+  MAIL 
+
+
+  Net::SMTP.start(smtp_host) do |smtp|
+    smtp.send_mail(mail, from, to)
+  end
+
+To run it, just provide a URL you'd like checked.  For example:
+
+  ruby check_url.rb http://demoserver:8080/killerapp
+
+Then schedule it to check the web page on a recurring interval using
+<tt>cron</tt>, <tt>at</tt>, or your favorite scheduler.
+
+You can extend this simple technique to monitor all kinds of
+information across the web.  Steve uses it to get a leg up on the
+competition.  He sells a Windows-based desktop {swimming
+organizer}[http://www.swimshark.ca] and he wants to know on a daily
+basis if any of his competitors have released a new version of any of
+their similar programs.  Steve is a one-man show, but his Ruby scripts
+let him focus his time on the important stuff.  One of his Ruby
+scripts visits the download page of each competitor's site, scrapes
+version numbers, compiles a list, and sends Steve the results at
+midnight every night.  Steve sums it up with this great quote:
+
+[]  <em>Life is better with automation.  It increases the number of plates you can keep spinning by tenfold.</em>

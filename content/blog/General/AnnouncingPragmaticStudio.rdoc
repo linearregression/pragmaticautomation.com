@@ -1,0 +1,33 @@
+= Announcing Pragmatic Studio
+
+abstract::
+Announcing {Pragmatic Studio}[http://studio.pragprog.com]: a two-day interactive workshop where you learn how to make version control, unit testing, and automation work for you!
+ 
+When I visit projects, I often get asked the question: "How do other
+projects apply automation, version control, and unit testing?"
+Everyone knows they should be doing these key practices, but very few
+folks know just how.  So by asking the question, managers and
+developers not only want to know what tools to use, but, more
+importantly, how other companies are using these fundamental practices
+to their advantage.  You see, the teams I visit don't have a lot of
+time for trial and error.  They urgently need to know how to implement
+the practices <i>right</i>.
+
+{Dave}[http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Practices/PragmaticStudio.rdoc],
+{Andy}[http://www.toolshed.com/blog/News/studio.html,v], and I are
+excited to announce {Pragmatic Studio}[http://studio.pragprog.com]: a
+two-day interactive workshop where you learn how to make automation, version
+control, and unit testing work for you.  It's a unique
+opportunity to glimpse into a well-oiled project that's using the
+essential practices covered in the {Pragmatic Starter
+Kit}[http://www.pragmaticprogrammer.com/sk/].  Based on our combined
+experience having visited many projects, you'll be engaged in a
+project-like setting where we won't just tell you what to do, we'll
+show you first-hand how to do it right.  But more than that, through
+lively discussion and fun interaction you'll learn how to tailor the
+practices to your project.
+
+And to make it more convenient for you to attend, we're bringing
+Pragmatic Studio to {three
+cities}[http://studio.pragprog.com/travel.html] this summer.  We hope
+to see you in one of these Studios!

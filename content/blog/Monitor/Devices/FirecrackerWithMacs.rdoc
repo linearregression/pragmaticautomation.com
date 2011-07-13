@@ -1,0 +1,9 @@
+= Using the Firecracker with Macs
+
+start abstract:: 
+Trying to drive a Firecracker from your Mac?  Here's good news.
+end abstract::
+
+{Jim Weirich}[http://onestepback.org/] wrote in to say that he has it on good authority that the {KeySpan USA-19HS}[http://www.keyspan.com/products/usa19hs/homepage.spml] will properly drive a {Firecracker}[http://www.x10.com/products/firecracker.htm].  The Keyspan adapter comes with Mac OS X drivers that speak the handshake signals the Firecracker listens for.  Huzzah! That means you can remotely control your {lava lamps}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc] from your Mac. 
+
+Enjoy!

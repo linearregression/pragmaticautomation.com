@@ -1,0 +1,55 @@
+NOTE: Early September, 2004, the format of rublog.cgi changed. See the
+end of this README for details.
+
+See doc/*. In particular:
+
+Welcome.rdoc::
+   general description and some pointers
+
+SimpleInstallation.rdoc::
+   how to get up and running with the minimum of fuss
+
+FullInstallation.rdoc::
+   all the gory details
+
+RublogBasics.rdoc::
+   how to use the blog
+
+InputFormats/*::
+   the various formats for raw articles
+
+I strongly recommending installing RubLog using the SimpleInstallation
+instructions, and then reading the rest of this material using RubLog
+itself.
+
+License::
+    Ruby's
+
+Warranty and Support::
+     None
+
+Author::
+     Copyright (c) 2003 Dave Thomas, The Pragmatic Programmers LLC
+
+----
+
+NOTE:
+
+In early September 2004, the way RubLog objects are created was
+changed. This makes WEBRick and FastCGI implementations more
+efficient, but unfortunately is incompatible with existing rublog.cgi
+scripts. However, the change is fairly mechanical.
+
+1. The output style parameter (standard, movable, etc) is now simply
+   another RubLog option, and not a parameter to CGIRequest.new.
+
+     blog.style = "standard"
+
+2. The RubLog constructor takes a single parameter, the name of the
+   blog data directory.
+
+3. The line View.new(...) is now replaced with
+
+      blog.process_request(CGIRequest.new, CGIResponse.new)
+
+See the sample rublog.cgi file for the full, gory, details.

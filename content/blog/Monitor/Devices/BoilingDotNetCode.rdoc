@@ -1,0 +1,33 @@
+= Boiling .NET Code
+
+abstract:: 
+Curtis Olson contributed this story about how to control lava lamps
+from CruiseControl.NET.
+
+<em>Curtis Olson particularly enjoyed the Monitoring chapter of the
+{book}[http://www.pragmaticprogrammer.com/sk/auto] and now has lava
+lamps glowing on his government agency project.  He contributed this
+story:</em>
+
+I simply had to implement the {lava lamp
+monitors}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc].
+However, we write code in C# rather than Java, so I was left without a
+pre-written publisher for CruiseControl.NET that would control X10
+devices.  Dogged determination led me to develop my own publisher.  It
+was surprisingly simple.
+
+First, {download}[http://www.15seconds.com/files/040414.zip] Robert
+Chartier's {X10 library for
+.NET}[http://www.15seconds.com/issue/040413.htm] and use the pre-built
+<tt>Communications.dll</tt> and <tt>X10Unified.dll</tt> files.  Then
+add my
+{LavaLampPublisher.cs}[http://www.pragmaticprogrammer.com/starter_kit/au/lava/LavaLampPublisher.html]
+file to the <tt>Thoughtworks.CruiseControl.Core</tt> assembly.
+Finally, add the following line to the <tt><publishers></tt> section
+of your <tt>ccnet.config</tt> file:
+
+  <lavalamp passdevice="1" faildevice="2" housecode="A" />
+
+I even have the build machine running as a virtual machine under
+VMWare with the virtual COM port mapped to the physical COM port on
+the host server.

@@ -1,0 +1,13 @@
+= For the very, very impatient
+
+If you have WEBrick installed (which comes as standard with Ruby
+1.8.2), then you can simply say
+
+  ruby extras/webrick/rublog_servlet.rb
+
+Once it starts, point your browser at http://localhost:8808 and you
+should see documents describing RubLog.
+
+= For the slightly less impatient
+
+See the file doc/SimpleInstallation.rdoc.

@@ -1,0 +1,20 @@
+= Monitoring .NET Applications with WMI
+
+abstract:: 
+Here's a resource for the .NET folks out there that explains how to use Windows Management Instrumentation (WMI) to string trip wires in your .NET application.
+
+
+Craig Demyanovich writes:
+
+[] <em>Here's a {monitoring
+   resource}[http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnhcvs04/html/vs04d6a.asp]
+   for the .NET folks out there.  It's worth a look to see what
+   monitoring features are already provided with Windows 2000/XP and how
+   to use them in your .NET applications.</em>
+
+If you're into .NET, Windows Management Instrumentation (WMI) looks
+like an interesting way to string trip wires in your applications.
+Want to keep an eye on the inner workings of that hosted .NET
+application to spot notable user actions or the first signs of a
+problem?  Imagine an WMI event consumer that, for example, pops
+important events onto an RSS feed or even out to your cell phone.

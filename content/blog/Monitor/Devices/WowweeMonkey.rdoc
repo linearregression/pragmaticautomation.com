@@ -1,0 +1,14 @@
+= Screeching Animatronic Monkeys
+
+Suppose you've just launched a new web application.  Being a savvy automator, you decide to set up monitors for significant system events like, say, new users signing up.  Now it's always good to pick a physical device that gives visual or audible feedback that in some way matches the logical event you're monitoring.  So what kind of feedback goes along with a new user signing up?  
+
+{Ian Bishrey}[http://pixelcloud.com/blog] couldn't exactly wire up a human, so he went with the next best thing: a screeching {Wowwee Alive! Monkey}[http://www.wowweealiveonline.com/].
+
+http://pixelcloud.com/blog/fp-content/images/zowwee.jpg
+
+You know you want one of these on your project, and Ian has {instructions and code}[http://pixelcloud.com/blog/index.php?entry=entry070622-155523] for how he hacked the remote controller and wrote a Java-based serial interface (with tests) to send commands to the animatronic monkeys.  
+
+In the email he sent, Ian concluded by stating matter of factly "Using the remote means we can control an army of chimps simultaneously."  I had to read that sentence a couple times, and each time the mental images got progressively more frightening.  Added to which, Ian mentioned in passing that they also use the monkeys to give feedback on "low NLP linguistic classification
+confidence score events".  So to summarize, we have a web 2.0 application that's taking on new users and in some way processing natural languages, all being monitored by a potential army of monkeys.  
+
+You know, when I challenged readers of the {automation book}[http://www.pragmaticprogrammer.com/sk/auto] to find creative ways to monitor their software projects, I never imagined it could come to this...

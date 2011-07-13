@@ -1,0 +1,22 @@
+= Ruby Growls
+
+abstract:: 
+Send Growl notifications from within your Ruby application or the command-line from non-Mac machines.  
+
+And what if that program you want to make
+{growl}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/ProgramsThatGrowl.rdoc]
+isn't running on a Mac, but you're parked in front of one?  Well
+then, you need {Eric
+Hodel's}[http://www.livejournal.com/users/drbrain/]
+{ruby-growl}[http://segment7.net/projects/ruby/growl/]:
+
+[] <i>Growl's existing Ruby bindings only work on Macs, and I wanted
+   my non-Mac machines to be able to send Growl notifications. I peeked
+   inside Growl's remote-notification capabilities and wrote up some code
+   that uses UDP to send Growl notifications across the network.</i>
+
+With ruby-growl you get a Ruby library you can use to send
+{Growl}[http://growl.info/] notifications from within your Ruby
+applications and a command-line tool similar to <tt>growlnotify</tt>.
+
+Grr!

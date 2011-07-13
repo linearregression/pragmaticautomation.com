@@ -1,0 +1,104 @@
+body {
+/* background: url("/images/sidefill.png") repeat-y;*/
+ color: #123;
+ font-family: Georgia, Times, serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+}
+
+
+#header {
+ position: relative;
+ left: 0px;
+ width: 232px;
+}
+
+#header h1 {
+  margin-left: 0;
+  text-align: center;
+}
+
+#header a {
+  font-size: 130%;
+  font-family: Helvetica, sans-serif;
+  text-shadow: #8ac 3px 3px 3px;
+  color:  #235;
+  text-decoration: none;
+  text-align: center;
+}
+
+
+#articles {
+  position: absolute;
+  left: 160px;
+  width: 25em;
+}
+
+#sidebar { 
+   position: absolute;
+   left:  600px;
+   top:  150px;
+   width: 135px;
+   height: 6in;
+   margin-right: 30px;
+   margin-left: 50px;
+   padding-left: 10px;
+   border-top: 1px dotted #68a;
+   border-left: 1px dotted #68a;
+   font-size: x-small;
+   padding-top:    0.25in;
+
+}
+
+
+.article {
+  margin-top:  6ex;
+  margin-bottom: 0ex;
+}
+
+.articletitle {
+  border-bottom: 1px dashed #68a;
+  margin-bottom: 0px;
+}
+
+.articledate {
+  position: absolute;
+  left: -160px;
+  width: 115px;
+  text-align: right;
+  font-size: 67%;
+  margin-top: .5ex;
+}
+
+.articlearrow {
+  position: absolute;
+  left: -40px;
+  width: 20px;
+  background: url("/images/sidearrow.gif") no-repeat;
+}
+
+.articletitle a {
+  color: #346;
+  text-decoration: none;
+}
+
+.articletitle a:hover {
+  color: #496;
+}
+
+
+.articlebody {
+  font-size: 90%;
+  line-height: 140%;
+}
+
+.articlebody h1, .articlebody h2, .articlebody h3, .articlebody h4 {
+  color: #235;
+}
+
+.articlebody h3 {
+  margin-top: 2ex;;
+  margin-bottom: -1ex;
+}

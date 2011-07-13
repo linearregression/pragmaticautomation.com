@@ -1,0 +1,41 @@
+= Suggesting Content
+
+start abstract::
+Got project automation?  Help your fellow programmers get off the
+treadmill by submitting your automation news, story, tool, tip, or trick.
+end abstract::
+
+Got project automation?  Help your fellow programmers get off the
+treadmill by sharing your news, story, tool, tip, or trick.  Suggest
+content by dropping an email to <i>mike</i> at <i>clarkware.com</i>
+that includes:
+
+* Title 
+  
+  Example: Igniting fireworks when our build succeeds
+
+* Description 
+
+  Example: Our manager thinks this is a total blast...
+
+* URL 
+  
+  Example: http://xyz.com/firework_ignition_kit.html
+
+* Your name (or 'anonymous' to remain anonymous)
+
+  Example: Joe Programmer
+
+* Your home page
+
+  Example: http://joe.com/weblog
+
+By emailing your suggestion, you agree that your content is licensed
+under the {Creative Commons Attribution
+License}[http://creativecommons.org/licenses/by/2.0/].  We may use
+your content on this web site (relicensed under the {Creative Commons
+Attribution-NonCommercial
+License}[http://creativecommons.org/licenses/by-nc/2.0/]) and possibly
+in our books.  While you may choose to remain anonymous, if you do
+provide your name, you will be given appropriate credit wherever your
+content appears.

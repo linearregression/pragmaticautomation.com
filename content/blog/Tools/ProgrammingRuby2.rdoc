@@ -1,0 +1,31 @@
+= Programming Ruby 2 Available For Pre-Order
+
+start abstract:: 
+The book Programming Ruby 2 (aka the PickAxe book) is
+now available for pre-order.  It's a great way to get started using
+Ruby for your automation needs.
+end abstract::
+
+Dave
+{says}[http://pragprog.com/pragdave/Random/PickAxeTwoPreorder.rdoc]
+the book {Programming Ruby
+2}[http://www.pragmaticprogrammer.com/titles/ruby/index.html] (aka the
+PickAxe book) is now available for
+{pre-order}[http://pragmaticprogrammer.com/shopsite_sc/store/html/page5.html].
+
+Why mention a Ruby book?  Well, {Pragmatic Project
+Automation}[http://www.pragmaticprogrammer.com/sk/auto/] includes a
+Ruby script and some recent posts on this site have included Ruby
+code.  And it turns out that Ruby is an excellent language for
+automating tasks, among other things.  Indeed, I find myself reaching
+for Ruby more and more when I'm building automation tools.  The
+language is concise and elegant, it gives you easy access to the
+power of your operating system, and it stays out of your way.  So
+you'll be seeing more Ruby code posted here.  
+
+For those reasons, and my unabashed opinion that the book is
+outstanding, I highly recommend pre-ordering a copy. In addition to
+learning a fun new language, learning Ruby has made me a better
+programmer in general.  So even if your project has no intentions of
+using Ruby, you'll be honing new skills while discovering ways to
+improve on old skills.

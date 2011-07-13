@@ -1,0 +1,16 @@
+= Christmas Glow
+
+abstract:: 
+Have you put up your Christmas lights?  With each red and green strand,
+you can radiate the build status another 50 feet or so across your
+project.  Jeremy Whitlock sent in these festive pictures from his project.
+
+Have you put up your Christmas lights?  With each red and green strand,
+you can radiate the build status another 50 feet or so across your
+project.  {Jeremy Whitlock}[http://bloglines.com/blog/jwhitlock] sent
+in these festive pictures of his project's Christmas lights, controlled
+by the same X10 devices that power the {lava
+lamps}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc].
+
+http://www.pragmaticprogrammer.com/images/xmas_red.jpg
+http://www.pragmaticprogrammer.com/images/xmas_green.jpg

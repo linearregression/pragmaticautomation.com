@@ -1,0 +1,77 @@
+= Light Up Your System Tray
+
+start abstract:: 
+If you just can't convince the boss to buy lava lamps, or your team is
+dislocated and can't share a visual monitoring device, then you need
+another visual way to monitor your build.  Here's a script that puts a
+red or green icon in your system tray.
+end abstract::
+
+If you just can't convince the boss to buy those lava lamps, or your team is
+dislocated and can't share a visual monitoring device, then you need
+another inexpensive way to visually monitor your build.  Paul Julius sent 
+in these two screenshots of his system tray and a note about how it works:
+
+[] http://www.pragmaticprogrammer.com/starter_kit/auto/linked_images/broken-build.jpg http://www.pragmaticprogrammer.com/starter_kit/auto/linked_images/good-build.jpg
+
+   <em>The tray icon is red when broken and green when
+   successful. When the build breaks, a small popup dialog appears to
+   let you know, followed by a similar popup when the build is
+   "fixed". A normal successful build doesn't trigger any popups.</em>
+
+   <em>As an aside, the systray icon works great as "instant
+   notification" for teams that are not co-located. However, for
+   co-located teams, they may find the x10 publisher to be a better
+   route. It's "shared instant notification".</em>
+
+Those red and green icons in Paul's tray are toggled by a nifty Python
+script donated to the {CruiseControl}[http://cruisecontrol.sourceforge.net/] project by Ivan Moore.  Ivan had
+found the optional
+{CCTray}[http://confluence.public.thoughtworks.org/display/CCNET/CCTray]
+utility in CruiseControl.NET to be very handy, so he wrote a similar
+utility for CruiseControl.  The script monitors your build by gently
+scraping your project's CruiseControl web page on a configurable
+interval looking for the signs of a broken build.
+
+To light up your system tray, run:
+
+  python cruiseTrayIcon.py -u http://yourCruiseBuildPage.html
+
+You can also mix in these command-line options:
+
+  -q (quiet = no dialog box on status change)
+  -d pollingDelayInSeconds (how long it waits between polling cruise)
+  -b buildFailedString (existence on cruise page means build broken)
+
+The <tt>cruiseTrayIcon.py</tt> script is currently only available in
+the CruiseControl {CVS
+repository}[http://cruisecontrol.sourceforge.net/cvs.html].  The
+upcoming 2.2 release of CruiseControl will include Ivan's script,
+along with the other significant enhancements.  Until then, to check
+out the script and its supporting files, use:
+
+  $ set CVSROOT=:pserver:anonymous@cvs.sourceforge.net:/cvsroot/cruisecontrol
+  $ cvs login
+  (Logging in to anonymous@cvs.sourceforge.net)
+  CVS password: (Press Enter)
+  $ cvs -z3 co cruisecontrol/contrib/cruiseTray
+
+Make sure to read the short README file.  It tells you which versions
+of Python and wxPython you need to install.  It also tells you how to
+build a self-contained <tt>.exe</tt> file that you can share with team
+members who don't want to install Python and wxPython.
+
+I like that this script uses good ol' fashioned screen scraping.  It's
+simple, but very effective.  To build one of these monitors, all you
+need to know about CruiseControl is the URL of the build status page
+and what text to look for on that page.  So if you can't or just don't
+want to use Python, you could whip one of these up in your language of
+choice lickety-split.  If you do, please take a moment to let us know
+about your creation, then kindly donate it to the CruiseControl
+project.  And unless somebody beats me to it, I might just have to
+write something that lights up the status bar or the dock for us Mac
+users. Virtual lava lamps, anyone?
+
+Now that you can monitor the status of your build just by glancing at
+your system tray, what other things might you be able to monitor on
+the cheap using a simple screen-scraper?

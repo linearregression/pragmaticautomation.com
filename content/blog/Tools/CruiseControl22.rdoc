@@ -1,0 +1,18 @@
+= CruiseControl 2.2 Released
+
+abstract:: 
+The latest release of the CruiseControl includes a number of new
+features and squashes known bugs.
+
+{CruiseControl}[http://cruisecontrol.sourceforge.net] 2.2 is now
+available.  This release adds a boatload of new features and squashes
+known bugs.
+
+I continue to be impressed by all the hard work and pride in
+workmanship that goes into this project and the expert support
+provided by the CruiseControl community.  Just take a look at all of
+the individuals listed in the {release
+notes}[http://sourceforge.net/mailarchive/message.php?msg_id=9919275]
+who contributed to this release.  There are countless others who help
+folks on the mailing list every day.  Thank you all for making
+CruiseControl a great continuous integration tool!

@@ -1,0 +1,9 @@
+= More CVS Monitoring
+
+abstract::
+cvslog2web lets you monitor CVS activity through RSS and web output.
+
+Ethan wrote in to give us a heads-up on his new-and-improved
+CVS logging tool dubbed {cvslog2web}[http://ethan.tira-thompson.com/cvslog2web/].
+
+cvslog2web is similar to the CVS {commit hooking}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/LettingCVSPullTheTrigger.rdoc] and {log info to RSS}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Loginfo2Rss.rdoc] techniques we've seen before, but offers it in one convenient package and adds a few more goodies.  In addition to an Atom syndication format, you also get recent history as HTML, permalinks to individual log entry pages, and some careful thought on compacting/summarizing the log entries.

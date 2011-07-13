@@ -1,0 +1,36 @@
+= Tracking Bugs, Cradle to Grave
+
+abstract::
+Here's one way to provide traceability from a bug report to the file changes that squashed the bug.
+
+<em> 
+{Rich Freedman}[http://www.crosscurrent.com] wrote in with an
+overview of the tools his team uses to automate the traceability from
+a bug report to the file changes that squashed the bug.  He writes:
+</em>
+
+We've made the bug-fixing process more transparent and bug-fix code
+reviews much easier to do by integrating
+{CVS}[https://www.cvshome.org/],
+{CVSweb}[http://www.freebsd.org/projects/cvsweb.html],
+{Bugzilla}[http://www.bugzilla.org/], and
+{JSPWiki}[http://www.jspwiki.org/].  Here's how it works:
+
+1. Programmers put "Bug: xxxx" in the first line of the CVS commit
+   message.  A Perl script updates the specified bug report in
+   Bugzilla with the programmer's name, the commit message, the file
+   names, and hyperlinks to CVSWeb that display the diffs for each
+   file committed. This allows the project lead to access the diffs
+   for any bug fix directly from Bugzilla.
+
+2. We created a Perl script that runs on the same server as Bugzilla
+   and, on demand, creates an RSS file containing information about
+   updates to Bugzilla for a specified project and number of days (we
+   default to the last 10 days). We then used a JSPWiki RSS plugin
+   that we had previously written to display this information in each
+   project's wiki page.
+
+<em> 
+This is another great example of effective automation made possible
+by connecting existing tools with little dabs of glue.
+</em>

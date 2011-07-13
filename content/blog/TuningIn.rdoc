@@ -1,0 +1,69 @@
+= Tuning In
+
+start abstract::
+Tune your favorite RSS reader in to the PragmaticAutomation.com RSS
+feed and let your computer deliver fresh automation goodies right to
+your desktop!
+end abstract::
+
+=== Using Your Favorite Web Browser
+
+The default URL (http://pragmaticautomation.com) displays the 15 most
+recent entries posted on the site.  You can append additional path
+elements to the URL to limit the display to entries in or below that
+path.  Clicking on the title from anywhere returns you to the default
+URL.
+
+
+=== Using Your Favorite RSS Reader
+
+You can get an RSS feed of the entries on the site by appending
+<tt>index.rss</tt> to the URL path.  For example:
+ 
+   http://www.pragmaticautomation.com/index.rss
+
+will give you the top 15 entries on the site, and
+
+   http://www.pragmaticautomation.com/Monitor/index.rss
+
+will give you the top 15 entries below the Monitor category.
+
+You can use synopsis.rss instead of index.rss to receive just the
+summaries of articles.  If an article was not created with a summary
+you'll still get the full body.
+
+=== Page Size
+
+You can change the count of entries returned (from either the RSS or
+conventional feed) by adding a <tt>count=</tt> parameter:
+
+   http://www.pragmaticautomation.com/Monitor/index.rss?count=5
+
+   http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi?count=5
+
+If the count is fewer than the number of matching entries, you'll be
+able to page backwards and forwards to view the rest.
+
+
+=== Historical Information
+
+To view the entries for a particular year, month, or day, simply
+append the date to the path:
+
+http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/2004::
+   display all entries for 2004.
+
+http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/2004/6::
+   display all entries for June 2004.
+
+http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/2004/6/23::
+   display all entries for June 23, 2004.
+
+You can also ask to see what the site looked like on a particular date
+using the <tt>asof</tt> parameter.
+
+http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi?asof=2004/6/23::
+   display blog contents as of July 6, 2004.
+
+This basically tells the site not to display entries created or
+modified past the given date.

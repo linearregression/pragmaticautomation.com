@@ -1,0 +1,16 @@
+= What's Your Build Frequency, Kenneth?
+
+abstract::
+Use this chart in the CruiseControl metrics tab to monitor the frequency of scheduled builds.
+
+In response to the {source code activity
+charts}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/VisualizingCommitTrends.rdoc],
+Robert Watkins kindly sent in this example chart displayed free of
+charge in the
+{CruiseControl}[http://cruisecontrol.sourceforge.net] metrics tab.
+
+http://blogs.pragprog.com/images/pragauto/cccommitchart.png
+
+It shows the frequency of builds which, of course, are triggered by
+commits to the source code repository.  Looks like a slick way to also monitor trends in scheduled
+build breakage.  What does your build frequency chart look like?

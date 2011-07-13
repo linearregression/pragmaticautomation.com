@@ -1,0 +1,20 @@
+= Two-Way Feedback
+
+abstract::
+Jon Udell draws an insightful analogy between automating software and teaching a kid to ride a bike.
+
+I really like how {Jon
+Udell}[http://weblog.infoworld.com/udell/2005/02/10.html#a1174]
+describes the interactions between human and computer during an
+automation lesson:
+
+[] <em>Automating software systems reminds me of teaching a kid to ride a
+   bicycle. A hands-on phase, in which you directly control the
+   process, segues into a hands-off phase as the kid, having
+   internalized the skill, asserts control. During that segue,
+   however, there's a complex negotiation. Control is traded back and
+   forth in varying degrees, governed by a sensitive two-way feedback
+   mechanism.</em>
+
+For more automation insights, read Jon's recent {InfoWorld
+column}[http://www.infoworld.com/article/05/02/04/06OPstrategic_1.html].

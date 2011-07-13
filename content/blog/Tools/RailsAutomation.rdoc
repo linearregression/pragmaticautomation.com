@@ -1,0 +1,84 @@
+= Off the Treadmill, Onto the Rails
+
+abstract::
+David Heinemeier Hansson, creator of Ruby on Rails, talks with Mike Clark about the automation aspects of Rails.
+
+If you haven't heard of {Ruby on Rails}[http://www.rubyonrails.org/],
+it might be time to look up from your keyboard.  Rails is an
+open-source web framework in {Ruby}[http://www.ruby-lang.org/en/], and
+it's gaining mindshare at a staggering pace.  But people aren't just
+talking about Rails; they're doing it, using Rails to build useful web
+applications.  Indeed, the number of Rails applications that have been
+released in the last several weeks---applications powered by just a
+couple hundred lines of code---speaks well for the productivity boost
+of Rails development.
+
+I caught up with {David Heinemeier
+Hansson}[http://www.loudthinking.com/], the creator and tireless
+evangelist of Rails, to answer a few quick questions about the
+automation aspects of Rails.
+
+<b>Mike</b>: Everybody who tries Rails raves about how it makes them
+super productive.  What types of automation does Rails employ to help
+developers create great apps so quickly?
+
+<b>David</b>: The basic philosophy is to encourage good behavior
+through invitations. So, for example, when you use the generator to
+create a new model or controller, it also creates unit test stubs that
+are all hooked up. You just enter a new test case and off you go. The
+same goes to fixtures, where a YAML file is already created and hooked
+up, just waiting for you to input the data.
+
+Additionally, we have the entire test process wired up through
+{Rake}[http://rake.rubyforge.org/] (Make for Ruby). So by default, if
+you just enter <tt>rake</tt> in a new Rails project, it'll run all the
+unit and functional tests. Oh, and it'll give you a statistical report
+about your code base, too. Like code-to-test ratio and stuff like
+that.
+
+<b>Mike</b>: Sounds like you've tried to automate everything that will
+be the same on most projects.
+
+<b>David</b>: We basically try to make it so that the only thing you
+need to create is application-specific functionality. All the
+infrastructure is already configured and ready to run. That means it's
+much, much easier to get off to a good start with testing, revision
+control (we backup your DB schema for you), and the like.
+
+So even though we call it a Rails skeleton, when you create a new
+empty application, it's actually more a fully fleshed, but undressed
+body you're dealing with (yeah, Rails is that sexy :)).
+
+<b>Mike</b>: I like the fact that the automation built into
+Rails---code generation, templates, one-step test process,
+etc.---<i>invites</i> good behavior and productivity.  It makes it
+easy for people to do the right thing.  Speaking of testing, what are
+you using for continuous integration with Rails and Rails projects?
+
+<b>David</b>: {DamageControl}[http://damagecontrol.codehaus.org/],
+which is a project out of ThoughtWorks by Aslak and Tirsen. It's a bit
+fragile at the moment, but still very useful. It has already saved me
+a couple of times. I'm certainly a big believer in continuous
+integration.  We have it set up for
+{Basecamp}[http://www.basecamphq.com/] and two recently announced Rails
+projects: {Ta-da List}[http://tadalist.com/] and {Writeboard}[http://www.writeboard.com/].
+
+<b>Mike</b>: Rails projects are popping up all over.  I just started
+converting a small J2EE project to Rails, and let me just say that
+Rails is highly addictive stuff.  You mention DamageControl, a web
+application that's already written in Ruby.  Any chance it will be
+converted to a Rails application?
+
+<b>David</b>: Yes, I believe Aslak from the DamageControl team is
+working on this already. DamageControl was using its own controller
+framework-like setup, but seeing as {Action
+Pack}[http://ap.rubyonrails.org/] is readily available and will allow
+the project to run on Apache as well as
+{WEBrick}[http://www.webrick.org/], it seemed like a great fit.
+
+I'm really excited to see DamageControl come to Rails. I'm sure it'll
+mean an influx of good ideas and code from the existing Rails
+community. We're quite eager to see it happen.
+
+<em>Thanks for taking time out to share your thoughts, David.  Keep up
+the great work on Rails!</em>

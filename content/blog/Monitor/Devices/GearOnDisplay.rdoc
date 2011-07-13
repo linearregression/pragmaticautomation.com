@@ -1,0 +1,30 @@
+= Automation Gear On Display
+
+abstract::
+Stop by and visit the good folks at Softpro Books in Denver for a first-hand look (and feel) at some of Mike's project automation gear.
+
+Stop by and visit the good folks at {Softpro
+Books}[http://store.yahoo.com/softpro/] in Denver and you'll get a
+first-hand look (and feel) at some of my project automation gear.  You
+know you've arrived when you see the red and green lava lamps blazing
+through the storefront window.
+
+http://www.pragmaticprogrammer.com/images/SoftproLava.jpg
+
+The X10 devices that conveniently power the lamps are also there on
+the table, ready to be poked and prodded.  And, because you know you
+want to hook up lava lamps to your scheduled build, take a free copy
+of the printed {instruction booklet}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc]  back to your manager's office.
+
+
+While you're in there, please support Softpro and your dear author by
+purchasing a copy of the
+{book}[http://pragmaticprogrammer.com/starter_kit/au/index.html] that
+gives you soup-to-nuts recipes for automating your software project.
+When you pay, don't forget to ask for a voucher to purchase the PDF
+version of the book for just 99 cents.  (The PDF offer applies to any
+{Pragmatic
+Bookshelf}[http://pragmaticprogrammer.com/bookshelf/index.html] title
+you buy at a participating independent bookstore.)
+
+Thanks, and have fun!

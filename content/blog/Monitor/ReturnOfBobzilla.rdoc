@@ -1,0 +1,37 @@
+= The Return of Bobzilla
+
+abstract::
+Inspired by Bobzilla, Fred McCann has started the open source BugReport Appender project.
+
+Inspired by Bobzilla---the automatic crash reporting framework
+described by {Bob Lee}[http://today.java.net/pub/au/152] in the
+{book}[http://pragmaticprogrammer.com/starter_kit/au/index.html] and
+in his
+{blog}[http://weblogs.java.net/blog/crazybob/archive/2004/04/automatic_crash.html]
+---Fred McCann has started the open source {BugReport
+Appender}[http://bugsappender.sourceforge.net/] project:
+
+[] BugReport Appender is a collection of {log4j}[http://logging.apache.org/log4j] appenders that file
+   whole bug reports instead of individual logging events.  
+
+   BugReport Appender maintains a logging buffer for each application
+   thread. It collects logging events in this buffer until the thread
+   exits or some other threshold conditions are met. If any of the
+   events are of a specified priority, the list of events are filed as
+   a bug report. This aggregates related logging events in a single
+   place. Also, the buffer contains logging events of all levels, so
+   even if it takes an ERROR level event to file a bug report, all
+   logged events will be in the report even if other loggers are
+   ignoring them.
+
+   BugReport Appender is designed primarily to monitor heavily
+   threaded applications in production, such as web applications. 
+   This allows applications to detect error conditions and log
+   reports directly into bug tracking systems.
+
+The project currently supports reporting bugs to files on the local
+file system and over HTTP to the {BUGS - The Bug
+Genie}[http://bugs-bug-genie.sourceforge.net/] bug tracking system.  And your bug tracking system could be next!  If you can post bugs
+directly to a web application, then Fred has
+the plumbing in place to help you integrate quickly.  Then, if your
+application runs into trouble in production, it can phone home.

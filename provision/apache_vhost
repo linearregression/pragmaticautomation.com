@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+  ServerName pragmaticautomation.com
+  ServerAlias *.pragmaticautomation.com
+  ServerAlias pragmaticautomation.org
+  ServerAlias *.pragmaticautomation.org
+
+  ServerAdmin mike@clarkware.com
+
+  DocumentRoot /home/deploy/apps/pragmaticautomation.com/current/public
+
+  LogLevel warn
+  ErrorLog  /home/deploy/apps/pragmaticautomation.com/current/log/error.log
+  CustomLog /home/deploy/apps/pragmaticautomation.com/current/log/access.log combined
+
+  <Directory "/home/deploy/apps/pragmaticautomation.com/current/public">
+    Options FollowSymLinks ExecCGI
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  ScriptAlias /cgi-bin/ /home/deploy/apps/pragmaticautomation.com/current/cgi-bin/
+
+  Redirect /index.html http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi
+  Redirect /index.rss http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/index.rss
+</VirtualHost>

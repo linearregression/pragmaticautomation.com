@@ -1,0 +1,28 @@
+= Using Growl for Long-Running Builds
+
+abstract::
+Michael McCracken has another neat Growl trick for those of you with a Mac.
+
+Michael McCracken has another {neat Growl
+trick}[http://michael-mccracken.net/blog/blosxom.pl/computers/mac/programming/growlAndBuilding.html]
+for those of you with a Mac:
+
+[] <i>I have a few projects that take a long time to build. (C++ mostly,
+   with many nested makefiles.) Since I'm guaranteed to go check email
+   while it's building and forget about it, I have gotten in the habit of
+   using this incantation to have Growl tell me I should get back to
+   work:</i>
+   
+     gmake; echo "Returned status: " $? | growlnotify "Build done"
+
+   <i>This gives me a notification titled "Build done" with the exit status
+   from the shell variable $?, the status of the last performed shell
+   command.</i>
+
+Then he goes on to show you how to plot build times with
+<tt>gnuplot</tt>.  Nice!  Free tools, priceless feedback.
+
+({Growl}[http://growl.info/] is good stuff for monitoring things right
+from the comfort of your desktop.  For example, I use it regularly as
+a {tattletale for web
+sites}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/ProgramsThatGrowl.rdoc].)

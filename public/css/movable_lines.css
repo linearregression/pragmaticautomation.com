@@ -1,0 +1,331 @@
+body, table {
+    font-family: verdana, helvetica;
+}
+
+body {
+    background-image: url(http://pragmaticprogrammer.com/images/gears.jpg);
+    background-repeat: no-repeat;
+    background-position: 13px 90px; 
+    background-color: #fff;
+    margin: 0px;
+}
+
+a 		{ color: #0b7060; text-decoration: none; font-weight:normal; } 
+a:link		{ color: #0b7060; } 
+a:visited	{ color: #0b7060; } 
+a:active	{ color: black; } 
+a:hover		{ color: black; }
+
+a img {
+  border: none;
+}
+
+
+h1, h2, h3 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+h3.title {
+    font-size:  120%;
+    font-weight: normal;
+    margin-bottom: 1em;
+}
+
+
+#banner {
+    margin: 10px 10px 15px 10px;
+}
+
+#banner-commentspop {
+    border-bottom: #0b7060 solid 1px;
+    border-left: #0b7060 solid 10px;
+    color: #666;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 5px 5px 10px 5px;
+    padding: 0 0 3px 3px;
+}
+
+#banner a,
+#banner a:link,
+#banner a:visited,
+#banner a:active,
+#banner a:hover {
+    color: #0c7967;
+    font-size: xx-large;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#banner h1 {
+  border-bottom: #0c8977 solid 1px;
+  border-left: white solid 10px;
+  padding: 0 0 3px 3px;
+  font-size: xx-large;
+  font-family: Arial,Helvetica;
+  text-shadow: .18em .15em .2em #7799cc;
+}
+
+#banner .description {
+    color: #0c7967;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 30px;
+}	
+
+#content {
+    margin: 0 230px 10px 10px;
+}
+
+#container {
+    margin: 0 10px 10px 10px;
+}
+
+#links {
+    background-color: #fff;
+    border-left: 1px solid #0b7060;
+    padding: 10px;				
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    width: 209px;
+}
+
+body > #links {
+    width: 210px;
+}
+
+#content .blog, #container .blog {
+    border-left: #0b7060 solid 1px;
+    margin-left: 123px;
+}	
+
+.blogbody {
+    color: #666;
+    font-size: small;
+    font-weight: normal;
+    line-height: 140%;			
+    margin: 0 10px 15px 10px;
+}
+
+.blogbody a,
+.blogbody a:link,
+.blogbody a:visited {
+    border-bottom: 1px dotted #334;
+}
+.blogbody a:active,
+.blogbody a:hover {
+    border-bottom: 1px solid #668;
+}
+
+.title	{ 
+    color: #0b7060;	
+    margin:    0px;
+    font-size: larger; 
+    margin-bottom: 8px;
+}			
+
+#menu {
+    border-bottom: #ccc solid 1px;
+    border-right: #ccc solid 10px;
+    font-size: small;
+    margin-right: 10px;
+    padding: 0 5px 2px 0;
+    text-align: right;  							
+}		
+
+.date	{ 
+    border-bottom: #0b7060 solid 1px;
+    border-left: #0b7060 solid 5px;
+    color: #666;
+    font-size: 12px; 
+    font-weight: bold;
+    height: 20px;
+    left: -123px;
+    margin: 0;
+    padding-left: 5px;
+    position: relative;
+    top: 20px;
+    width: 118px;
+}			
+
+.posted	{ 
+    color: #666; 
+    display: block;
+    font-size: x-small; 
+    font-style: italic;
+    margin-top: 8px;
+    text-align: right;
+}
+
+
+.side td, .side th {
+    font-size: 9px;
+    font-weight: normal;
+    padding: 2px;
+    text-align: center;	
+    width: 14%;
+}
+
+div.calendar table {
+    width: 100%;
+}
+
+/*
+.calendarhead {	
+    border-bottom: #0b7060 solid 1px;
+    border-left: 10px solid #0b7060;
+    color: #666;
+    font-size: small;
+    font-weight: bold;
+    padding: 0 0 0 3px;					
+    text-align: left;
+    width: 100%;
+}	
+*/
+
+.side {
+    color: #333;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 120%;
+    margin: 5px 0 0 13px;
+}	
+
+.sidebarsubhead {
+    color: #fff;
+    background-color: #0b7060;
+    font-weight: bold;
+}
+
+.sidetitle {
+    border-bottom: #0b7060 solid 1px;
+    border-right: #0b7060 solid 6px;
+    color: #666;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0 0 2px 3px;
+    margin-top: 15px;
+}		
+
+.indent {
+    margin-left: 1.5em;
+}
+
+.syndicate {
+    font-size: x-small;
+    font-weight: bold;		
+    padding: 2px;
+    margin-top: 10px;
+    text-align: center;
+}	
+
+.powered {
+    font-size: x-small;
+    font-weight: bold;
+    color:       #88cc88;
+    line-height:140%;
+    margin-top: 30px;
+    padding:2px;
+    text-align:center;
+}	
+
+
+.comments-body {
+    border-right: #ccc solid 10px;
+    border-bottom: #ccc solid 1px;
+    color: #666;
+    font-size: small;
+    font-weight: normal;
+    line-height: 140%;
+    margin: 0 10px 20px 10px;
+    padding-right: 5px;
+}		
+
+.comments-post {
+    color: #0b7060; 
+    display: block;
+    font-size: x-small; 
+    font-style: italic;
+    margin-top: 3px;
+    text-align: right;
+}	
+
+.trackback-url {
+    border-bottom: #0b7060 solid 1px;
+    border-left: #0b7060 solid 10px;
+    color: #666;
+    font-size: small;
+    font-weight: normal;
+    margin: 0 5px 10px 5px;
+    padding: 0 0 3px 3px;
+}
+
+.trackback-body {
+    border-bottom: #ccc solid 1px;
+    border-right: #ccc solid 10px;
+    color: #666;
+    font-size: small;
+    font-weight: normal;
+    line-height: 140%;
+    margin: 0 5px 10px 5px;
+}		
+
+.trackback-post {
+    color: #666;
+    font-size: small;
+    font-weight: normal;
+}
+
+.comments-head	{ 
+    color: #88c; 
+    font-size: small; 
+    font-weight: bold;
+    font-size: small; 
+    font-weight: bold;
+    margin: 0 0 5px 10px;
+}		
+
+#author, #email, #url, #text {
+    border-bottom: #0b7060 solid 1px;
+    border-left: #0b7060 solid 10px;
+    border-right: #ccc solid 1px;
+    border-top: #ccc solid 1px;
+    padding-left: 3px;
+}
+
+
+.c {
+  text-align: right;
+  padding-right: 0.5em;
+  padding-left:  0em;
+  padding-top:   0em;
+  padding-bottom:   0em;
+}
+.ctitle {
+  text-align: right;
+  padding-right: 0.5em;
+  padding-left:  0em;
+  padding-top:   0em;
+  padding-bottom:   0em;
+  border-bottom:    1px solid #d0d0d0;
+}
+.ctotal {
+  text-align: right;
+  padding-right: 0.5em;
+  padding-left:  0em;
+  padding-top:   0em;
+  padding-bottom:   0em;
+  border-top:    1px solid #d0d0d0;
+  border-bottom:    1px solid #d0d0d0;
+}
+
+
+
+.caltoday {
+    background-color: #d8ffff;
+    border: 1px dotted #308080;
+}
+
+

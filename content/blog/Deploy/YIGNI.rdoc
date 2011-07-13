@@ -1,0 +1,98 @@
+= YIGNI
+
+start abstract::
+Glenn Vanderburg shares a story from the field about why you should
+always assume that you'll need a real programming language if you want
+to allow your software system to be automated through commands, and
+how doing so can make your system more robust.
+end abstract::
+
+{Glenn Vanderburg}[http://www.vanderburg.org/Blog] shares this story
+from the field about why you should always assume that you'll need a
+real programming language if you want to allow your software system to
+be automated through commands, and how doing so can make your system
+more robust:
+
+<em>In 1999 I was consulting for a company that builds telecom
+equipment.  They were developing a new variety of ... well, let's just
+call it a "local area telecom network." It included multiple nodes for
+traffic switching, call control and setup, and administration.  It was
+to be a full-fledged product, but (as so often happens) there was an
+artificially imposed deadline: they wanted to demonstrate the product
+at a trade show in just a few months.  Those kinds of things can be
+death to a project, but this company was attacking it rationally--for
+the demo, they were quickly pulling together "version 1" using
+existing internal simulation, testing, and prototyping tools, while a
+different team was working on building "version 1.5" from scratch, and
+there was a reasonable amount of communication and feedback between
+the two teams.</em>
+
+<em>I was working on the operations and management system for the version
+1 team, and was asked to design and build a system that could start
+and configure the various separate processes on a node, hooking them
+together so that they would be ready to join the network and start
+doing work.  The testing group had an existing tool that did a similar
+job, and although it wasn't suitable for use even in the demo product,
+the team asked that I keep the command structure of that testing tool.
+I don't remember the details, but that tool could respond to three or
+four very simple commands: "connect," "send," "wait," for
+example.</em>
+
+<em>At that time I was a fan of the Tcl language, which was designed to be
+a neutral, extensible, embedded command language for applications.
+Tcl's inventor, John Ousterhout, designed the language after noticing
+a pattern in application development: nearly every application needs a
+command language of some sort, but the developers are focused on the
+application itself, so they cut corners with the command language,
+thinking they can get by with less.  The command languages end up
+having "insufficient power and clumsy syntax," in Ousterhout's words
+... and then, contrary to the developers' expectations, users find
+that they need to use that command language to do complex things.</em>
+
+<em>I saw this pattern developing in our telecom system.  The command
+language I was asked to develop was almost hopelessly simple, but the
+people asking for it were adamant that it was all they needed.  And
+yet I noticed that the command syntax was completely compatible with
+Tcl syntax.  Plus, an implementation of Tcl atop Java, called {Jacl}[http://tcljava.sourceforge.net/docs/website/index.html],
+was available for me to use.  Because Jacl, like Tcl, was designed to
+be extended with application-specific commands, I made the case that
+it would be just as easy--probably easier, in fact--for me to
+implement the desired commands as Jacl extensions than to write a
+custom parser.  Then they would have a real programming language at
+their disposal "in the unlikely event that they ever needed it."  My
+clients reluctantly agreed to this plan, but only because it would not
+involve extra cost.  They were sure they knew their needs.</em>
+
+<em>Implementing the commands as Jacl extensions *was* easy, and the
+payoff was huge.  During preparations for the first deployments (for
+the trade show demo and a couple of early customers) the team wrote
+hundreds of lines of Tcl scripts to automate the setup and
+configuration of the different pieces of software that made up the
+network.  If that power hadn't been available to them, they would've
+had to make requests to the development team for added features in the
+system, which would've been a huge bottleneck.  It was generally
+acknowledged that the use of Tcl for the configuration language was
+one of several decisions that helped the deployment teams meet the
+project deadlines.  It also made the system more robust: the
+configuration scripts were originally intended just for starting the
+system, but they turned out to be very useful for dynamic error
+detection and recovery as well.  Tcl has fallen out of favor (for
+reasons both good and bad) and today I'd probably use Ruby or Python.
+But that's an implementation detail.</em>
+
+<em>I'm a big believer in the YAGNI principle: if you don't have a real,
+demonstrated need for some architectural or design feature today,
+assume that "you ain't gonna need it" and keep your design simple
+and focused on the needs of the day.  But YAGNI is a principle, not a
+law, and there are some places where I've learned that it doesn't
+apply.  This is one: if you know you need a scripting, configuration,
+or extension language--something that allows your system to be
+automated--you can safely assume that you need a complete programming
+language in that role.  YIGNI: you *is* gonna need it.</em>
+
+I find dynamic languages such as Ruby and Python to be ideal for this
+type of commanded automation, though they certainly aren't limited to
+this scope.  Glenn's story also reminds me how convenient it is that
+most of my GUI-based Mac applications can be automated using
+AppleScript.  I wish more applications had this type of commanded
+automation interface.

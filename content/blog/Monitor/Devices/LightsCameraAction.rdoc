@@ -1,0 +1,38 @@
+= Lights, Camera, Action!
+
+abstract:: 
+Lava lamps are visual feedback devices.  But what if you can't see your project's lamps because they're connected to a build machine that's halfway around the world?  
+
+{Lava lamps}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc] are visual feedback devices.  But what if you can't see
+your project's lamps because they're connected to a build machine
+that's halfway around the world?  {Bruce
+Johnson}[http://objectsharp.com/Blogs/bruce] relayed how one of his
+company's clients share the warm glow of their lava lamps across a
+dislocated team:
+
+[] <em>Because the development team is located both in Canada and in
+   Europe, they not only set up the lava lamps here.  They also hooked up
+   a web cam pointing at the lamps so that the European developers could
+   be kept informed of the build
+   status. ({Picture}[http://objectsharp.com/Blogs/bruce/archive/2004/10/14.aspx])</em>
+
+   <em>The funny thing is, whether coincidentally or not, the state of
+   the build seems to have improved since the lava lamps were added to
+   the picture.  The green lamp is boiling at the time the picture was
+   taken.  That's not as obvious in the picture because the lights behind
+   appear to be reflecting through the lamp.</em>
+
+   <em>For some reason, I'm now picturing completely virtual teams of
+   developers using centrally located lava lamps and web cams. ;)</em>
+
+This might seem like just more eye candy on a project, but it's
+actually an effective way to synchronize work across dislocated teams.
+Imagine you're on the team in Europe.  You show up for work in the
+morning about the time the Canadian team is watching hockey after a
+long day at the office.  Before you start crafting more code, you want
+to see a green lamp bubbling in Canada.  That means all the code in
+version control is compiling and passing its tests.  It gives you
+confidence that you're working on solid ground.  
+
+And, of course, at the end of the day you want to leave the lamps just
+as they were at the beginning of the day... green.

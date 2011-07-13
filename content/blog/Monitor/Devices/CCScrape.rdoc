@@ -1,0 +1,29 @@
+== In the Lap of Monitoring Luxury
+
+abstract::
+Too many X10 devices to choose from and not enough serial ports?  CCScrape puts you in the lap of monitoring luxury.
+
+So you're dying to hook up X10-enabled devices to monitor your build
+status, but the tireless build machine is under lock and key.  Or
+maybe it's not physically located in your building.  Or maybe you want
+to use {lava
+lamps}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/Devices/BubbleBubbleBuildsInTrouble.rdoc]
+in your office, but when your manager is at home he wants a successful
+build to fire up the ol' massage chair.  Ah...  Yes, there are too
+many devices to choose from and not enough serial ports.
+
+Ralph Jocham has come to the rescue by releasing
+{CCScrape}[http://jcsc.sourceforge.net/tools/webstart/ccscrape/documentation.html]:
+a Java Web Start application that scrapes the
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] results web
+page and turns on/off X10 devices hooked up to your local machine.  It
+currently only runs on Windows machines with an available COM port,
+but if you have one of those it's as easy as plugging in your devices
+and clicking
+{here}[http://jcsc.sourceforge.net/tools/webstart/ccscrape/ccscrape.jnlp].
+
+Get a load of that: screen scraping, build monitoring, <em>and</em> an
+auto-updated application!  Ralph, you deserve a gold star for
+automation!  :-)
+
+

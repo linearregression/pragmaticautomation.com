@@ -1,0 +1,6 @@
+= Adding an RSS Feed to Subversion
+
+abstract::
+Bill Bumgarner expertly steps you through how to hook in an RSS feed to a local Subversion server.
+
+Bill Bumgarner expertly steps you through how to {hook an RSS feed into a local Subversion server}[http://www.friday.com/bbum/2006/08/17/howto-adding-an-rss-feed-to-a-subversion-server/].

@@ -1,0 +1,24 @@
+= NSIS 2.01 Released
+
+abstract:: 
+The latest release of the NSIS installer/uninstaller lets you create
+continuous builds of Windows applications on a *nix server.
+
+{NSIS}[http://nsis.sourceforge.net] 2.01 is now available.  NSIS is a
+free tool that wraps applications in installers (and uninstallers) for
+Windows.  The {book}[http://www.pragmaticprogrammer.com/sk/auto/]
+includes an example of how to write an NSIS script with a custom
+installation step.  Once you've written a script, you can then compile
+it using the <tt>makensis</tt> compiler to get a self-contained
+<tt>.exe</tt> file.  And, of course, being hooked on automation you'll
+stop at nothing to make your computer automatically run the compiler
+as one step of the release procedure.  According to the release notes,
+that computer no longer has to be a Windows machine:
+
+<em>The NSIS compiler, makensis, can now be compiled on POSIX
+platforms. This includes Linux and *BSD. It also compiles on Mac OS X,
+but unfortunately, due to endianity related issues, it doesn't yet
+work on it. This allows you to run makensis natively, without the use
+of Wine. Armed with native makensis and a cross compiler, you can
+easily create nightly builds of Windows applications on a *nix
+server.</em>

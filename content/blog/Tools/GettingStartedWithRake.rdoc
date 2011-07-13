@@ -1,0 +1,19 @@
+= Getting Started with Rake
+
+abstract::
+Jim Weirich has started writing what promises to be an excellent series of Rake tutorials.
+
+{Jim Weirich}[http://onestepback.org/index.cgi] has started writing what
+promises to be an excellent series of Rake tutorials ({Getting
+Started}[http://onestepback.org/index.cgi/Tech/Rake/Tutorial/RakeTutorialIntroduction.rdoc]
+and {Handling Common
+Actions}[http://onestepback.org/index.cgi/Tech/Rake/Tutorial/RakeTutorialRules.red]).
+
+{Rake}[http://rake.rubyforge.org/] is a Ruby build program that rhymes
+with <tt>make</tt>, but for all intents and purposes that's where the
+similarity ends.  Rake's built-in tasks read like a mini build
+language and because Rakefiles are defined in standard Ruby syntax,
+you have all the power of a genuine object-oriented language with
+which to do automation galore.
+
+Yum.

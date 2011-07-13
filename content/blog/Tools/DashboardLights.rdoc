@@ -1,0 +1,29 @@
+= Tracking Projects by the Dashboard Lights
+
+abstract:: 
+Check out this insightful article describing how one team uses
+automation--powered by Ruby and Java--to keep a large, geographically
+distributed Java project on track.
+
+Tom Copeland wrote an insightful
+{article}[http://www.onjava.com/pub/a/onjava/2003/09/10/dashboard.html]
+a while back describing how his team uses automation--powered by Ruby
+and Java--to keep a large, geographically distributed Java project on
+track.  He
+{writes}[http://www.onjava.com/pub/a/onjava/2003/09/10/dashboard.html]:
+
+[] <em>...the UltraLog project is written
+   in Java, by developers from over a dozen companies distributed
+   around the United States. We needed something to help avoid
+   integration problems; we needed a status page. So we put together
+   the {"Dashboard."}[https://ultraforge.ultralog.net/]</em>
+
+He goes on to describe how they use Ruby to parse the output of
+several Java-based open source tools and aggregate project metrics
+into a consolidated view.  Nowadays, depending on the situation, I'd
+probably use the
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] framework to
+publish this information on a custom tab of the {build status
+page}[http://cruisecontrol.sourceforge.net/reporting/jsp/index.html].
+But it's neat to see how Tom's team used a scripting language to knit
+all of this information together.

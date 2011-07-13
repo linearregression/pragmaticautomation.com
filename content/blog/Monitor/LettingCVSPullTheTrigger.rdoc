@@ -1,0 +1,235 @@
+= Letting CVS Pull The Trigger
+
+start abstract:: 
+CVS exposes two "hooks" during the commit process that make triggered
+automation a breeze.  This how-to walks you through a quick example of
+writing callback programs and registering them with CVS so that
+automation happens behind the scenes every time you commit changes.
+end abstract::
+
+A version control system is one safety blanky I carry around.  When
+I'm working on a project, I'll commit files frequently throughout the
+day: after I write a test and make it pass, before I go to lunch
+(provided all the tests are still passing), and after updating a
+section of documentation.  Just knowing that those short durations of
+work are safely tucked away gives me a warm, fuzzy feeling.  A
+successful commit means I can always go back in time and rewrite
+computing history if I don't like where I've ended up in the present.
+
+The commit process also offers an opportunity to leverage triggered
+automation--automation that is triggered by an event.  CVS makes this
+relatively easy by exposing two "hooks" into the commit process: a
+pre-commit hook and a post-commit hook.  (Subversion has these hooks
+too, but I'll save the details for a future post.)  These internal CVS
+hooks are convenient because I can continue to type <tt>cvs
+commit</tt> and an arbitrary amount of work happens automatically
+behind the scenes.  I don't have to remember to do extra steps every
+time I commit changes.  And all that good automation also happens for
+everyone that shares the CVS repository.
+
+The CVS commit hooks are well documented, but often overlooked.  So
+let's take a walk through a quick example to learn (or revisit) a
+powerful automation trick.
+
+=== Write A Pre-Commit Filter
+
+The pre-commit hook is triggered after you type <tt>cvs commit</tt>,
+but before the changes are saved into the repository.  You get
+notified of a pre-commit event by registering a program to be run when
+the commit is attempted.  The program is handed the name of the CVS
+directory where the commit is occurring and the name of each of the
+files in the commit.
+
+Here's a trivial Unix shell script called <tt>preCommit.sh</tt> that
+simply logs the commit directory and each file in the commit attempt:
+
+  #!/bin/sh
+
+  LOG_FILE=/path/to/cvsrepo/CVSROOT/commitlog
+  DATE=`date "+%m/%d/%y [%H:%M:%S]"`
+
+  echo "$DATE: A commit is occurring in $1" >> $LOG_FILE
+  shift 
+
+  for file in $*
+  do
+    echo "$DATE: Pre-commit check for $file" >> $LOG_FILE
+  done
+
+Notice that the value of the <tt>$1</tt> variable is the name of the
+commit directory and the <tt>$*</tt> variable contains the files in
+the commit.
+
+You can grow this script to take on more complex automation steps, but
+you have to be careful about how much it does.  The <tt>cvs
+commit</tt> command will block until all registered programs complete.
+So it's best to think of this program as a quick filter.  If the
+program returns successfully, then the files will be committed.  If
+the program returns with a nonzero exit status, then the files won't
+be committed.
+
+In other words, the pre-commit hook can be used to make sure only good
+stuff ends up in your CVS repository.  Example uses might include
+verifying that changed files adhere to coding standards, examining the
+contents of changed files for CVS conflict markers, or changing tabs
+to spaces.
+
+=== Write A Post-Commit Notifier
+
+The post-commit hook is triggered <i>after</i> changes have been
+committed to the CVS repository.  As such, the post-commit hook is
+useful for providing notification that the repository has been
+changed.  Similar to the pre-commit hook, you get notified of a
+post-commit event by registering a program that gets handed the name
+of each file that was committed.
+
+Here's a trivial Unix shell script called <tt>postCommit.sh</tt> that
+logs each file that was committed:
+
+  #!/bin/sh
+
+  LOG_FILE=/path/to/cvsrepo/CVSROOT/commitlog
+  DATE=`date "+%m/%d/%y [%H:%M:%S]"`
+
+  for file in $*
+  do
+    echo "$DATE: Post-commit notification for $file" >> $LOG_FILE
+  done
+
+  # Eat extra input
+  cat > /dev/null
+
+Notice that the last line uses <tt>cat</tt> to eat any extra input.
+This is important because the post-commit event can hand the program
+gratuitous status (you can redirect <tt>cat</tt> to <tt>$LOG_FILE</tt>
+to see it), and if the program fails to read all of its input, then
+you'll get the error
+
+  cvs [commit aborted]: received broken pipe signal
+
+Again, be sure to limit how much work this script does so that the
+<tt>cvs commit</tt> command doesn't hang for too long. For example,
+the post-commit program could {play a rewarding
+sound}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/ListeningToComplexSystems.rdoc]
+when someone successfully commits code.  If it's a relatively short
+sound, the code to play the sound can be inlined right in the program.
+
+But the post-commit hook is where you'll likely want to do a bit more
+automation.  Say, for example, you want the post-commit trigger to
+include playing the world's longest standing ovation over the company
+intercom system followed by sending an SMS message to each member of
+your team?  If your <tt>cvs commit</tt> command hangs while all this
+is happening, you probably won't commit changes very often.  One easy
+solution is to have the post-commit program "touch" another file
+that's being {monitored by another
+process}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/StakingOutFileChanges.rdoc].
+The monitoring process can then do mountains of work without tying up
+CVS.
+
+=== Register The Programs
+
+To register the pre-commit and post-commit programs, you need to
+update two internal CVS files.  These files live inside the
+<tt>CVSROOT</tt> directory of your CVS repository.  You could edit the
+files in that directory, but it's safer to use version control.  Start
+by checking out the <tt>CVSROOT</tt> module into a temporary
+directory:
+
+  [~] $ mkdir temp 
+  [~] $ cd temp/
+  [~/temp] $ cvs checkout CVSROOT
+  cvs checkout: Updating CVSROOT
+  U CVSROOT/checkoutlist
+  U CVSROOT/commitinfo
+  U CVSROOT/config
+  U CVSROOT/cvswrappers
+  U CVSROOT/editinfo
+  U CVSROOT/loginfo
+  U CVSROOT/modules
+  U CVSROOT/notify
+  U CVSROOT/rcsinfo
+  U CVSROOT/taginfo
+  U CVSROOT/verifymsg
+
+All of those files are different kinds of triggers, but we're only
+interested in two files: the <tt>commitinfo</tt> file and the
+<tt>loginfo</tt> file.  The <tt>commitinfo</tt> file contains a list
+of pre-commit programs and the <tt>loginfo</tt> file contains a list
+of post-commit programs.  Both files use the same format.  Each line
+is of the form:
+
+  regular_expression program_to_run
+
+The <tt>regular_expression</tt> is used to match the directory
+(relative to <tt>$CVSROOT</tt>) that includes the changed file(s).
+The <tt>program_to_run</tt> is the name of the program to run when the
+matched directory's contents change.
+
+For example, to run the <tt>preCommit.sh</tt> program when a
+post-commit event occurs in a sub-directory of the <tt>dms</tt>
+module, edit the <tt>commitinfo</tt> file and add the line
+
+  dms/* /path/to/preCommit.sh
+
+To run the <tt>postCommit.sh</tt> program when a post-commit event
+occurs in a sub-directory of the <tt>dms</tt> module, edit the
+<tt>loginfo</tt> file and add the line
+
+  dms/* /path/to/postCommit.sh %s
+
+(CVS expands the <tt>%s</tt> argument to include the name of each file
+committed.)
+
+After editing the <tt>commitinfo</tt> and <tt>loginfo</tt> files,
+check them in:
+
+  [~/temp/CVSROOT] $ cvs commit -m "Added hooks" commitinfo loginfo
+
+That's all there is to configuring CVS.
+
+== Commit Changes
+
+Here's where the rubber meets the road.  Change directory to your
+local workspace that contains a checked out version of the
+<tt>dms</tt> project.  Then change and commit a couple of files in the
+<tt>dms</tt> project.  For example:
+
+  [~/work/dms] $ emacs src/com/pragprog/dms/Search.java 
+  [~/work/dms] $ emacs bin/index.sh                     
+  [~/work/dms] $ cvs commit -m "Testing the hooks"
+  Checking in bin/index.sh;
+  /CVSRepo/dms/bin/index.sh,v  <--  index.sh
+  new revision: 1.4; previous revision: 1.3
+  done
+  Checking in src/com/pragprog/dms/Search.java;
+  /CVSRepo/dms/src/com/pragprog/dms/Search.java,v  <--  Search.java
+  new revision: 1.15; previous revision: 1.14
+  done
+
+The output looks as it did before registering the hook programs.  To
+test that the pre-commit and post-commit programs were run, peek
+inside of the <tt>$CVSROOT/CVSROOT/commitlog</tt> log file:
+
+  [~] $ tail -f $CVSROOT/CVSROOT/commitlog 
+
+  08/13/04 [14:59:38]: A commit is occurring in /CVSRepo/dms/bin
+  08/13/04 [14:59:38]: Pre-commit check for index.sh
+  08/13/04 [14:59:38]: A commit is occurring in /CVSRepo/dms/src/com/pragprog/dms
+  08/13/04 [14:59:38]: Pre-commit check for Search.java
+  08/13/04 [14:59:38]: Post-commit notification for dms/bin
+  08/13/04 [14:59:38]: Post-commit notification for index.sh
+  08/13/04 [14:59:38]: Post-commit notification for dms/src/com/pragprog/dms
+  08/13/04 [14:59:38]: Post-commit notification for Search.java
+
+Notice that the pre-commit program ran first to filter all the changed
+files.  Then, because both files passed the filter, the files were
+logged by the post-commit program.
+
+=== Summary
+
+By writing callback programs and registering them with CVS commit
+hooks, triggered automation happens transparently.  Indeed, these
+hooks are great jumping-off points for automation big and small.  If
+you're already automating chores in your project with version control
+hooks, or this trick inspires you to do so, please {share your
+story}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/SuggestContent.rdoc].

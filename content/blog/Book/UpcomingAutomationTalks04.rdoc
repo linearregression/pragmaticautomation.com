@@ -1,0 +1,32 @@
+= Upcoming Project Automation Talks
+
+abstract::
+Mike Clark is scheduled to speak on Pragmatic Project Automation at
+several upcoming venues.  Here's the current schedule.
+
+I'm currently scheduled to speak on {Pragmatic Project
+Automation}[http://www.pragmaticprogrammer.com/sk/auto] at the
+following venues through the remainder of the year:
+
+[]  {Great Lakes Software Symposium}[http://www.nofluffjuststuff.com/2004-10-chicago/index.jsp?speaker=Clark] in Chicago, IL on October 1st
+    
+    {Denver JUG}[http://www.denverjug.org/index.jsp]  in
+    Denver, CO on October 13th
+   
+    {Boulder JUG}[http://www.boulderjug.org/]  in
+    Boulder, CO on October 14th
+
+    {New England Software
+    Symposium}[http://www.nofluffjuststuff.com/2004-10-boston/index.jsp?speaker=Clark] in Boston, MA on October 22nd
+
+    {O'Reilly Mac OS X Conference}[http://conferences.oreillynet.com/macosx2004/] in Santa Clara, CA on October 27th
+
+    {Rocky Mountain Software Symposium}[http://www.nofluffjuststuff.com/2004-11-denver/index.jsp?speaker=Clark] in Denver, CO on November 12th
+
+    {Western Canada Java Software Symposium}[http://www.nofluffjuststuff.com/2004-11-calgary/index.jsp?speaker=Clark] in Calgary, Alberta on November 19th
+
+If one of those places is in your neck of the woods, I'd love to hear
+in person how you're using automation on your project.  A few
+companies have contacted me about speaking on this topic privately to
+their teams.  I enjoy visiting projects, meeting new folks, and
+talking about automation, so {let me know}[mailto:mike@clarkware.com?subject=Speaking] if you're interested in that kind of thing.

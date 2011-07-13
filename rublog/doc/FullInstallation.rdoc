@@ -1,0 +1,276 @@
+= Full Installation
+
+In SimpleInstallation, we saw how to install RubLog by simply
+pointing Apache at the installation directory.
+
+More complex installations are possible (and indeed are
+preferable). In particular, we can:
+
+1. Put the main set of Ruby files in a directory tree outside the
+   tree accessible to Apache.
+
+2. Put the article tree outside the files accessible to Apache.
+
+3. Configure the display or articles,
+
+4. Change the sidebars displayed, and alter the contents of
+   individual sidebars.
+
+== Configuring the Program Files
+
+We'll assume that we've downloaded RubLog and put the source in the
+directory <tt>/Users/dave/Work/ruby/rublog</tt>, a directory which
+isn't normally accessible to Apache.
+
+Only one RubLog file need be placed in the Apache filesystem. This
+file is responsible for loading up the rest of RubLog, setting the
+various parameters, and passing control over to RubLog itself. RubLog
+ships with a template for this file, <tt>rublog.cgi</tt>.
+
+One way to install one or more blogs on a system is to copy
+<tt>rublog.cgi</tt> to your Apache cgi-bin directory, renaming it as
+appropriate for each blog. You can then customize each file's contents
+as appropriate.
+
+* The first line in rublog.cgi specifies the location of the Ruby
+  interpreter on your system. This _shebang_ line is important, as
+  Apache uses it to determine how to run the script.
+
+* The first executable line in the file sets up Ruby's +include+ path
+  to allow it to find the RubLog libraries.
+
+    ### CHANGE: update to point to the directory where you installed RubLog
+    RubLogSourceLocation("/Users/dave/Work/ruby/rublog")
+
+  Change the path to point to the directory where you installed
+  RubLog (this is the directory that contains <tt>RubLog.rb</tt>
+  among other files).
+
+* Next you set the constant <tt>BLOG_DIR</tt> to point to the
+  directory holding your blog files. This can be a directory holding
+  regular files (and subdirectories) or it can point to a part of a
+  CVS repository tree. The latter is useful if you want to run your
+  blog on a server that also runs a CVS server, as it lets you create
+  blog entries remotely and check them into the repository. 
+
+* RubLog supports a number of different input processors. These take
+  files written in different markup languages and convert them into
+  HTML for display. By default, rublog.cgi includes input processors
+  for plain text, HTML, and RDoc.
+
+    #########
+    ### OPTION: which input convertors you want to support
+    ### Options include RDoc, Text, Html, Markdown (Bluecloth)
+    ### You can also use Usemode to parse entries from a Usemod wiki
+    RubLog::load_convertors(*%w{ RDoc Text Html })
+
+  If instead you wanted jusr RDoc and Markdown (BlueCloth), you'd
+  change this line to 
+
+    RubLog::load_convertors(*%w{ RDoc Markdown })
+
+  See rublog.cgi for the complete list of available input processors.
+
+== Creating the blog and setting parameters
+
+The next executable line in rublog.cgi creates the blog object. You
+won't need to change it.
+
+   blog = RubLog.new(BLOG_DIR, CGIRequest.new)
+
+
+The resulting blog object has a number of attributes that can be set
+from the top-level .cgi script:
+
+* RubLog has pluggable output styles. The default, <tt>standard</tt>
+  is a somewhat ugly pink and blue creation. It also has a
+  <tt>purple</tt> style, which is bolder, but not particularly stylish
+  (are you getting the idea that I can't design web
+  pages?). Fortunately, it also comes with <tt>movable</tt>, a style
+  that can generate pages compatible with MoveableType 2.x style
+  sheets, and <tt>wordpress</tt> which uses WordPress stylesheets
+  (thanks to Chad Fowler for the latter two).  I'd recommend starting
+  off with <tt>standard</tt> until you get your blog running. You can
+  then experiment with others. If you use <tt>movable</tt>, you'll
+  need to download a MoveableType stylesheet and set it up using the
+  <tt>external_stylesheet</tt> option described below. You can get
+  these stylesheets from http://www.movablestyle.com
+
+    blog.style = "standard"
+
+* The title to display at the top of the page
+
+    blog.top_title = "RubLog"
+
+* Default number of entries to display per page (can be
+  overridden by 'count=nnn' HTTP parameter)
+
+    blog.max_entries_per_page = 5
+
+* If you set blog.allow_synopsis to true, then RubLog will display
+  article synopses (if available). The variable
+  blog.dont_summarize_count sets the number of articles that will
+  _not_ be summarised at the top of a page. Setting this to (say) 3
+  means that the full text of the three most recent articles will be
+  displayed in full, and the rest will be summarized.
+
+    blog.allow_synopsis       = true
+    blog.dont_summarize_count = 3
+
+* Decide whether RSS feeds will receive the full article or the
+  synposis.
+
+   blog.always_synopsis_rss = true
+
+* Set the description for the RSS feed generated by the
+  blog.
+
+    blog.rss_description = "RubLog"
+
+* If you want your RSS feed to have an image, set rss_image_title,
+  rss_image_link, and rss_image_url.
+     
+      blog.rss_image_title = 'PragDave'
+      blog.rss_image_link  = 'http://pragprog.com/pragdave'
+      blog.rss_image_url   = 'http://pragprog.com/images/pd.png'
+
+* If your RSS feed needs a particular encoding, set it using rss_encoding
+ 
+     blog.rss_encoding = 'iso-8859-15'
+
+* You can create an article containing a general info page for your
+  blog. If the <tt>info_url</tt> parameter is set, RubLog will
+  display an info link at the top of each blog page.
+
+    blog.info_url = "RubLog/UsingRubLog.rdoc"
+
+  This can be any absolute url (http://...) or a blog-relative page.
+
+* Your blog can have a copyright notice.
+
+     blog.copyright = "#{Time.now.year} Dave Thomas"
+
+* You can specify an external stylesheet to use when displaying
+  pages. If not specified, a style sheet will be embedded with every
+  page. You _must_ specify an external stylesheet when using the
+  +movable+ style.
+
+     blog.external_stylesheet = "http://my.site.com/rublog.css"
+
+* Sets of directories and sets of files can be excluded from the blog.
+  For example, you could exclude CVS 'Attic' directories, or test and
+  temporary files. The directories and files are specified in two
+  regular expressions.
+
+    blog.ignore_directory_pattern = /Attic/
+    blog.ignore_filename_pattern  = /test|tmp|~$|\.bak$/
+
+* The option +blog.print_style_name+ allows you to override the name of
+  the style used for print links (normally 'print')
+
+    blog.print_style_name = "print"
+
+* Normally permalinks point to the absolute article name. Setting
+
+    blog.use_dynamic_urls = true
+
+  causes them to use the =name syntax, which means that the article
+  should still be found even if moved to another location in the blog
+  directories.
+
+
+* You can add a link to each article allowing people to e-mail back
+  comments.
+
+     blob.comment_email_address = dave@some.com
+
+  This is not supported with the +movable+ style.
+
+* Normally RubLog uses a file's mtime to determine the order of
+  display. Setting the option mtime_getter overrides this. The option
+  should be set to a proc that takes two parameters, the file name
+  and a stat object for the file. The proc should return a Time
+  object which will be used as the files mtime. The default value of
+  mtime_getter is
+
+    mtime_getter = proc {|filename, stat|  stat.mtime }
+
+  This could be overridden to allow you to (for example) encode the
+  mtime in the file name, allowing files to be edited after first
+  insertion without affecting the order.
+
+
+
+== Configuring Sidebars
+
+RubLog ships with a number of plug-in sidebars. All are
+optional. Include them by instantiating sidebar objects.
+
+The <em>Contents Sidebar</em> displays a tree view of the blog's
+contents (the directories in the article tree along with a count of
+articles in each directory). Add it to the blog using
+
+   require "sidebar/Contents"
+   OutlineSidebar.new
+
+The <em>Link Holder Sidebar</em> is used to display links to other web
+resources. You can have multiple LinkHolders, and each LinkHolder can
+contain multiple links. The first parameter to the contructor is the
+link holder's title, and the second is a hash of links where the key
+is the URL and the value is the text to be displayed.
+
+  require "sidebar/LinkHolder" 
+  LinkHolder.new(
+    "Useful Stuff",     
+    "http://www.rubygarden.org"          => "Ruby Garden",
+    "http://www.pragmaticprogrammer.com" => "Pragmatic Programmer"
+  )
+
+The descriptions in linkholders can start with two digits and a
+colon--this will be stripped before display. The feature allows you to
+override the default (alphabetical) display order.
+
+The <em>BlogRoll Sidebar</em> holds the customary list of other
+people's blogs. Again you can have multiple BlogRoll sidebars, each
+containing multiple links. The first parameter to the constructor is
+the sidebar's name. The remaining parameters are two or three element
+arrays, one array for each blog reference. The first element in each
+array is the name to be displayed. The second element is the URL of
+the blog's main page. The optional third parameter is the URL of the
+blog's RSS feed. If omitted, it defaults to the second parameter with
+"/index.rss" appended.
+ 
+   require "sidebar/BlogRoll"
+   BlogRoll.new("Blogorrhea",
+     [ '/\ndy', 'http://www.toolshed.com/blog' ],
+     [ 'James Duncan Davidson', 'http://x180.net/Blog'],
+     [ 'Glenn Vanderburg',
+       'http://www.vanderburg.org/cgi-bin/glv/blosxom',
+       'http://www.vanderburg.org/cgi-bin/glv/blosxom?flav=rss' ],
+     [ 'Chad Fowler', 'http://www.chadfowler.com',
+        'http://www.chadfowler.com/?rss' ],
+     [ 'Brian Marick', 'http://www.testing.com/cgi-bin/blog' ]
+   )
+
+The <em>Search</em> sidebar displays a search form. It supports the standard
+<tt>(word|+word|-word)+</tt> syntax. The constructor points to the name
+of a cache file used to speed the search results. This cache must be writable
+by the web server process.
+
+   require 'sidebar/Search'
+   SearchSidebar.new("/var/webdata/search_cache_file")
+
+The <em>MiniBlog</em> sidebar operates a mini blog in the
+sidebar. Point it at a directory, and all files with a recognized
+format in that directory will be added to the side bar, one sidebar
+entry per file.
+
+   require "sidebar/MiniBlog"
+   MiniBlogs.create_for("sidebar_directory")
+
+The <em>Calendar</em> sidebar does the normal blog calendar thang.
+
+   require "sidebar/Calendar"
+   CalendarSidebar.new   
+
+

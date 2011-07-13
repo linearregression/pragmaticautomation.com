@@ -1,0 +1,33 @@
+= Pragmatic Project Automation Excerpts Available
+
+start abstract::
+Pragmatic Project
+Automation has gone
+to the printers!  It will be available for purchase on or about
+July 19th.  But there's no need to delay getting started.  Three 
+chapter excerpts are now available for download.
+end abstract::
+
+{Pragmatic Project
+Automation}[http://www.pragmaticprogrammer.com/sk/auto] has gone
+to the printers!  It will be available for purchase on or about
+July 19th.  But there's no need to delay getting started.  Three 
+chapter excerpts are now available for download.
+
+{Table Of
+Contents}[http://www.pragmaticprogrammer.com/starter_kit/au/contents.pdf]
+is just what you'd expect: an outline of what's covered in the
+150-page book.
+
+{Introduction}[http://www.pragmaticprogrammer.com/starter_kit/au/introduction.pdf]
+starts with a fun story about how automation saves the day for two
+caveman programmers.  Then it explains the whys and hows of
+automation, and shows the roap map for the rest of the book.
+
+{Scheduled
+Builds}[http://pragmaticprogrammer.com/starter_kit/au/scheduled.pdf]
+is an advanced chapter that shows you, step by step, how to set
+up and run automated builds on a schedule using
+{CruiseControl}[http://cruisecontrol.sourceforge.net/].
+
+Enjoy!

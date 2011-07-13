@@ -1,0 +1,144 @@
+= How to Use RubLog
+
+RubLog is a simple web log, based around the idea of displaying a set of
+regular files in a log-format.
+
+== Preparing Content
+
+Content consists of a set of articles, each in a separate file. Each
+article is prepared in either plain text, RDoc, or HTML format. The
+content type of a particular file is identified by the file's
+extension (.txt, .rdoc, or .html respectively). See InputFormats/index
+for more details.
+
+The article files are arranged in a directory hierarchy below the
++data+ directory. The names of the directories in this hierarchy
+become the names of the categories and subcategories displayed in the
+RubLog index.
+
+RubLog can read the content either directly from flat files, or from
+files checked in via RCS/CVS. In particular, that means that any
+number of people sharing a CVS tree of the articles can create
+content, using either a central RubLog server working of the CVS tree
+or a local RubLog server working from their local filesystem.
+
+== Displaying Content
+
+Accessing the RubLog script (for example using
+<tt>/cgi-bin/rublog.cgi</tt>) displays the five most recently editing
+articles on the left hand side of the browser, along with a summary of
+total articles by category in a sidebar to the right. Clicking on the
+name of a category in the sidebar displays the most recently edited
+entries in that category.
+
+Each article has a title bar. On the right of this title bar are three links:
+
++print+:: displays the current article in a format suitable for printing
+
++link+:: displays the article on its own. The URL for this can be used
+         as a permanent link to this particular article.
+
++all+::  displays the entire contents of the blog, centered on the 
+         current article. This allows you to see the article in its
+         temporal context: using the arrow links in the page header
+         lets you scroll forwards and backwards in time.
+
+== Special URLs
+
+If <tt>cgi-bin/rublog.cgi</tt> is the main RubLog url, then
+
+[<tt>cgi-bin/rublog.cgi/CategoryName</tt>]
+  displays the category summary for the given category
+
+[<tt>cgi-bin/rublog.cgi/CategoryName/ArticleName.rdoc</tt>]
+  displays the given article
+
+[<tt>cgi-bin/rublog.cgi/=ArticleName</tt>]
+  displays articles in all categories whose name (without the extension)
+  matches +ArticleName+
+
+=== RSS Summary
+
+You can get an RSS summary of the blog by appending
+<tt>index.rss</tt> to the request path or by adding <tt>?rss</tt> to
+any blog URL.  That is both
+ 
+   cgi-bin/rublog.cgi?rss
+   cgi-bin/rublog.cgi/index.rss
+
+will give you an RSS summary of the top 'n' entries for the whole site, and both
+
+   cgi-bin/rublog.cgi/Tech?rss
+   cgi-bin/rublog.cgi/Tech/index.rss
+
+will give the entries below Tech/. <tt>index.rss</tt> is the
+preferred form.
+
+You can also get an RSS feed that contains just article synopses (for
+those articles that contain synopses) using <tt>/synopsis.rss</tt> and
+<tt>?synopsisrss</tt>.
+
+=== Page Size
+
+You can change the count of entries returned (from either the RSS or
+conventional feed) by adding a count= parameter:
+
+   cgi-bin/rublog.cgi/Tech?rss&count=100
+
+   cgi-bin/rublog.cgi?count=5
+
+If the count is fewer than the number of matching entries, you'll be
+able to scroll backwards and forwards to view the rest.,
+
+
+=== Historical Information
+
+To view the blog entries for a particular year, month, or day, append
+the date to the path, or use the <tt>for_date</tt> parameter.
+
+cgi-bin/rublog.cgi/2003::
+   display all entries for 2003.
+
+cgi-bin/rublog.cgi/2003/2::
+   display all entries for February 2003.
+
+cgi-bin/rublog.cgi/2003/2/7::
+   display all entries for February 7, 2003.
+
+The above could also have been written using the <tt>for_date</tt>
+parameter (although this is deprecated).
+
+cgi-bin/rublog.cgi?for_date=2003::
+   display all entries for 2003.
+
+cgi-bin/rublog.cgi?for_date=2003/2::
+   display all entries for February 2003.
+
+cgi-bin/rublog.cgi?for_date=2003/2/7::
+   display all entries for February 7, 2003.
+
+
+You can also ask to see what the blog looked like on a particular date
+using the <tt>asof</tt> parameter.
+
+cgi-bin/rublog.cgi?asof=2003/2/7::
+   display blog contents as of February 7, 2003.
+
+This basically tells the blog not to display articles created or
+modified past the given date.
+
+
+=== Scrolling
+
+If a query returns multiple articles, you can ask that the display
+starts at a particular one using the "<tt>+</tt><em>path</em>"
+notation:
+
+    cgi-bin/rublog.cgi/Tech+Tech/Blog/Syndication.rdoc,v
+
+This performs a normal query for articles in or below <tt>Tech</tt>,
+then displays them starting at the <em>Syndication</em> article.
+
+This option isn't really intended for general use: the blog uses it
+internally for scrolling.
+

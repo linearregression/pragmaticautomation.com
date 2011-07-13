@@ -1,0 +1,2 @@
+log/*.log
+provision/deploy.rb

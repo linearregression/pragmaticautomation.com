@@ -1,0 +1,24 @@
+= CruiseControl 2.2.1 Released
+
+abstract:: 
+The latest release of the CruiseControl includes several new and notable features, and fixes galore.
+
+{CruiseControl 2.2.1}[http://cruisecontrol.sourceforge.net] is now
+available, thanks to Jeffrey Fredrick and all the other hard-working
+folks named in the {release
+notes}[http://sourceforge.net/project/shownotes.php?release_id=301582]. 
+
+New features since 2.2 that caught my eye include:
+
+* A configuration GUI was added to the <tt>contrib</tt> directory for
+  standalone use or deployed with Java Web Start ({JNLP
+  file}[http://cruisecontrol.sf.net/configuration/cruisecontrol-gui.jnlp]).
+
+* CM Synergy is now supported---a notable new feature for two projects
+  I recently visited.
+
+* Default attributes can be specified for plugins to help whittle down
+  the size of your <tt>config.xml</tt> file.
+
+And that's just the tip o' the iceberg from my vantage point.  In
+addition, many fixes were contributed from the community. 

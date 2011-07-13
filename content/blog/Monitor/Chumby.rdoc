@@ -1,0 +1,12 @@
+= Chumby
+
+abstract::
+{Chumby}[http://www.chumby.com/corporate/whatischumby] looks to be an ideal device for monitoring automation in and around projects. 
+
+{Chumby}[http://www.chumby.com/corporate/whatischumby] looks to be a fun way to monitor automation in and around projects.  It's a portable Internet-connected device that displays visual widgets.  Just "trust the Chumby" and it autodiscovers your wifi network.  
+
+But what makes Chumby special is the {open and hackable design}[http://www.christine.net/2006/08/announcing_the_.html].  Want a custom widget?  Make one.  Got some hardware you'd like to integrate?  Plug it into the chumbilical.  
+
+This is going to be fun to watch. Please send pictures of Chumby at work on your software project! 
+
+http://www.chumby.com/images/doggy-chumby.jpg

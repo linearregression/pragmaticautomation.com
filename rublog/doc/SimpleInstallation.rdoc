@@ -1,0 +1,87 @@
+= Simple Installation
+
+Simple installation lets you install and try RubLog without too much
+effort. However, this isn't how you'd want to run RubLog for real--it
+is just intended to get something up and running so you can play. See
+FullInstallation for the gory details.
+
+You'll need Ruby 1.8.2 or later to run RubLog as described. If you have an older 
+version of Ruby, see the notes at the end.
+
+You have two options if you want to try RubLog out quickly:
+
+1. Use WEBrick, or
+
+2. Install RubLog in your Apache document path and run it as a CGI script.
+
+
+
+= Running RubLog with WEBRick
+
+If you have the WEBRick library installed (which will will have with
+Ruby 1.8.1 and later), you can use it to run RubLog. From the RubLog
+source directory, issue the command
+
+  ruby extras/webrick/rublog_servlet.rb
+
+Once it starts, point your browser at http://localhost:8808 and you
+should see documents describing RubLog (including this one).
+
+
+
+= Running RubLog as a CGI Script
+
+You can rub RubLog as a CGI script. I've only tried it under Apache,
+but it way well work in other environments. 
+
+=== Installation
+
+* Uncompress the RubLog archive somewhere in your Apache htdocs/html
+  tree (or in your local ~/Sites directory). Where ever you put it,
+  you have to arrange things to that the file "simple.cgi" ends up
+  being able to be executed as a CGI script. This is somewhat site
+  dependent: in some sites, all files ending .cgi are executable--your
+  httpd.conf will contain a line like
+
+     AddHandler cgi-script .cgi
+
+  In other sites, you may have to add a ScriptAlias line to your
+  httpd.conf to get it to work. On my Powerbook, I have the following
+  in my httpd.conf:
+
+    ScriptAlias /rublog/ "/Users/pragdave/Work/ruby/rublog/"
+    <Directory "/Users/pragdave/Work/ruby/rublog"> 
+        AllowOverride None
+        Options FollowSymLinks 
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+
+* Make sure that the #! line in simple.rb references your Ruby
+  interpreter. Normally Ruby installs in to /usr/local/bin/ruby, but
+  it might be worth checking.
+
+* Make sure Apache is running, then point your browser at the
+  simple.cgi script, for example:
+
+     http://my.host.com/rublog/simple.cgi
+
+* It'll either display the RubLog documentation, or fail
+  miserably. In the latter case, you might want to check your
+  error_log for more details.
+
+* Once you start seeing articles, try adding files and directories to
+  the +doc+ directory. Have a look at InputFormats/index for details
+  of the formats of the files.
+
+
+== If you have an older Ruby
+
+The only reason that this description says that Ruby 1.8.2 is required
+is because that version of the interpreter comes pre-loaded with RDoc
+and WEBRick.  RDoc is used if you are using rdoc markup to create blog
+files, and WEBRick is only required if you use it to run RubLog. If
+you can scrounge a copy of RDoc from somewhere and install it into an
+older Ruby, RubLog should work just fine (I've even run it using Ruby
+1.6.7).

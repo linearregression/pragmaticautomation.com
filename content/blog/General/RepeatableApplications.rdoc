@@ -1,0 +1,38 @@
+= Yes, We're Control Freaks
+
+abstract::
+It's relatively easy to automate small things, but it's especially rewarding when those recipes are applied to automate the big things, as well.  In his latest {blog}[http://blog.x180.net/2005/07/rails_sandbox_d.html], James Duncan Davidson discusses some strategies that you might be able to pick up and apply to your project.
+
+I didn't realize how much automation we have in and around our 
+{Rails}[http://rubyonrails.com]
+project until the other day when our shared development server took a
+vacation and never came back.  It's like that backup strategy that
+only gets tested when the hard drive fails.  Except in this case it
+was pretty much a yawner.  Once we decided to go to a new machine, 
+we were up and running in no time.  There were no panic-stricken fire drills.
+For all intents and purposes, it was business as usual.
+
+Part of the credit for no downtime goes to the fact that we all work
+untethered on our local machines.  (This turns out to be super handy
+on long airplane rides.)  This forces a discipline of keeping things relatively
+self contained.  But we do hook up to the mother ship often
+(or right after those plane rides) to synchronize our work in a shared
+Subversion repository.  The contents of that repository represent
+life.  On demand, we can recreate anything in the repository---any version 
+of a file from the time the project started up to the present.
+Everything else is out of our control.  
+
+The key to repeatability lies in how much stuff you put in version control. 
+It's best just to go long.  On our project, {James}[http://blog.x180.net] meticulously made sure
+that our Rails application was as self contained as possible.  Using only
+the Subversion repository as a source, our entire application
+and its supporting infrastructure can be built from scratch.  We
+regularly put that to the test on our local machines, and the
+development server is just another machine.
+
+It's relatively easy to automate small things, but it's especially
+rewarding when those recipes are applied to automate the big things,
+as well.  Indeed, for large projects, no single recipe will do.  But
+in his latest {blog}[http://blog.x180.net/2005/07/rails_sandbox_d.html],
+James discusses some strategies that you might be able to pick up and
+apply to your project.

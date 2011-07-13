@@ -1,0 +1,8 @@
+Chad Fowler added support for Webrick (which meant tidying up my ugly
+response handling). The script shown here illustrates one possible way
+to include the Rublog servlet in a Webrick server. To run it, use
+
+   ruby -I../.. rublog_servlet.rb  [ -p port ]
+
+This code is currently in an alpha state. We're interested in bugs,
+but like the rest of RubLog it's unsupported.
