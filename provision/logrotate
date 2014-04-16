@@ -1,8 +1,0 @@
-/home/deploy/apps/pragmaticautomation.com/shared/log/*.log {
-  weekly
-  rotate 5
-  compress
-  missingok
-  sharedscripts
-  endscript
-}
