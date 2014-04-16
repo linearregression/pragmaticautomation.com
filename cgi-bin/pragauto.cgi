@@ -30,7 +30,7 @@ require 'convertors/Html'
 # CHANGE: alter the parameter to point to the directory containing your blog
 # files (or the top of a CVS tree)
 #blog = RubLog.new("/Users/mike/work/Bookshelf/titles/AUTO/blog", CGIRequest.new("movable")) {
-blog = RubLog.new("/home/studio/apps/pragmaticautomation.com/content/blog")
+blog = RubLog.new("/home/studio/apps/pragmaticautomation.com/current/content/blog")
 
 blog.style = "movable"
 blog.max_entries_per_page = 15
@@ -64,7 +64,7 @@ require "sidebar/Contents"    # show summary of this blog's contents
 OutlineSidebar.new
 
 require "sidebar/MiniBlog"
-MiniBlogs.create_for("/home/studio/apps/pragmaticautomation.com/content/blog_control/miniblogs")
+MiniBlogs.create_for("/home/studio/apps/pragmaticautomation.com/current/content/blog_control/miniblogs")
 
 require "sidebar/LinkHolder"
 LinkHolder.new("The Book",
