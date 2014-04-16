@@ -1,0 +1,172 @@
+= Ant 1.6 Goody: <subant>
+
+abstract:: 
+If you're using Ant but have yet to upgrade to Ant 1.6, then you're missing out.  Here's a quick example of the new <subant> task.
+
+So far we've looked at
+{&lt;import&gt;}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Import.rdoc]
+and
+{&lt;macrodef&gt;}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Macrodef.rdoc].
+As a result, hopefully your Ant build files have lost a few pounds of
+angle brackets so that they're easier to maintain.  It's a good start,
+but if your project consists of several sub-projects, then there's one
+more new feature in Ant 1.6 that you won't want to miss.
+
+The <tt><subant></tt> task lets you uniformly call an Ant target on
+multiple sub-projects, without having to maintain a list of those
+sub-projects.  This is especially helpful when you want a master build
+file to build all your sub-projects.
+
+Say, for example, your project is structured as follows:
+
+  rodents
+    |
+    +- chipmunk
+    |    |- build.xml
+    |
+    +- groundhog
+         |- build.xml
+ 
+Each of the sub-projects, <tt>chipmunk</tt> and <tt>groundhog</tt>,
+can be built independently of the other.  For example, to create a JAR
+file for the <tt>chipmunk</tt> project, you type
+
+  $ cd chipmunk
+  $ ant dist
+
+The resulting JAR file is created in the <tt>chipmunk/dist</tt> directory. 
+
+  chipmunk
+    |    
+    |- build.xml
+    |
+    +- dist
+        |- chipmunk.jar
+
+That's all well and good when you're working on <tt>chipmunk</tt>, but
+you'd also like to be able to build all the rodent sub-projects at
+once from a master build file.  (All your rodents are belong to us.)  And when those sub-projects are built,
+you want their resulting JAR files to be created in the top-level
+<tt>rodents/dist</tt> directory.  That is, you want to call the
+<tt>jar</tt> target on each sub-project and override the <tt>dist</tt>
+directory so that you end up with
+
+  rodents
+    |
+    +- dist
+        |- chipmunk.jar
+        |- groundhog.jar
+
+To do that, create a <tt>master.xml</tt> file in the top-level
+<tt>rodents</tt> directory and define a <tt>jar</tt> target that uses
+a <tt><subant></tt> task.
+
+  <project name="master">
+
+    <property name="dist.dir" location="dist" />
+
+    <target name="jar">
+      <mkdir dir="${dist.dir}" />
+      <subant target="jar">
+        <property name="dist.dir" location="${dist.dir}"/>
+        <fileset dir="." includes="*/build.xml"/>
+      </subant>
+    </target>
+
+  </project>
+
+The <tt>jar</tt> target uses a <tt><mkdir></tt> task to create a
+root-level directory named <tt>dist</tt>---the directory we want to
+contain the resulting JAR files.  Then the target uses a
+<tt><subant></tt> task to run the <tt>jar</tt> target of each
+<tt>build.xml</tt> file found in sub-directories of the root-level
+directory.  (Note that a <tt><fileset></tt> is unordered, but
+<tt><subant></tt> supports other path structures.)
+
+When Ant is run in the sub-directories, the value of the
+<tt>dist.dir</tt> property will be set to <tt>rodents/dist</tt>.  In
+other words, we override the <tt>dist.dir</tt> property so that
+sub-projects will create their JAR files in the root-level
+<tt>dist</tt> directory instead of in the project-level <tt>dist</tt>
+directories.
+
+You now have a transparent master build step:
+
+  $ ant -f master.xml jar
+  Buildfile: master.xml
+
+  jar:
+    [mkdir] Created dir: /Users/mike/work/rodents/dist
+
+  jar:
+    [jar] Building jar: /Users/mike/work/rodents/dist/chipmunk.jar
+
+  jar:
+    [jar] Building jar: /Users/mike/work/rodents/dist/groundhog.jar
+
+  BUILD SUCCESSFUL
+
+Now imagine that tomorrow you add a new rodent sub-project.  What do
+you have to change in order for the new project to fit into the master
+build system?  Well, as long as the new project has a <tt>jar</tt>
+target that puts its output in a location defined by a
+<tt>dist.dir</tt> property, you don't have to change anything.  The
+more rodents, the merrier.
+
+The ability to transparently iterate over sub-projects, calling a
+target in each of their build files, is powerful.  And if all of your
+sub-projects define a common set of Ant targets, then you can imagine
+a master build file that defines the same common targets.  Each target
+in the master build file would simply delegate to the respective
+target in the sub-projects by using the <tt><subant></tt> task.  And
+if you're not careful, you might end up with a lot of duplication.
+
+Thankfully, you can avoid that mess by combining the new
+<tt><macrodef></tt> and <tt><subant></tt> tasks.  After all, the only
+thing that changes from one master build file target to the next is
+the name of the target to be called on the sub-projects.  Putting all
+the common Ant tasks in a macro makes your master build file more
+maintainable:
+
+  <project name="master">
+
+    <property name="dist.dir" location="dist" />
+
+    <target name="jar">
+      <iterate target="jar"/>
+    </target>
+
+    <target name="clean">
+      <iterate target="clean"/>
+    </target>
+
+    <macrodef name="iterate">
+      <attribute name="target" default=""/>
+      <sequential>
+        <mkdir dir="${dist.dir}" />
+        <subant target="@{target}">
+          <property name="dist.dir" location="${dist.dir}"/>
+          <fileset dir="." includes="*/build.xml"/>
+        </subant>
+      </sequential>
+    </macrodef>
+
+  </project>
+
+When you call the <tt>iterate</tt> macro, specifying a <tt>target</tt>
+attribute, it executes that target on each sub-project.  The
+<tt><subant></tt> task calls all the sub-projects uniformly; the
+<tt><macrodef></tt> task keeps the machinery in one place.
+  
+I hope this mini-series has given you insight into some of the
+powerful new features in Ant 1.6.  I'm finding that I can do more with
+less when I use these features.  Unfortunately, I'm also finding that
+many projects haven't taken advantage of these new features.  
+
+Like production code, build files that contain duplication are costly
+to maintain.  The Ant 1.6 features we've explored are aimed at helping
+you reduce duplication in your build process so that you spend less
+time writing and maintaining build files.  The question is: When's the
+last time you refactored your build files?
+
+ 

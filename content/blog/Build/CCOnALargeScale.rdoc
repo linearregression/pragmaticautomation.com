@@ -1,0 +1,83 @@
+= CruiseControl on a Large Scale
+
+start abstract::
+The CruiseControl continuous build framework can scale from the
+2-person team just getting started to the 800-person team with
+millions of lines of Java code under their belts.  Jared Richardson
+contributed this success story and an inside look at how CruiseControl
+was tailored for a very large project.
+end abstract::
+ 
+The CruiseControl continuous build framework has been used on Java
+projects of varying sizes.  But you might be wondering if it can
+handle all the code on your project. Jared Richardson contributed the
+following {CruiseControl}[http://cruisecontrol.sourceforge.net/]
+success story and an inside look at how CruiseControl was tailored for
+a very large project.  This story appears in the <i>Scheduled
+Builds</i> chapter
+({PDF}[http://www.pragmaticprogrammer.com/starter_kit/au/scheduled.pdf])
+of the {book}[http://www.pragmaticprogrammer.com/sk/auto].
+
+---
+
+"Many people think that open-source projects can't scale to the
+enterprise level, but CruiseControl is an example of one that
+does. This is our success story of how flexible and extensible
+CruiseControl is.
+	
+We have approximately 800 developers working on more than 250 projects
+with five million lines of Java code.  Some of these projects are very
+low-level components, some are portlets, and some are end-user
+solutions.  We were able to get all five million lines of Java code
+under continuous integration using CruiseControl relatively easily.
+In fact, as I type this, we are covering three code branches, so we
+are really covering 15 million lines of code, and the CruiseControl
+box is a single CPU x86 machine.
+
+We used a few tricks to get CruiseControl running at the enterprise
+level.  First, we multithreaded CruiseControl ourselves. (Those
+changes should be in the next release of CC.)  This is one of the
+advantages of working with an open-source project!
+
+Next, instead of using the regular CVS modification set, we are using
+the <i>compound modification set</i>.  It contains a <i>trigger</i>
+that initiates the build and a <i>target</i> that is used to actually
+get the file changes.  For our trigger, we use the filesystem
+modification set.  When a project changes in CVS, a CVS trigger
+touches a single file that CruiseControl is monitoring.  This prevents
+CruiseControl from trying to poll CVS every ten minutes for changes in
+15 million lines of code.  Once it sees that a project trigger file
+has changed, it uses the regular CVS modification set---the target in
+the compound modification set---to see exactly what changes were made.
+     
+Will Gwaltney, another SAS employee, wrote the compound modification
+set, and we contributed it back to the CruiseControl project.  Now
+anyone can use a compound modification set, and you can use any of the
+CruiseControl modification sets as either triggers or targets.
+	
+We use one trick that isn't stock.  We have a build grid at SAS that
+has a number of machines behind it.  We are able to ask it to do the
+builds for us, and it finds an available machine.  This keeps the load
+of building the systems off the CruiseControl box.
+	
+All in all, CC was very easy to roll out and is now part of the
+standard Java development experience at SAS.  With very little effort,
+you can get this same type of coverage at your company, no matter the
+size of the code base."
+
+---
+
+Five million lines of Java code!  Imagine running manual builds on all
+that code to continually get confidence that it compiles <i>and</i>
+passes its tests.  Whew!
+
+One of the reasons I chose to focus on
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] in the book is
+that the project is active.  When folks like Jared and Will come up
+with enhancements and contribute them back, it's not long before those
+contributions are integrated into the CVS baseline.  Then a legion of
+users put the candidate features to the test.  If they survive that
+trial by fire, the features get promoted into the next official
+release.  So if you have ideas for making CruiseControl better, or you
+think you've spotted a bug, please {file an
+issue}[http://jira.public.thoughtworks.org/secure/BrowseProject.jspa?id=10020].

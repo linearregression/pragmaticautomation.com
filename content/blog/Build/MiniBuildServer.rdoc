@@ -1,0 +1,36 @@
+= Mini Build Server
+
+abstract:: 
+I can't help but think that the new Mac mini would be an ideal dedicated build
+server for some projects.  It has everything you don't need and everything you
+want in a build server, including a price tag that won't dent your budget.
+
+I realize that by owning a PowerBook I'm biased, but I can't help but
+think that the new {Mac mini}[http://www.apple.com/macmini/] would be
+an ideal dedicated build server for some small to medium-sized projects
+that lack available machines.  It's conveniently
+missing everything you don't need in a build server: display,
+keyboard, and mouse.  Yes, the hardware you do get is proprietary, but
+it runs a UNIX-based operating system that's conveniently loaded with
+everything you want: a rich command-line environment with shells for
+commanded automation, dynamic languages such as Ruby and Python that
+excel at project chores, other programming languages such as Java and C/C++,
+secure connection protocols such as ssh, cron for scheduled
+automation, and the Apache web server for monitoring builds and
+serving up RSS feeds.
+
+At $499 for the 1.25GHz model, I suspect the Mac mini would pay for itself the
+first time it detects an integration problem that would have thrashed
+the team for an hour.  Most projects will need to pop for more memory
+(it ships with 256MB), but even the low-end model has enough
+horsepower to compile code and run tests.  And if the throughput of
+builds becomes an issue as your project grows, you could buy a bigger box
+or cluster a few minis together to make an inexpensive build server.
+
+Out of the box, plugged into your network, the Mac mini is almost
+ready, obviously willing, and certainly able to devote its life to
+continuously baking fresh builds and doing other project chores.  I
+recognize that lots of IS departments won't be OK with this.  Please
+choose a machine that works best for your project.  The point is you 
+really can't afford not to have a dedicated build server, and if cost
+is an issue, then you might consider starting here.

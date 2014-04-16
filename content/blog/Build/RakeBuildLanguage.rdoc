@@ -1,0 +1,20 @@
+= Rake: Not Your Father's Build Language
+
+abstract:: 
+Martin Fowler has written an excellent article describing the strengths of using Rake as a build language, and how it compares to our old friends make and Ant.  
+
+Martin Fowler has written an excellent
+{article}[http://martinfowler.com/articles/rake.html] describing the
+strengths of using {Rake}[http://rake.rubyforge.org/] as a build
+language, and how it compares to our old friends make and Ant.
+
+Having used Rake extensively in recent months on a {Rails
+project}[http://www.clarkware.com/cgi/blosxom/2005/08/18#VitalSourceStore], I
+can't underscore enough how handy it is to have a full-blown language
+at your fingertips when crafting a build system.  I got a taste of
+this power when I experimented with using Groovy to script Ant.  I
+didn't get a chance to push those boundaries before moving on to Rake,
+but it's the same concept: build systems have much to gain from the
+use of an internal domain-specific language.
+
+A must read!

@@ -1,0 +1,48 @@
+= Making RSS Feeds Out of CruiseControl Log Files
+
+abstract::
+Where's the XSLT stylesheet mentioned in the book?  Well, it's available on the book's web site, but slightly hidden.  Here's where to find it, and what to do with it when you do.
+
+A gentle reader asks where to find the XSLT stylesheet I wrote to make RSS
+feeds out of {CruiseControl}[http://cruisecontrol.sourceforge.net/]
+XML log files.  That stylesheet is described on page 29 of the
+{book}[http://pragmaticprogrammer.com/starter_kit/au/index.html], with
+a footnote mentioning that the file is available on the book's web
+site.  Trouble is, finding the file is a bit tricky because it's
+buried in the code bundle, available
+{here}[http://pragmaticprogrammer.com/starter_kit/au/code.html].
+
+In the <tt>builds</tt> directory of the code bundle you'll find a
+<tt>buildstatus.xsl</tt> file.  If you know anything about XSLT,
+shield your eyes.  I'm sure I committed more than one XSLT sin when
+I wrote the file, so please feel free to school me by making it better and
+contributing the new-and-improved file back.
+
+Once you've placed the <tt>buildstatus.xsl</tt> file in a comfy
+directory on the local hard drive, add an <tt>XSLTLogPublisher</tt> to
+your CruiseControl <tt>config.xml</tt> file, like so:
+
+  <publishers>
+      
+    <XSLTLogPublisher 
+      directory="/path/to/webserver/documents"
+      outfilename="your_project_build_status.rss"
+      xsltfile="/path/to/buildstatus.xsl" />
+
+  </publishers>
+
+After CruiseControl has completed a build cycle, you can conveniently monitor 
+your project's build status by pointing your favorite RSS reader to a URL 
+similar to the following:
+ 
+   http://your_server:port/your_project_build_status.rss
+
+The generated RSS file will always contain exactly one item---a
+summary of the last build.  That is, you won't see a history of all
+builds, but you do get a link back to the CruiseControl web
+application if you want to do build archaeology.
+
+Enjoy!
+
+
+				   

@@ -1,0 +1,98 @@
+= Pragmatic Project Automation Template
+
+start abstract:: 
+Create your very own pragmatic project---directory structure, Ant
+build file, CruiseControl configuration files, etc.---using the
+Pragmatic Project Automation template.  This Megg template will get
+you up and running in no time.
+end abstract::
+
+In the {book}[http://www.pragmaticprogrammer.com/sk/auto] we define a
+project directory structure and then add Ant build files for
+compiling, testing, and packaging the example DMS project.  We also
+write a delegating Ant build file and a configuration file for
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] so that builds
+are automatically baked on a regular interval.
+
+If you
+{download}[http://www.pragmaticprogrammer.com/sk/auto/code.html] the
+code from the book, you'll get all those files in their respective
+directories.  That is, you'll get a well-stocked directory structure
+for the example DMS project.  And if you want to use this structure
+and its files on your next project, you might be tempted to start
+replacing all occurrences of <tt>dms</tt> with <tt>yourproject</tt>.
+Well, here's another area where automation really shines: templating.
+
+{Megg}[http://megg.sourceforge.net] is a simple command-line tool for
+generating a project directory structure from templates.  And to make
+it easy for you to apply the directories and files from the book to
+your project, I've crafted a Megg template.
+
+Start by {downloading
+Megg}[http://sourceforge.net/project/showfiles.php?group_id=88732].
+You'll get a single JAR file.
+
+Next, run Megg and point it at the online Pragmatic Project Automation
+template:
+
+  $ java -jar megg-0.1.3.jar \
+    http://www.pragmaticprogrammer.com/starter_kit/auto/pragauto-template.zip
+
+(You'll need a network connection for this to work.  When you run this
+command the first time, the template is cached locally on your disk.
+If you run the same command again, Megg will use the local template.)
+
+Megg will then ask you a few basic questions about your project:
+
+   is a connection to the internet present? [yes/no]
+    online [yes] : 
+      [template] expanding /Users/mike/.megg/templates/pragauto-template.zip
+
+   the unique name for this project
+    projectName [mypragauto-template] : yourproject
+
+   Package prefix for your classes
+    domainName [com.xyz] : com.yourdomain
+
+   The first class you wish to create
+    mainClassName [Main] : YourMain
+
+  generate:
+      [apply] Generating 19 file(s)
+
+That's all there is to it!  If your project is called 'elmo', for
+example, then you'll get the following files and directories in the
+<tt>elmo</tt> directory:
+
+  BUILDING                build.xml               src/   
+  LICENSE                 builds/                 test/
+  README                  doc/                    vendor/
+  README-FIRST            package-tests.xml
+  bin/                    package.xml
+
+The README-FIRST file describes the files in the project and what you
+can do next.  But note that this isn't just an example project.  This
+is <i>your</i> project.  Megg used the answers to your questions to
+fill in the project template.  (Go ahead, look at the package
+structure and project files.) This means you can immediately start
+managing your project just like the example in the book.  For example,
+you can run the following Ant targets:
+
+  ant test
+  ant javadoc
+  ant run
+  ant -buildfile package.xml -Dversion=x_y
+  ant -buildfile package-tests.xml -Dversion=x_y
+  ant clean
+
+And once you've installed CruiseControl, you can start building your
+project on a schedule simply by typing:
+
+  $ cd builds
+  $ sh cruise.sh (or cruise.bat)
+
+Voila!  Welcome to your very own pragmatic project, already compiling,
+passing its tests, and building what's on the CVS head at frequent
+intervals.  All you have to do is write the code.  :-)
+
+Have fun!

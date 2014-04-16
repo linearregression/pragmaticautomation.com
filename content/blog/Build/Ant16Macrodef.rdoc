@@ -1,0 +1,125 @@
+= Ant 1.6 Goody: <macrodef>
+
+abstract:: 
+If you're using Ant but have yet to upgrade to Ant 1.6, then you're missing out.  Here's a quick example of the new <macrodef> task.
+
+Rolling on with our tour of new features in Ant 1.6, let's look at
+another new task that helps reduce duplication and promotes
+consistency across projects.  The <tt><macrodef></tt> task lets you
+create a custom task composed of existing tasks, and specify custom
+parameters to those tasks on a case-by-case basis.  Think of it as
+Ant's way of letting you write reusable methods in your build files.
+
+Say, for example, your build file includes the following
+<tt>test</tt> target that taste-tests the build:
+
+  <target name="test" depends="compile-tests">
+    <junit haltonfailure="true" fork="false">
+      <classpath refid="project.classpath" />
+      <formatter type="brief" usefile="false" />
+      <batchtest>
+        <fileset dir="${build.test.dir}"
+                 includes="**/*Test.class" />
+      </batchtest>
+    </junit>
+  </target>
+
+The <tt><batchtest></tt> task creates a test suite containing the
+tests returned by the <tt><fileset></tt> element---all the tests
+defined in <tt>*Test.class</tt> files.  The resulting suite is then
+run by the enclosing <tt><junit></tt> task.  Once you get all the
+elements and attributes set the way you like, it works like a charm.
+
+Tomorrow you're writing a new JUnit test, but it's not the sort of
+quick unit test that a programmer on a deadline would want to run
+frequently as part of the build process.  No, your new test belongs in
+a different test suite than the quick tests.  So you decide that you
+need a new Ant target called <tt>test-database</tt> that runs all of
+the database-related tests.  That target will call all the same tasks
+as the <tt>test</tt> target, but with three differences: 1) the
+<tt><fileset></tt> will collect only the database tests 2) the value
+of the <tt>fork</tt> attribute will be set to <tt>true</tt> and 3) the
+database tests require system properties to be set.
+
+It's tempting to copy the <tt>test</tt> target and give it a slight
+makeover, but you know duplication is just a shortcut to madness.
+Rather, extract out the commonality into a <tt><macrodef></tt> task:
+
+  <macrodef name="run-tests"> 
+    <attribute name="classes" />
+    <attribute name="fork" default="false" />
+    <element name="options" optional="true" />
+    <sequential>
+      <junit haltonfailure="true" fork="@{fork}">
+        <classpath refid="project.classpath" />
+        <formatter type="brief" usefile="false" />
+        <batchtest>
+          <fileset dir="${build.test.dir}"
+                   includes="@{classes}" />
+        </batchtest>
+        <options />
+      </junit>
+    </sequential>
+  </macrodef>
+
+Notice that the <tt>run-tests</tt> macro has two attributes:
+<tt>classes</tt> and <tt>fork</tt>.  When you call the macro, you must
+provide a value for <tt>classes</tt>.  The <tt>fork</tt> attribute, if
+not specified, has a default value of <tt>false</tt>.  The real work
+happens in the <tt>sequential</tt> task, composed of the same tasks as
+your original <tt>test</tt> target.  The difference here is instances
+of <tt>@{fork}</tt> and <tt>@{classes}</tt> are replaced with their
+corresponding attribute values.  Additionally, the <tt><options></tt>
+element is replaced with the elements enclosed in an <tt>options</tt>
+element, if specified when the macro is called. 
+
+Now change the <tt>test</tt> target to simply call your
+<tt>run-tests</tt> macro:
+
+  <target name="test" depends="compile-tests">
+    <run-tests classes="**/*Test.class" />
+  </target>
+
+Note that these tests run with a <tt>fork</tt> attribute value of
+<tt>false</tt> and without any options.  That is, the
+default attribute values are used and the optional elements aren't
+provided.  Ah... less XML for you to type and maintain.
+
+Finally, define a new target that calls the <tt>run-tests</tt> macro
+to run just the database tests:
+
+  <target name="test-database" depends="compile-tests">
+    <run-tests classes="**/TestDB.class" fork="yes">
+      <options>
+        <sysproperty key="db.url" value="${db.url}" />
+        <sysproperty key="db.user" value="${db.user}" />
+        <sysproperty key="db.password" value="${db.password}" />
+      </options>
+    </run-tests>
+  </target>
+
+In this case, the <tt>fork</tt> attribute is turned on and a few
+system properties are provided.  (Note that any element that can be
+nested inside of a <tt><junit></tt> task can be specified in the
+<tt><options></tt> element.)
+
+Extracting the common tasks and defaults out into the
+<tt>run-tests</tt> macro removed duplication, which means we can
+change the steps of the testing process in one location: the
+<tt>run-tests</tt> macro.  This works well for common build targets
+that are complex in that they include several tasks and/or use several
+properties, such as the <tt><javac></tt> task.  By comparison, the new
+<tt><presetdef></tt> task is similar to <tt><macrodef></tt>, but it
+doesn't allow custom parameters to be specified.  In other words, if
+<tt><macrodef></tt> is like a Java method that takes arguments,
+<tt><presetdef></tt> is like a no-arg method.
+
+Combined with the new <tt><import></tt>
+task we visited {last
+time}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Import.rdoc],
+use of the <tt><macrodef></tt> task leads to shorter build files and
+consistency across projects.  And by writing macros that have
+intention-revealing names and use intelligent defaults, your build
+files start to read more like a concise build language.
+
+There's more to come, so stay tuned for the next new feature...

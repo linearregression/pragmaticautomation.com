@@ -1,0 +1,43 @@
+= MobBuilding
+
+abstract:: 
+When Mike Blake's team used their own mobile application to serve up a
+fresh build of that same application, they made sure they had something to
+help wash the dog food down.  Brilliant!
+
+<em>When {Mike Blake's}[http://www.martinicity.net] team used their
+own mobile application to serve up a fresh build of that same application,
+they made sure they had something to help wash the dog food down.
+Brilliant!  He writes:</em>
+
+"No more think, time to drink!" shouted Fernando from his seat at a
+door propped up on plastic sawhorses.  This was my favorite thing to
+hear late on a Thursday at a small start-up company south of San
+Francisco back at the turn of the century.  We developed mobile
+applications at
+{ViaFone}[http://web.archive.org/web/20010201050500/http://viafone.com/].
+I worked as the build manager with several talented engineers who
+constantly introduced me to the latest technologies including
+{Ant}[http://ant.apache.org/] and {JUnit}[http://junit.org/]. So it
+was no surprise that we had fully automated checkout, build,
+installation and testing of our core product.
+
+Although the build fired off automatically early every morning, there
+were times when colleagues needed additional builds to use the latest
+functionality.  Since our company mission was to create applications
+for mobile devices, I decided to try eating a little of our own dog
+food. I installed a lightweight telnet application on my Kyocera Palm
+OS phone, had a friend poke a hole in the firewall, and with a few
+simple shell scripts it was born: The Mobile Build.
+
+Thursday drink night had grown from an informal gathering of engineers
+to a company wide tradition.  One Thursday evening at an Irish pub in
+downtown Frisco, I received a call from a project manager requesting a
+fresh build.  This was a golden opportunity to debut The Mobile Build.
+I pulled out my stylus, logged on to the build server, and ran a shell
+script.  A tail of the log file scrolled gracefully by on the little
+monochrome screen.  The phone made its way around the pub.  Happy
+engineers watched in turn as their components built and tested
+successfully.  The Guinness tasted sweet just then. "Technically,
+we're all working right now," said our leader Fernando.  Well then, I
+thought, cheers to automation!

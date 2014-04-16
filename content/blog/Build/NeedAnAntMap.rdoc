@@ -1,0 +1,32 @@
+= Need an Ant Map?
+
+abstract:: 
+Many are the build explorers who have hacked their way through the tangled undergrowth of Ant build files in search of target dependencies.  The Ant Script Visualizer draws a map of target dependencies so you don't disappear into the Ant 1.6 jungle.
+
+Many are the build explorers who have hacked their way through the
+tangled undergrowth of Ant build files in search of target
+dependencies.  A few of these brave souls have not been heard of since
+disappearing into the jungle with a machete raised high above their
+heads.  We know some of them are still slogging away deep inside the
+jungle only because they let out a primary scream when they discover
+that their labyrinth is called Ant 1.6.
+
+No doubt, the new <import> and <macrodef> tasks in Ant 1.6 are a boon
+when it comes to creating a modular build system and reducing
+duplication across build files.  But the extra level of indirection created
+by a mixin with an overridden abstract target, for example, can quickly
+throw you off the trail.
+
+Carefully lay down your machete, brave explorer, before you're minus
+one good typing finger, and pick up the {Ant Script
+Visualizer}[http://www.nurflugel.com/webstart/AntScriptVisualizer/].
+It lets you visualize how your Ant targets and build files are related
+to one another by showing all the relationships between imports,
+targets, macrodefs, taskdefs, etc. Using
+{GraphViz}[http://www.graphviz.org/] (installed separately), Ant
+Script Visualizer can generate an Ant target treasure map in PNG and
+SVN output formats, and PDF on Mac OS X ({example
+outputs}[http://www.nurflugel.com/webstart/AntScriptVisualizer/help/html/html/using_ant_script_visualizer.html]).
+{Launch it with Java Web
+Start}[http://www.nurflugel.com/webstart/AntScriptVisualizer/antscriptVisualizer.jnlp]
+to consistently use the freshest version.

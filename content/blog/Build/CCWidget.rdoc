@@ -1,0 +1,14 @@
+== CruiseControl Widget
+
+abstract:: 
+Put the CruiseControl Widget on your Dashboard and monitor builds at a glance.
+
+The {Dashboard}[http://www.apple.com/macosx/features/dashboard/] in
+Tiger is an ideal way to monitor automation at work with just a
+glance.  I've been anxiously awaiting word of attractive widgets that
+monitor builds and running programs.
+
+Jason Sypher and Mark Husson came through with style today by
+unveiling the {CruiseControl
+Widget}[http://rubicore.com/code/cruisecontrol/].  Check out the
+{screenshots}[http://rubicore.com/code/cruisecontrol/].  Yum!

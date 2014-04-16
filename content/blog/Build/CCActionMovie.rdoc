@@ -1,0 +1,20 @@
+= CruiseControl Action Movie
+
+abstract:: 
+Every time I have an opportunity to talk to a group about continuous integration, I just fire up CruiseControl and act out a project episode.  Here's a 2-minute screen video of that demo.
+
+Every time I have an opportunity to talk to a group about continuous
+integration, I just fire up
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] and act out a
+project episode.  Not everyone ends up using CruiseControl on their
+project, but at least they walk away knowing what a continuous
+integration tool can do for them.
+
+To help spread the word, I made a {2-minute screen video with
+voiceover}[http://media.pragprog.com/movies/auto/CruiseControl_MikeClark.html]
+(8MB, <i>{QuickTime}[http://www.apple.com/quicktime/download/]</i>)
+of CruiseControl in action.  The experience is lossy in the sense that
+I've sacrificed quality to keep the file size to a minimum and, well,
+it's not a live performance.
+
+{Let me know}[mailto:mike@clarkware.com] what you think.

@@ -1,0 +1,112 @@
+= Ant 1.6 Goody: <import>
+
+abstract:: 
+If you're using Ant but have yet to upgrade to Ant 1.6, then you're missing out.  Here's a quick example of the new <import> task.
+
+If you're using {Ant}[http://ant.apache.org/] but have yet to upgrade
+to Ant 1.6, then you're missing out.  Just to give you a glimpse of what
+you're missing, over the next several weeks I'll post quick examples
+of new features in Ant 1.6 that help reduce duplication in your build
+process so that you spend less time writing and maintaining build
+files.
+
+To kick-start the tour, let's begin with a new feature that promotes
+consistency across projects. The <tt><import></tt> task lets you conveniently
+mix in tasks from other build files.  Say, for example, you have a
+build file called <tt>build-common.xml</tt> that includes common
+properties and tasks, such as a <tt>compile</tt> target.
+
+  <project name="common">
+    ...
+    <target name="compile" depends="prepare">
+      <javac srcdir="${src.dir}"
+             destdir="${build.prod.dir}"
+             classpathref="project.classpath"/>
+    </target>
+    ...
+  </project>
+
+Tomorrow you're breaking ground on a new Java project, and it's up to
+you to define the one-step build process.  Obviously it will need to
+compile source files, so you need a <tt>compile</tt> target.  Rather
+than falling prey to copy/paste reuse, create a project-specific
+<tt>build.xml</tt> file and import the existing
+<tt>build-common.xml</tt> file.
+
+  <project name="dms" basedir=".">
+    <import file="build-common.xml" />
+  </project>
+
+By importing <tt>build-common.xml</tt>, the project-specific build
+file has inherited all the common tasks and properties.  For example,
+you've barely broken a sweat typing angle brackets and you're already
+compiling code:
+
+  $ ant compile
+  Buildfile: build.xml
+
+  prepare:
+    [mkdir] Created dir: /Users/mike/work/dms/build/prod
+  compile:
+    [javac] Compiling 4 source file to /Users/mike/work/dms/build/prod
+
+  BUILD SUCCESSFUL
+  Total time: 3 seconds
+
+Ah, but your project needs to do some work before and after the
+compilation step.  It's tempting to copy the <tt>compile</tt> target
+and modify it for project-specific needs, but that's only because you
+haven't tasted another spice of <tt><import></tt>: target
+overriding.  Simply override the <tt>compile</tt> target in your
+<tt>build.xml</tt> file to add more behavior.
+
+  <project name="dms" basedir=".">
+
+    <!-- Override common properties here. -->
+
+    <import file="build-common.xml" />
+
+    <target name="compile" 
+            depends="pre-compile, common.compile, post-compile" />
+
+    <target name="pre-compile">
+      <echo>Compiling...</echo>
+    </target>
+
+    <target name="post-compile">
+      <echo>Done.</echo>
+    </target>
+
+  </project>
+
+Notice that the project-specific <tt>compile</tt> target uses a
+dependency order to ensure that the local <tt>pre-compile</tt> target
+is invoked before the common <tt>compile</tt> target (specified as
+<tt>common.compile</tt>) and the local <tt>post-compile</tt> target
+is called at the end.
+
+Now you have a project-specific compile step:
+
+  $ ant compile
+  Buildfile: build.xml
+
+  pre-compile:
+     [echo] Compiling...
+  prepare:
+  common.compile:
+  post-compile:
+     [echo] Done.
+  compile:
+
+  BUILD SUCCESSFUL
+  Total time: 3 seconds
+
+Nothing was compiled because everything was up-to-date from the
+previous build, but notice that the <tt>common.compile</tt> target
+was indeed bracketed with your project-specific steps.
+
+You're done!  So, now that your build process is in place, what's
+next?  Well, because setting up the build didn't take long, you
+probably still remember that code you need to write.  And now that
+you're using the <tt><import></tt> task, hopefully you can steer clear
+of the build file until next week, when we peek at another new feature.

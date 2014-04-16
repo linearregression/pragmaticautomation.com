@@ -1,0 +1,68 @@
+= Your Project's Unlikely Hero
+
+start abstract::
+Jeffrey Fredrick's excellent article on continuous integration draws
+an important distinction between nightly builds and continuous 
+integration, and describes how his project customized CruiseControl
+to meet their needs.
+end abstract::
+ 
+This month's {Better
+Software}[http://www.stickyminds.com/BetterSoftware/magazine.asp]
+magazine features an excellent
+{article}[http://www.stickyminds.com/BetterSoftware/magazine.asp?fn=cifea]
+by Jeffrey Fredrick on continuous integration.  In the article he
+draws an important, yet often misunderstood, distinction between
+daily (nightly) builds and continuous integration (CI):
+
+
+[] <em>Nightly builds generate deliverables. They result in something
+   tangible: something for QA to test, something for product managers to
+   review, and something to reassure team members that they are in fact
+   building a product. Because of the external audience, the nightly
+   build is a formal event, a mini-milestone that your team should hit
+   without fail. Breaking the nightly build is something that generates
+   blame and often consequences, such as becoming the build mother or
+   being awarded a dunce cap.</em>
+
+   <em> CI is different. Its builds don't need durable build products
+   to be worthwhile. They are a way for a developer to have a
+   conversation with the system, to get reassurance that he has done
+   his part, at least for now. And with a CI build, the cycle time is
+   short, the number of affected parties small, and the cost of
+   failure low. This change in the cost of failure makes for a
+   significant change in behavior---if you'll let it. I've met people
+   who want CI failures to be a shaming event, similar to what happens
+   when the nightly build breaks. But given the nature of a CI build,
+   does this make sense?...</em>
+
+   <em>This implies that a CI build should be tuned to surface failure
+   feedback as quickly as possible, but this feedback is not a
+   management tool; it's an enabling tool. It allows the developer to
+   take responsibility for each check-in in a way that isn't possible
+   (or at least not cost effective) in the absence of such a
+   system....</em>
+
+   <em>This isn't to say the formal nightly build should be
+   abandoned---do both! The CI feedback means that problems are likely
+   detected before the nightly build. The pending nightly build gives
+   some added weight to fixing the problems immediately "so the
+   nightly build will pass."</em>
+
+Jeffrey goes on to describe how his project uses
+{CruiseControl}[http://cruisecontrol.sourceforge.net/] to schedule
+builds at different time intervals---from a quick build and unit test
+that runs every fifteen minutes to a full build and system test once a
+day---in order to get timely and accurate feedback throughout the day.  That
+is, they use CruiseControl for both nightly builds and continuous
+integration.
+
+It's easy to forget that CruiseControl is a <em>framework</em> for a
+continuous build process.  Out of the box it's an application that can
+compile your code, run your tests, and publish the results to various
+destinations with minimal configuration.  But CruiseControl is also an
+extensible framework that's easy to customize, and Jeffrey describes
+how his project has integrated custom results into the build report.
+
+Go give it a {read}[http://www.stickyminds.com/BetterSoftware/magazine.asp?fn=cifea]!
+

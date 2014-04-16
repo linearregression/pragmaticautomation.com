@@ -1,0 +1,9 @@
+= Project Dependencies Using Ant
+
+abstract::
+How to use built-in Ant tasks to manage the build order of sub-projects.
+
+{Joe Schmetzer}[http://www.exubero.com/] has posted a short and sweet
+{article}[http://www.exubero.com/ant/dependencies.html] on how he uses
+Ant target dependencies and the <import> task to manage the build
+order of sub-projects.  Examples scripts are there for the taking.

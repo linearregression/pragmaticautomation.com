@@ -1,0 +1,51 @@
+= Using CruiseControl with Subversion
+
+abstract:: 
+One of the convenient things about Subversion is that it looks and feels like CVS.  To demonstrate the similarities, I ported the CruiseControl configuration files included in the book to use Subversion.
+
+One of the convenient things about
+{Subversion}[http://subversion.tigris.org/] is that it looks and feels
+like {CVS}[https://www.cvshome.org/].  If you're comfortable with CVS,
+then learning Subversion is a breeze.
+
+To demonstrate the similarities, I ported the CruiseControl
+configuration files included in the {Scheduled
+Builds}[http://www.pragmaticprogrammer.com/starter_kit/au/scheduled.pdf]
+chapter of the {book}[http://www.pragmaticprogrammer.com/sk/auto/] to
+use Subversion.  As you read through that chapter, you can pretty much
+say "Subversion" every time you read the word "CVS", while ignoring
+any references to <tt>CVSROOT</tt>.  Likewise, any time you see the
+command <tt>cvs</tt>, think <tt>svn</tt>.  Oh, and Subversion
+<i>does</i> support atomic commits, so the use of a
+quiet period with CruiseControl is less important.
+
+
+For the <tt>cc-build.xml</tt> file on page 51 of the book (page 10 of
+the chapter PDF), replace
+
+  <cvs command="co dms" />
+
+with 
+
+  <exec executable="svn">
+    <arg line="co /path/to/svn-repo/dms/trunk dms" />
+  </exec>
+
+There is an {Ant task}[http://subclipse.tigris.org/svnant.html] for
+Subversion, but it's not distributed with the current version of Ant.
+I used the <tt><exec></tt> task because it gets this small job done with
+less configuration steps.
+
+For the <tt>config.xml</tt> file on page 59 of the book (page 18 of
+the chapter PDF), replace
+
+  <cvs localworkingcopy="checkout/dms" />
+
+with
+        
+  <svn localworkingcopy="checkout/dms" />
+
+The <tt><svn></tt> source control element is included with recent
+releases of CruiseControl.
+ 
+And that's all there is to it!

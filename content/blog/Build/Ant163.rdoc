@@ -1,0 +1,14 @@
+= Ant 1.6.3 Available
+
+abstract:: 
+Ant 1.6.3 is now available for your automation pleasure.
+
+{Ant 1.6.3}[http://ant.apache.org/] is now available for your
+automation pleasure.  This release includes a {beefy
+list}[http://www.apache.org/dist/ant/RELEASE-NOTES-1.6.3.html] of
+fixed bugs and enhancements, some of which are related to the new
+{subant}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Subant.rdoc],
+{macrodef}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Macrodef.rdoc],
+and
+{import}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/Ant16Import.rdoc]
+tasks we recently toured.

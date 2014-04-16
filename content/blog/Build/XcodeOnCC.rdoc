@@ -1,0 +1,66 @@
+= Xcode On CruiseControl
+
+abstract:: 
+CruiseControl is for building Java projects, right?  Not so fast.
+This article describes how to put Xcode projects---Cocoa, Objective-C,
+and Java projects---on CruiseControl.
+
+I've been crafting Cocoa and Objective-C applications lately, for
+business and pleasure.  The IDE of choice in that land is
+{Xcode}[http://www.apple.com/macosx/features/xcode/], and it's a great
+one.  Like most IDEs, Xcode has a "Build" button that gets a good
+workout when I'm hacking code.  But unlike some IDEs, Xcode is also an
+automation-friendly IDE.  Projects in Xcode can be built from the
+command line using the <tt>xcodebuild</tt> utility:
+
+  $ xcodebuild -target MyCocoaApp -buildstyle Deployment build
+
+That simple command might not look all that powerful, but it means
+that Xcode has, in addition to its other features, all the requisite
+skills for baking CRISP builds.  Specifically, it means that Xcode
+builds are schedulable---the "S" part of CRISP.  I don't have to park
+myself in front of Xcode the IDE to get builds on a regular interval.
+Instead, I can delegate that recurring chore to the scheduler already
+on this computer: <tt>cron</tt>.
+
+I was just about to put my Xcode builds on a <tt>cron</tt> schedule,
+and then I remembered all the other build monitoring goodies included
+in my {CruiseControl}[http://cruisecontrol.sourceforge.net/] builds
+that I'd be missing: email, text messaging, RSS build feeds, X10
+devices, and a build status web page.  I could write a build shell
+script that published the build results out to those monitoring tools,
+and then put that script on <tt>cron</tt>.  Ultimately, I'd probably
+end up reinventing CruiseControl.
+
+But CruiseControl is for building Java projects, right?  Not so fast.
+CruiseControl will run anything that can present itself as an Ant (or
+Maven) file.  And although Cocoa projects don't produce all the XML
+droppings of a Java project being built, such as JUnit test results,
+the Ant build log is all that's needed for CruiseControl's Ant builder
+to determine if the build succeeded or failed.
+
+So I simply took the CruiseControl configuration files from the
+{book}[http://www.pragmaticprogrammer.com/sk/auto/], plugged in a new
+project name, and slightly modified the <tt>cc-build.xml</tt> file to
+use an Ant <tt><exec></tt> task that fires up an <tt>xcodebuild</tt>:
+
+  <project name="cc-build" default="build" basedir="checkout">
+    <target name="build">
+      <delete dir="MyCocoaApp" />
+      <cvs command="co MyCocoaApp" />
+      <exec executable="xcodebuild" dir="MyCocoaApp" failonerror="true">
+        <arg line="-target MyCocoaApp -buildstyle Deployment build" />
+      </exec>
+    </target>
+  </project>
+
+That's all there is to it!  I now have my Cocoa and Objective-C
+applications being built, and tested with
+{UnitKit}[http://unitkit.org/], under the watchful eye of
+CruiseControl.  With just a slight configuration change I got all of
+those build feedback mechanisms I've grown used to for free.  And as
+folks in the CruiseControl community develop new publishers, I'll get
+those for free, too.
+
+<em>Note: If you're using Xcode to build Java projects, you can
+optionally use Ant as the underlying build system.</em>

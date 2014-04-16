@@ -1,0 +1,11 @@
+== Firefox Plugin for CruiseControl
+
+abstract:: 
+Monitor CruiseControl builds from Firefox.
+
+Inspired by the recent {Dashboard
+widget}[http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Build/CCWidget.rdoc],
+Dmitri Maximovich wrote a {Firefox
+plugin}[http://www.md.pp.ru/mozilla/cc/] to monitor builds in
+CruiseControl.  He's looking for your feedback to help make it
+even better...

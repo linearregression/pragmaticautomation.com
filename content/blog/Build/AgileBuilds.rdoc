@@ -1,0 +1,13 @@
+= Is Your Build Agile?
+
+abstract:: 
+SD Times just posted a new article concerning lengthy builds siphoning energy off agile processes.
+
+SD Times just posted a {new
+article}[http://www.sdtimes.com/article/special-20050815-01.html]
+concerning lengthy builds siphoning energy off agile processes.
+
+I think we'll continue to see the tools and processes of old getting
+in the way of the rapid feedback required to move quickly and
+confidently.  It's an opportunity to revisit the value of those tools
+and processes, and adjust accordingly.

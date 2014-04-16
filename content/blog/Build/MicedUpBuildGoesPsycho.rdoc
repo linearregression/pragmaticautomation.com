@@ -1,0 +1,34 @@
+= Builds In Surround Sound
+
+abstract::
+Ah, it's Friday--the end of another long week slaving behind a hot keyboard.  Here's a fun story of how one project has spiced up their build process to play success and failure sounds.  
+
+<em>Ah, it's Friday--the end of another long week slaving behind a hot
+keyboard.  I thought you might like to try a little something fun
+around the office.  Disclaimer: This so-called fun won't have
+universal appeal in all environments, and I'm not responsible for
+someone being shown the door.  That said, I saved the following
+Slashdot post from
+{bADlOGIN}[http://developers.slashdot.org/comments.pl?sid=119479&threshold=1&commentsort=0&tid=156&tid=126&tid=8&tid=218&mode=thread&cid=10084273]
+for those of you just itchin' to spice up your scheduled build
+process:</em>
+
+I've been using CruiseControl for about half a year now, and the Ant
+{sound task}[http://ant.apache.org/manual/OptionalTasks/sound.html]
+works well. Just crank up the speakers and collect a directory of
+Success and Failure sounds. It's hard to ignore the audio track from
+the Psycho shower scene when a build fails, or a snip of the Indiana
+Jones theme music when it passes.
+
+Our build machine recently switched to a rack mount in the server
+room, so I wrote a little Ant task that loops and parses the
+CruiseControl RSS feed (mentioned in {Pragmatic Project
+Automation}[http://www.pragmaticprogrammer.com/sk/auto/]) and sets the
+build status based on that, playing a set of sounds on a workstation
+locally. We get punk covers of show tunes (from Me First and the
+Gimmie Gimmies "Are a Drag") and Office Space quotes when the build
+fails. The sounds are different from our usual workstation collection,
+and nothing says you missed a file check-in or config change like Bill
+Lumberg saying "Uh... we have sort of a Problem here.." at max volume.
+:)
+
