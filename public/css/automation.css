@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+}
+
+a { color: #0b7060; text-decoration: none; font-weight:normal; } 
+a:link		{ color: #0b7060; } 
+a:visited	{ color: #0b7060; } 
+a:active	{ color: black; } 
+a:hover		{ color: black; }
+
+a img {
+  border: none;
+}
+
+h1, h2, h3 {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+h3.title {
+  font-size:  140%;
+  font-weight: normal;
+  margin-bottom: 1em;
+}
+
+
+#banner {
+  margin: 10px 10px 15px 10px;
+}
+
+#banner a,
+#banner a:link,
+#banner a:visited,
+#banner a:active,
+#banner a:hover {
+  color: #0c7967;
+  font-size: xx-large;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#banner h1 {
+  padding: 10px 0 10px 40px;
+}
+
+#content {
+  margin: 25px 50px;
+}
+
+#content .book {
+  text-align: center;
+  float: right; 
+  margin: 0 3em;
+}
+
+#content .book p {
+  padding: 0;
+  margin: 5px 0;
+  text-align: center;
+}
+
+#content .book img {
+  border: 1px solid #ccc;
+}
+
+.blogbody {
+  color: #666;
+  font-size: 1.25em;
+  font-weight: 300;
+	line-height: 150%;		
+}
+
+.blogbody a,
+.blogbody a:link,
+.blogbody a:visited {
+  border-bottom: 1px dotted #334;
+}
+
+.blogbody a:active,
+.blogbody a:hover {
+  border-bottom: 1px solid #668;
+}
+
